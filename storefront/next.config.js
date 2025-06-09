@@ -34,6 +34,10 @@ const nextConfig = {
       },
       { // Note: can be removed after deleting demo products
         protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      { // Note: can be removed after deleting demo products
+        protocol: "https",
         hostname: "medusa-server-testing.s3.amazonaws.com",
       },
       { // Note: can be removed after deleting demo products

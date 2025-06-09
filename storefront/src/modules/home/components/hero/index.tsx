@@ -6,7 +6,7 @@ const Hero = () => {
     <div className="h-[75vh] aspect-[29/34] text-white w-full overflow-hidden border-b border-ui-border-base relative bg-ui-bg-subtle">
       {/* bg */}
       <Image
-        src="/images/vape_on_ground.jpg"
+        src="https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg"
         priority={true}
         className="absolute inset-0"
         quality={100}
