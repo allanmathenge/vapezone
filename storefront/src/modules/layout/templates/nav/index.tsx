@@ -5,6 +5,9 @@ import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
+import { HiPhone } from "react-icons/hi"
+import { SiWhatsapp } from "react-icons/si"
+import { FaUser } from "react-icons/fa"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
@@ -19,14 +22,28 @@ export default async function Nav() {
             </div>
           </div>
 
-          <div className="flex items-center h-full">
+          <div className="flex items-center gap-3 h-full">
             <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
-              data-testid="nav-store-link"
-            >
-              Vapezone
-            </LocalizedClientLink>
+                href="tel:+254712345678"
+                className="text-red-500 txt-compact-xlarge-plus"
+                data-testid="nav-store-link"
+              >
+                <HiPhone />
+              </LocalizedClientLink>
+
+            <LocalizedClientLink
+                href="tel:+254712345678"
+                data-testid="nav-store-link"
+              >
+                <span className="txt-compact-xlarge-plus">0798769535</span>
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                href="https://wa.me/254798769535"
+                className="txt-compact-xlarge-plus text-green-500"
+                data-testid="nav-store-link"
+              >
+                <SiWhatsapp />
+              </LocalizedClientLink>
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
@@ -41,13 +58,15 @@ export default async function Nav() {
                   Search
                 </LocalizedClientLink>
               )}
+              <div className="hidden small:flex items-center gap-x-6 h-full">
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
+                className="hover:text-ui-fg-base border rounded-full p-1"
                 href="/account"
                 data-testid="nav-account-link"
               >
-                Account
+                <FaUser className="h-3 w-3" />
               </LocalizedClientLink>
+            </div>
             </div>
             <Suspense
               fallback={
