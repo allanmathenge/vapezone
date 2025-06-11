@@ -40,6 +40,7 @@ export default async function Nav() {
               <LocalizedClientLink
                 href="https://wa.me/254798769535"
                 className="txt-compact-xlarge-plus text-green-500"
+                target="_blank"
                 data-testid="nav-store-link"
               >
                 <SiWhatsapp />
