@@ -23,28 +23,28 @@ export default async function Nav() {
           </div>
 
           <div className="flex items-center gap-3 h-full">
-            <LocalizedClientLink
+            <a
                 href="tel:+254712345678"
                 className="text-red-500 txt-compact-xlarge-plus"
                 data-testid="nav-store-link"
               >
                 <HiPhone />
-              </LocalizedClientLink>
+              </a>
 
-            <LocalizedClientLink
+            <a
                 href="tel:+254712345678"
                 data-testid="nav-store-link"
               >
                 <span className="txt-compact-xlarge-plus">0798769535</span>
-              </LocalizedClientLink>
-              <LocalizedClientLink
+              </a>
+              <a
                 href="https://wa.me/254798769535"
                 className="txt-compact-xlarge-plus text-green-500"
                 target="_blank"
                 data-testid="nav-store-link"
               >
                 <SiWhatsapp />
-              </LocalizedClientLink>
+              </a>
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
