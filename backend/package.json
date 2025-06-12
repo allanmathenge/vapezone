@@ -1,16 +1,12 @@
 {
-  "name": "medusa-2.0-boilerplate-backend",
+  "name": "vapezone",
   "version": "0.0.2",
-  "description": "A Prebaked Medusa 2.0 backend",
-  "author": "Rasmus Puls",
+  "description": "Vapezone backend",
+  "author": "Allan Mathenge",
   "license": "MIT",
   "keywords": [
-    "sqlite",
-    "postgres",
-    "typescript",
-    "ecommerce",
-    "headless",
-    "medusa"
+    "vapezone",
+    "vapeshop near me"
   ],
   "scripts": {
     "build": "medusa build && node src/scripts/postBuild.js",
