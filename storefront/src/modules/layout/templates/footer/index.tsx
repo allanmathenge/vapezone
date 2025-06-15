@@ -93,7 +93,7 @@ export default async function Footer() {
                     }
                   )}
                 >
-                  {collections?.slice(0, 6).map((c) => (
+                  {collections?.map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
                         className="hover:text-ui-fg-base"
