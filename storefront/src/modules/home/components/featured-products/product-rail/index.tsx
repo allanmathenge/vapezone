@@ -12,7 +12,7 @@ export default function ProductRail({
   region: HttpTypes.StoreRegion
 }) {
   const { products } = collection
-
+  console.log(collection, "Collections")
   if (!products) {
     return null
   }
@@ -27,7 +27,7 @@ export default function ProductRail({
       </div>
       <ul className="grid grid-cols-2 small:grid-cols-3 gap-x-3 gap-y-6 small:gap-y-8">
         {products &&
-          products.map((product) => (
+          products.slice(0, 4).map((product) => (
             <li key={product.id}>
               {/* @ts-ignore */}
               <ProductPreview product={product} region={region} isFeatured />
