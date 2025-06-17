@@ -48,10 +48,10 @@ const Item = ({ item, type = "full" }: ItemProps) => {
 
   return (
     <Table.Row className="w-full" data-testid="product-row">
-      <Table.Cell className="!pl-0 p-1 w-24">
+      <Table.Cell className="!pl-0 p-4 w-24">
         <LocalizedClientLink
           href={`/products/${handle}`}
-          className={clx("flex flex-col", {
+          className={clx("flex", {
             "w-16": type === "preview",
             "small:w-24 w-12": type === "full",
           })}
@@ -61,19 +61,17 @@ const Item = ({ item, type = "full" }: ItemProps) => {
             images={item.variant?.product?.images}
             size="square"
           />
-
-          <Table.Cell className="text-left">
-            <Text
-              className="txt-medium-plus text-ui-fg-base"
-              data-testid="product-title"
-            >
-              {item.product_title}
-            </Text>
-            <LineItemOptions variant={item.variant} data-testid="product-variant" />
-          </Table.Cell>
-
         </LocalizedClientLink>
-        
+      </Table.Cell>
+
+      <Table.Cell className="text-left">
+        <Text
+          className="txt-medium-plus text-ui-fg-base"
+          data-testid="product-title"
+        >
+          {item.product_title}
+        </Text>
+        <LineItemOptions variant={item.variant} data-testid="product-variant" />
       </Table.Cell>
 
       {type === "full" && (
