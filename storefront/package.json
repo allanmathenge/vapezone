@@ -5,8 +5,10 @@
   "author": "Allan Mathenge",
   "description": "Your Ultimate Vape Destination in Nairobi - Fast, Affordable & Reliable!",
   "keywords": [
-    "vapezone storefront",
-    "Your one stop shop for all your vaping needs"
+    "vapezone",
+    "Your one stop shop for all your vaping needs",
+    "Vapes shop Nairobi",
+    "Nearest vape shop"
   ],
   "scripts": {
     "wait": "await-backend",
