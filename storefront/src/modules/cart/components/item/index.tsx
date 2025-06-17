@@ -47,61 +47,49 @@ const Item = ({ item, type = "full" }: ItemProps) => {
   const maxQuantity = item.variant?.manage_inventory ? 10 : maxQtyFromInventory
 
   return (
-    <Table.Row className="w-full" data-testid="product-row">
-      <Table.Cell className="!pl-0 p-4 w-24">
+    <Table.Row className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 rounded-lg shadow-md">
+      
+      <Table.Cell className="flex justify-center items-center">
         <LocalizedClientLink
           href={`/products/${handle}`}
           className={clx("flex", {
             "w-16": type === "preview",
-            "small:w-24 w-12": type === "full",
+            "w-24": type === "full",
           })}
         >
           <Thumbnail
             thumbnail={item.variant?.product?.thumbnail}
             images={item.variant?.product?.images}
             size="square"
+            className="rounded-md transition-transform transform hover:scale-105"
           />
         </LocalizedClientLink>
       </Table.Cell>
 
-      <Table.Cell className="text-left">
-        <Text
-          className="txt-medium-plus text-ui-fg-base"
-          data-testid="product-title"
-        >
+      <Table.Cell className="flex flex-col justify-center">
+        <Text className="txt-medium-plus text-ui-fg-base" data-testid="product-title">
           {item.product_title}
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
       </Table.Cell>
 
       {type === "full" && (
-        <Table.Cell>
-          <div className="flex gap-2 items-center w-28">
-            <DeleteButton id={item.id} data-testid="product-delete-button" />
-            <CartItemSelect
-              value={item.quantity}
-              onChange={(value) => changeQuantity(parseInt(value.target.value))}
-              className="w-14 h-10 p-4"
-              data-testid="product-select-button"
-            >
-              {/* TODO: Update this with the v2 way of managing inventory */}
-              {Array.from(
-                {
-                  length: Math.min(maxQuantity, 10),
-                },
-                (_, i) => (
-                  <option value={i + 1} key={i}>
-                    {i + 1}
-                  </option>
-                )
-              )}
-
-              <option value={1} key={1}>
-                1
+        <Table.Cell className="flex flex-col md:flex-row gap-2 justify-center items-center">
+          <DeleteButton id={item.id} data-testid="product-delete-button" />
+          <CartItemSelect
+            value={item.quantity}
+            onChange={(value) => changeQuantity(parseInt(value.target.value))}
+            className="rounded-md border p-2"
+            data-testid="product-select-button"
+          >
+            {Array.from({ length: Math.min(maxQuantity, 10) }, (_, i) => (
+              <option value={i + 1} key={i}>
+                {i + 1}
               </option>
-            </CartItemSelect>
-            {updating && <Spinner />}
-          </div>
+            ))}
+            <option value={1} key={1}>1</option>
+          </CartItemSelect>
+          {updating && <Spinner />}
           <ErrorMessage error={error} data-testid="product-error-message" />
         </Table.Cell>
       )}
@@ -112,22 +100,17 @@ const Item = ({ item, type = "full" }: ItemProps) => {
         </Table.Cell>
       )}
 
-      <Table.Cell className="!pr-0">
-        <span
-          className={clx("!pr-0", {
-            "flex flex-col items-end h-full justify-center": type === "preview",
-          })}
-        >
-          {type === "preview" && (
-            <span className="flex gap-x-1 ">
-              <Text className="text-ui-fg-muted">{item.quantity}x </Text>
-              <LineItemUnitPrice item={item} style="tight" />
-            </span>
-          )}
-          <LineItemPrice item={item} style="tight" />
-        </span>
+      <Table.Cell className="flex justify-end items-center">
+        {type === "preview" && (
+          <span className="flex gap-x-1">
+            <Text>{item.quantity}x </Text>
+            <LineItemUnitPrice item={item} style="tight" />
+          </span>
+        )}
+        <LineItemPrice item={item} style="tight" />
       </Table.Cell>
     </Table.Row>
+
   )
 }
 
