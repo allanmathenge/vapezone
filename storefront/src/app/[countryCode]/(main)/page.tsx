@@ -8,7 +8,7 @@ import { getRegion } from "@lib/data/regions"
 export const metadata: Metadata = {
   title: "Vapezone",
   description:
-    "Your Ultimate Vape Destination in Nairobi – Fast, Affordable & Reliable!",
+    "Your Ultimate Destination For Premium Vaping Products in Nairobi - Fast, Affordable & Reliable! Explore a wide range of vape devices, rich-flavored e-liquids and accessories tailored for every vaping enthusiast. Enjoy expert insights, exclusive deals and top-tier brands today!",
 }
 
 export default async function Home({
@@ -26,7 +26,8 @@ export default async function Home({
   return (
     <>
       <Hero />
-      <div className="py-12">
+      <div className="pt-12">
+        <h1 className="text-center font-semibold text-xl sm:text-2xl">Feartured products</h1>
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
         </ul>
