@@ -24,7 +24,7 @@ export default async function Nav() {
 
           <div className="flex items-center gap-3 h-full">
             <a
-                href="tel:+254712345678"
+                href="tel:+254798769535"
                 className="text-red-500 txt-compact-xlarge-plus"
                 data-testid="nav-store-link"
               >
