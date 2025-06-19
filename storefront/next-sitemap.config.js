@@ -1,10 +1,10 @@
 const excludedPaths = ["/checkout", "/account/*", "/checkout", "/opengraph-image.png", "/api/healthcheck"]
 
 module.exports = {
-  siteUrl: 'https://www.vapezone.co.ke',
+  siteUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://www.vapezone.co.ke",
   generateRobotsTxt: true,
   generateIndexSitemap: true,
-  outDir: './public',
+  sitemapSize: 7000,
   exclude: [ ...excludedPaths, "/[sitemap]"],
   robotsTxtOptions: {
     policies: [
