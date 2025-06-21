@@ -1,10 +1,13 @@
 const excludedPaths = [
   "/checkout",
+  "/account",
   "/account/*",
-  "/opengraph-image.png",
-  "/api/healthcheck",
+  "/cart",
   "/ke/account",
-  "/ke/cart"
+  "/ke/cart",
+  "/api/healthcheck",
+  "/opengraph-image.png",
+  "/sitemap.xml" // prevent sitemap.xml itself from being indexed
 ];
 
 const staticPages = [
@@ -54,7 +57,7 @@ module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://www.vapezone.co.ke",
   generateRobotsTxt: true,
   generateIndexSitemap: true,
-  exclude: [...excludedPaths],
+  exclude: excludedPaths,
   robotsTxtOptions: {
     policies: [
       {
@@ -102,4 +105,3 @@ module.exports = {
     return [...staticUrls, ...collectionUrls, ...categoryUrls, ...productUrls];
   },
 };
-
