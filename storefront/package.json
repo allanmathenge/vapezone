@@ -3,12 +3,18 @@
   "version": "1.0.3",
   "private": true,
   "author": "Allan Mathenge",
-  "description": "Your Ultimate Destination For Premium Vaping Products in Nairobi - Fast, Affordable & Reliable! Explore a wide range of vape devices, rich-flavored e-liquids and accessories tailored for every vaping enthusiast. Enjoy expert insights, exclusive deals and top-tier brands. Elevate your vaping experience today!",
+  "description": "Your ultimate destination for premium vaping products in Nairobi - Fast, Affordable & Reliable! Explore a wide range of vape devices, rich-flavored e-liquids and accessories tailored for every vaping enthusiast. Enjoy expert insights, exclusive deals and top-tier brands. Elevate your vaping experience today!",
   "keywords": [
-    "vapezone",
-    "Your one stop shop for all your vaping needs",
-    "Vapes shop Nairobi",
-    "Nearest vape shop"
+    "VapeZone Kenya",
+    "Buy vapes online Kenya",
+    "Disposable vapes Nairobi",
+    "Vape shop Kenya",
+    "Elf Bar Kenya",
+    "Yuoto vape Nairobi",
+    "Best vape store Kenya",
+    "E-cigarettes Nairobi",
+    "Vape delivery Kenya",
+    "Vaping accessories Nairobi"
   ],
   "scripts": {
     "wait": "await-backend",
