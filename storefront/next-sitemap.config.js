@@ -3,12 +3,12 @@ const excludedPaths = [
   "/account/*",
   "/opengraph-image.png",
   "/api/healthcheck",
+  "/ke/account",
+  "/ke/cart"
 ];
 
 const staticPages = [
   { loc: '/ke', priority: 1.0 },
-  { loc: '/ke/account', priority: 0.8 },
-  { loc: '/ke/cart', priority: 0.8 },
   { loc: '/ke/store', priority: 0.64 },
 ];
 
