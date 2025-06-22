@@ -6,9 +6,9 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Vapezone",
+  title: "Vapezone shop online",
   description:
-    "Your Ultimate Destination For Premium Vaping Products in Nairobi - Fast, Affordable & Reliable! Explore a wide range of vape devices, rich-flavored e-liquids and accessories tailored for every vaping enthusiast. Enjoy expert insights, exclusive deals and top-tier brands today!",
+    "Your ultimate destination for premium vaping products in Nairobi - Fast, Affordable & Reliable! Explore a wide range of vape devices, rich-flavored e-liquids and accessories tailored for every vaping enthusiast. Enjoy expert insights, exclusive deals and top-tier brands and elevate your vaping experience today!",
 }
 
 export default async function Home({
