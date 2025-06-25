@@ -26,7 +26,7 @@ export default async function Home({
   return (
     <>
       <Hero />
-      <div className="pt-6">
+      <div className="pt-8">
         <h1 className="text-center font-semibold text-xl sm:text-2xl">Feartured products</h1>
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
