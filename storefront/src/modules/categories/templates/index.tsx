@@ -51,6 +51,11 @@ export default function CategoryTemplate({
             ))}
           <h1 data-testid="category-page-title">{category.name}</h1>
         </div>
+        {category.description && (
+          <div className="mb-8 text-base-regular">
+            <p>{category.description}</p>
+          </div>
+        )}
         {category.category_children && (
           <div className="mb-8 text-base-large">
             <ul className="grid grid-cols-1 gap-2">
@@ -62,11 +67,6 @@ export default function CategoryTemplate({
                 </li>
               ))}
             </ul>
-          </div>
-        )}
-        {category.description && (
-          <div className="mb-8 text-base-regular">
-            <p>{category.description}</p>
           </div>
         )}
         <Suspense fallback={<SkeletonProductGrid />}>

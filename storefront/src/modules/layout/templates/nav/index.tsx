@@ -8,6 +8,7 @@ import SideMenu from "@modules/layout/components/side-menu"
 import { HiPhone } from "react-icons/hi"
 import { SiWhatsapp } from "react-icons/si"
 import { FaUser } from "react-icons/fa"
+import { IoSearch } from "react-icons/io5";
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
@@ -21,45 +22,33 @@ export default async function Nav() {
               <SideMenu regions={regions} />
             </div>
           </div>
-
-          <div className="flex items-center gap-3 h-full">
+          <div className="flex items-center gap-x-6 h-full">
+            {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base text-xl"
+                href="/search"
+                scroll={true}
+                data-testid="nav-search-link"
+              >
+                <IoSearch />
+              </LocalizedClientLink>
+            )}
             <a
-                href="tel:+254798769535"
-                className="text-red-500 txt-compact-xlarge-plus"
-                data-testid="nav-store-link"
-              >
-                <HiPhone />
-              </a>
-
+              href="tel:+254798769535"
+              className="text-red-500 hover:text-ui-fg-base"
+              data-testid="nav-store-link"
+            >
+              <HiPhone />
+            </a>
             <a
-                href="tel:+254712345678"
-                data-testid="nav-store-link"
-              >
-                <span className="txt-compact-xlarge-plus">0798769535</span>
-              </a>
-              <a
-                href="https://wa.me/254798769535"
-                className="txt-compact-xlarge-plus text-green-500"
-                target="_blank"
-                data-testid="nav-store-link"
-              >
-                <SiWhatsapp />
-              </a>
-          </div>
-
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/search"
-                  scroll={false}
-                  data-testid="nav-search-link"
-                >
-                  Search
-                </LocalizedClientLink>
-              )}
-              <div className="hidden small:flex items-center gap-x-6 h-full">
+              href="https://wa.me/254798769535"
+              className="hover:text-ui-fg-base text-green-500"
+              target="_blank"
+              data-testid="nav-store-link"
+            >
+              <SiWhatsapp />
+            </a>
+            <div className="flex items-center gap-x-6 h-full">
               <LocalizedClientLink
                 className="hover:text-ui-fg-base border rounded-full p-1"
                 href="/account"
@@ -67,7 +56,6 @@ export default async function Nav() {
               >
                 <FaUser className="h-3 w-3" />
               </LocalizedClientLink>
-            </div>
             </div>
             <Suspense
               fallback={
