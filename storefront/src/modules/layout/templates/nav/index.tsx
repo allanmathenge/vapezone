@@ -22,15 +22,15 @@ export default async function Nav() {
               <SideMenu regions={regions} />
             </div>
           </div>
-          <div className="flex items-center gap-x-6 h-full">
+          <div className="flex items-center gap-x-3 h-full">
             {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
               <LocalizedClientLink
-                className="hover:text-ui-fg-base text-xl"
+                className="hover:text-ui-fg-base border rounded-full"
                 href="/search"
-                scroll={true}
+                scroll={false}
                 data-testid="nav-search-link"
               >
-                <IoSearch />
+                <span className="flex items-center px-2 py-1 gap-2"><IoSearch /> Search products ...</span>
               </LocalizedClientLink>
             )}
             <a
