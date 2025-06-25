@@ -47,7 +47,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
       <div className="grid grid-cols-2 gap-x-8">
         <div className="flex flex-col gap-y-4">
           <div>
-            <span className="font-semibold">Material</span>
+            <span className="font-semibold">Puffs</span>
             <p>{product.material ? product.material : "-"}</p>
           </div>
           <div>
