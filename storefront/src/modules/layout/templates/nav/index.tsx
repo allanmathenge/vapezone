@@ -8,21 +8,52 @@ import SideMenu from "@modules/layout/components/side-menu"
 import { HiPhone } from "react-icons/hi"
 import { SiWhatsapp } from "react-icons/si"
 import { FaUser } from "react-icons/fa"
-import { IoSearch } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5"
+import { getCollectionsList } from "@lib/data/collections"
+import Image from "next/image"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
+  const { collections } = await getCollectionsList()
+
+  if (!collections) {
+    return []
+  }
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-          <div className="flex-1 basis-0 h-full flex items-center">
+          <div className="flex-1 gap-3 basis-0 h-full flex items-center">
             <div className="h-full">
               <SideMenu regions={regions} />
             </div>
+            <LocalizedClientLink 
+              href="/"
+              className="sm:w-12 w-8 h-full flex items-center"
+            >
+            <Image
+              src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
+              alt="Icon png"
+              width={75}
+              height={75}
+              className="border rounded-full p-1"
+            >
+            </Image>
+            </LocalizedClientLink>
           </div>
           <div className="flex items-center gap-x-3 h-full">
+            {collections && collections.map((collection) => {
+              return <div key={collection.id} className="hidden small:flex">
+                <LocalizedClientLink
+                  className=""
+                  href={`/collections/${collection.handle}`}
+                  data-testid="nav-link"
+                >
+                  {collection.title}
+                </LocalizedClientLink>
+              </div>
+            })}
             {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
               <LocalizedClientLink
                 className="hover:text-ui-fg-base border rounded-full"
@@ -30,13 +61,13 @@ export default async function Nav() {
                 scroll={false}
                 data-testid="nav-search-link"
               >
-                <span className="flex items-center px-2 py-1 gap-2"><IoSearch /> Search products ...</span>
+                <span className="flex flex-1 items-center px-2 py-1 gap-2"><IoSearch /> Search products ...</span>
               </LocalizedClientLink>
             )}
             <a
               href="tel:+254798769535"
               className="text-red-500 hover:text-ui-fg-base"
-              data-testid="nav-store-link"
+              data-testid="nav-phone-link"
             >
               <HiPhone />
             </a>
@@ -44,7 +75,7 @@ export default async function Nav() {
               href="https://wa.me/254798769535"
               className="hover:text-ui-fg-base text-green-500"
               target="_blank"
-              data-testid="nav-store-link"
+              data-testid="nav-whataspp-link"
             >
               <SiWhatsapp />
             </a>
