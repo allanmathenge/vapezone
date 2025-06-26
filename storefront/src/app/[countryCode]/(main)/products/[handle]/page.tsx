@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const product = await getProductByHandle(handle, region.id)
-
+  const canonicalUrl = `https://www.vapezone.co.ke/ke/products/${product.handle}`
   if (!product) {
     notFound()
   }
@@ -59,6 +59,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${product.title} | Vapezone`,
     description: `${product.title}`,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: `${product.title} | Vapezone`,
       description: `${product.title}`,
