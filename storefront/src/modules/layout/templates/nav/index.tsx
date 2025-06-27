@@ -23,30 +23,34 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-          <div className="flex-1 gap-3 basis-0 h-full flex items-center">
+        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular gap-2 sm:gap-8">
+
+          {/* Icon */}
+          <div className="flex gap-3 basis-0 h-full items-center">
             <div className="h-full">
               <SideMenu regions={regions} />
             </div>
-            <LocalizedClientLink 
+            <LocalizedClientLink
               href="/"
-              className="sm:w-12 w-8 h-full flex items-center"
+              className="sm:w-12 w-6 h-full flex items-center"
             >
-            <Image
-              src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
-              alt="Icon png"
-              width={75}
-              height={75}
-              className="border rounded-full p-1"
-            >
-            </Image>
+              <Image
+                src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
+                alt="Icon png"
+                width={75}
+                height={75}
+                className="shadow rounded-full p-1"
+              >
+              </Image>
             </LocalizedClientLink>
           </div>
-          <div className="flex items-center gap-x-3 h-full">
+
+          {/* Collections */}
+          <div className="flex items-center flex-1 gap-x-3 h-full">
             {collections && collections.map((collection) => {
               return <div key={collection.id} className="hidden small:flex">
                 <LocalizedClientLink
-                  className=""
+                  className="text-nowrap"
                   href={`/collections/${collection.handle}`}
                   data-testid="nav-link"
                 >
@@ -56,29 +60,31 @@ export default async function Nav() {
             })}
             {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
               <LocalizedClientLink
-                className="hover:text-ui-fg-base border rounded-full"
+                className="flex w-full hover:text-ui-fg-base border rounded-full"
                 href="/search"
                 scroll={false}
                 data-testid="nav-search-link"
               >
-                <span className="flex flex-1 items-center px-2 py-1 gap-2"><IoSearch /> Search products ...</span>
+                <span className="flex w-full flex-1 items-center px-2 py-1 gap-2 text-nowrap overflow-hidden cursor-text"><IoSearch /> Search products ...</span>
               </LocalizedClientLink>
             )}
-            <a
-              href="tel:+254798769535"
-              className="text-red-500 hover:text-ui-fg-base"
-              data-testid="nav-phone-link"
-            >
-              <HiPhone />
-            </a>
-            <a
-              href="https://wa.me/254798769535"
-              className="hover:text-ui-fg-base text-green-500"
-              target="_blank"
-              data-testid="nav-whataspp-link"
-            >
-              <SiWhatsapp />
-            </a>
+            <div className="flex gap-3">
+              <a
+                href="tel:+254798769535"
+                className="text-red-500 hover:text-ui-fg-base"
+                data-testid="nav-phone-link"
+              >
+                <HiPhone />
+              </a>
+              <a
+                href="https://wa.me/254798769535"
+                className="hover:text-ui-fg-base text-green-500"
+                target="_blank"
+                data-testid="nav-whataspp-link"
+              >
+                <SiWhatsapp />
+              </a>
+            </div>
             <div className="flex items-center gap-x-6 h-full">
               <LocalizedClientLink
                 className="hover:text-ui-fg-base border rounded-full p-1"
