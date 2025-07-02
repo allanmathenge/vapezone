@@ -7,6 +7,7 @@ import {
 } from "@lib/data/collections"
 import { listRegions } from "@lib/data/regions"
 import { StoreCollection, StoreRegion } from "@medusajs/types"
+
 import CollectionTemplate from "@modules/collections/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
@@ -23,15 +24,12 @@ export const PRODUCT_LIMIT = 12
 export async function generateStaticParams() {
   const { collections } = await getCollectionsList()
 
-  if (!collections) {
-    return []
-  }
+  if (!collections) return []
 
   const countryCodes = await listRegions().then(
     (regions: StoreRegion[]) =>
       regions
-        ?.map((r) => r.countries?.map((c) => c.iso_2))
-        .flat()
+        ?.flatMap((r) => r.countries?.map((c) => c.iso_2))
         .filter(Boolean) as string[]
   )
 
@@ -39,43 +37,35 @@ export async function generateStaticParams() {
     (collection: StoreCollection) => collection.handle
   )
 
-  const staticParams = countryCodes
-    ?.map((countryCode: string) =>
+  return countryCodes
+    .flatMap((countryCode: string) =>
       collectionHandles.map((handle: string | undefined) => ({
         countryCode,
         handle,
       }))
     )
-    .flat()
-
-  return staticParams
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const collection = await getCollectionByHandle(params.handle)
 
-  if (!collection) {
-    notFound()
-  }
+  if (!collection) notFound()
 
-  const metadata = {
+  return {
     title: `${collection.title} | Vapezone`,
-    description: `${collection.title} collection`,
-  } as Metadata
-
-  return metadata
+    description: `Shop the ${collection.title} online at Vapezone – top brands, great flavors, fast delivery in Kenya.`,
+    alternates: {
+      canonical: `/${params.countryCode}/collections/${collection.handle}`
+    }
+  }
 }
 
 export default async function CollectionPage({ params, searchParams }: Props) {
-  const { sortBy, page } = searchParams
+  const { page, sortBy } = searchParams
 
-  const collection = await getCollectionByHandle(params.handle).then(
-    (collection: StoreCollection) => collection
-  )
+  const collection = await getCollectionByHandle(params.handle)
 
-  if (!collection) {
-    notFound()
-  }
+  if (!collection) notFound()
 
   return (
     <CollectionTemplate

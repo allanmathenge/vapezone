@@ -4,8 +4,8 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import StoreTemplate from "@modules/store/templates"
 
 export const metadata: Metadata = {
-  title: "Store",
-  description: "Explore all of our products.",
+  title: "Shop Vapes & E-Liquids Online in Kenya | Vapezone Kenya",
+  description: "Discover top vape brands, disposable vapes, pods, and e-liquids at Vapezone Kenya. Shop online for premium vaping products and fast delivery."
 }
 
 type Params = {
