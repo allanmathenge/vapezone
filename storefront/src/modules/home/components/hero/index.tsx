@@ -23,7 +23,7 @@ const Hero = () => {
           VAPEZONE
         </Heading>
         <p className="text-ui-fg-subtle text-white text-small-regular max-w-[600px]">
-          Your one-stop shop for all your vaping needs.
+          Discover Kenya’s ultimate vape destination — where top brands, bold flavors and unbeatable deals come together to elevate your vaping experience.
         </p>
       </div>
     </div>
