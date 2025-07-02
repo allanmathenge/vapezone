@@ -50,7 +50,7 @@ export default async function Nav() {
             <li key="store-link">
               <LocalizedClientLink
                 href="/store"
-                className="leading-10 hover:text-ui-fg-disabled"
+                className="leading-10 hover:text-ui-fg-disabled hidden small:flex"
                 data-testid="nav-link"
               >
                 Store
