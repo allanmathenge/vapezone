@@ -60,6 +60,16 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                     </div>
 
                     <ul className="flex flex-col gap-6 items-start justify-start">
+                      <li key="store-link">
+                        <LocalizedClientLink
+                          href="/store"
+                          className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                          onClick={close}
+                          data-testid="store-link"
+                        >
+                          Store
+                        </LocalizedClientLink>
+                      </li>
                       {collections.map((collection) => (
                         <li key={collection.id}>
                           <LocalizedClientLink

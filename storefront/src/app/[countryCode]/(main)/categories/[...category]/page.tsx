@@ -54,10 +54,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const description =
       product_categories[product_categories.length - 1].description ??
-      `${title} category.`
+      `Discover the best selection of ${title} vapes in Nairobi at Vapezone. Shop top brands, rich flavors, and enjoy fast, reliable delivery across Kenya.`
 
     return {
-      title: `${title} | Vapezone`,
+      title: `Buy ${title} vapes online in Nairobi | Vapezone`,
       description,
       alternates: {
         canonical: `${params.category.join("/")}`,

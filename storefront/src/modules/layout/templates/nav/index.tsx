@@ -46,11 +46,20 @@ export default async function Nav() {
           </div>
 
           {/* Collections */}
-          <div className="flex items-center flex-1 gap-x-3 h-full">
+          <div className="flex items-center flex-1 gap-x-3 h-full list-none">
+            <li key="store-link">
+              <LocalizedClientLink
+                href="/store"
+                className="leading-10 hover:text-ui-fg-disabled"
+                data-testid="nav-link"
+              >
+                Store
+              </LocalizedClientLink>
+            </li>
             {collections && collections.map((collection) => {
               return <div key={collection.id} className="hidden small:flex">
                 <LocalizedClientLink
-                  className="text-nowrap"
+                  className="text-nowrap hover:text-ui-fg-disabled"
                   href={`/collections/${collection.handle}`}
                   data-testid="nav-link"
                 >
