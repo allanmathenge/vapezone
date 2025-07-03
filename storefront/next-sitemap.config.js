@@ -31,6 +31,9 @@ const categoryPages = [
   'argus-series',
   'smok',
   'uwell-caliburn-series',
+  'Solo X 1500 Puffs',
+  'Bar Salts',
+  'Vapengin Neptune',
 ];
 
 const productSlugs = [
