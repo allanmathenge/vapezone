@@ -23,7 +23,7 @@ export class BasePage {
     this.cartLink = page.getByTestId("nav-cart-link")
     this.storeLink = page.getByTestId("nav-store-link")
     this.searchLink = page.getByTestId("nav-search-link")
-    this.categoriesList = page.getByTestId("footer-categories")
+    this.categoriest = page.getByTestId("footer-categories")
   }
 
   async clickCategoryLink(category: string) {
