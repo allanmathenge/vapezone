@@ -67,6 +67,11 @@ const productSlugs = [
 'solo-x-mint-bubblegum'
 ];
 
+const searchAndStoreUrls = [
+  'search',
+  'store'
+]
+
 module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://www.vapezone.co.ke",
   generateRobotsTxt: true,
@@ -116,6 +121,13 @@ module.exports = {
       lastmod: now,
     }));
 
-    return [...staticUrls, ...collectionUrls, ...categoryUrls, ...productUrls];
+    const searchAndStore = searchAndStoreUrls.map((slug) => ({
+      loc: `/ke/${slug}`,
+      priority: 0.64,
+      changefreq: 'weekly',
+      lastmod: now,
+    }));
+
+    return [...staticUrls, ...collectionUrls, ...categoryUrls, ...productUrls, ...searchAndStore];
   },
 };
