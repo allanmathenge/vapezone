@@ -22,7 +22,6 @@ const collectionPages = [
   'pod-mods',
   'pod-devices',
   'mods',
-  'store'
 ];
 
 const categoryPages = [

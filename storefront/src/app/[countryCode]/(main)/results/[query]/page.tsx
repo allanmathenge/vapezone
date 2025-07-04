@@ -6,8 +6,8 @@ import { search } from "@modules/search/actions"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
 export const metadata: Metadata = {
-  title: "Search",
-  description: "Explore all of our products.",
+  title: "Search & Discover Vape Products, Flavors & Accessories Online",
+  description: "Find your next favorite vape! Search our full range of disposables, nic salts, mods, pod systems & accessories. Quick results, easy browsing.",
 }
 
 type Params = {
