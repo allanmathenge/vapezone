@@ -6,7 +6,7 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Shop Vapes Online in Kenya | Vapezone - Kenya’s Trusted Online Vape Store for Top Brands & Flavors",
+  title: "Buy Vapes Online In Kenya | Vapezone - Kenya’s Trusted Online Vape Store for Top Brands & Flavors",
   description:
     "Your ultimate destination for premium vaping products in Nairobi - Fast, Affordable & Reliable! Explore a wide range of vape devices, rich-flavored e-liquids and accessories tailored for every vaping enthusiast. Enjoy expert insights, exclusive deals and top-tier brands and elevate your vaping experience today!",
 }
