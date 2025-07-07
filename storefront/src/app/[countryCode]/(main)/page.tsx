@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Buy Vapes Online In Kenya | Vapezone - Kenya’s Trusted Online Vape Store for Top Brands & Flavors",
   description:
     "Your ultimate destination for premium vaping products in Nairobi - Fast, Affordable & Reliable! Explore a wide range of vape devices, rich-flavored e-liquids and accessories tailored for every vaping enthusiast. Enjoy expert insights, exclusive deals and top-tier brands and elevate your vaping experience today!",
+    alternates: {
+    canonical: "https://www.vapezone.co.ke/ke",
+  },
 }
 
 export default async function Home({

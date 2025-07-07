@@ -1,7 +1,7 @@
 const excludedPaths = [
   "/checkout",
   "/account",
-  "/account/*",
+  "/account",
   "/cart",
   "/ke/account",
   "/ke/cart",
