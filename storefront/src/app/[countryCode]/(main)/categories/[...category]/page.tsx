@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `Discover the best selection of ${title} vapes in Nairobi at Vapezone. Shop top brands, rich flavors, and enjoy fast, reliable delivery across Kenya.`
 
     return {
-      title: `Buy ${title} vapes online in Nairobi | Vapezone`,
+      title: `Buy ${title} Vapes Online In Nairobi | Vapezone`,
       description,
       alternates: {
         canonical: `${params.category.join("/")}`,

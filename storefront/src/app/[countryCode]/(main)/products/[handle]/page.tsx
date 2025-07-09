@@ -57,14 +57,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `Buy ${product.title} From Vapezone Nairobi | Kenya’s Trusted Vape Store for Top Brands & Flavors`,
+    title: `${product.subtitle} | Kenya’s Trusted Vape Store for Top Brands & Flavors`,
     description: `${product.description}`,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
       title: `${product.title} | Vapezone`,
-      description: `${product.title}`,
+      description: `${product.subtitle}`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
   }
