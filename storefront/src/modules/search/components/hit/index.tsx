@@ -37,7 +37,7 @@ const Hit = ({ hit }: HitProps) => {
         <div className="flex flex-col justify-between group">
           <div className="flex flex-col">
             <Text
-              className="text-ui-fg-subtle"
+              className="text-ui-fg-subtle text-nowrap overflow-hidden"
               data-testid="search-result-title"
             >
               {hit.title}
