@@ -6,8 +6,8 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import MedusaCTA from "@modules/layout/components/medusa-cta"
 
 export default async function Footer() {
-  const { collections } = await getCollectionsList(0, 6)
-  const { product_categories } = await getCategoriesList(0, 6)
+  const { collections } = await getCollectionsList()
+  const { product_categories } = await getCategoriesList()
 
   return (
     <footer className="border-t border-ui-border-base w-full">
@@ -18,7 +18,7 @@ export default async function Footer() {
               href="/"
               className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
             >
-              Vapezone
+            Pay Via Till No: 3763670
             </LocalizedClientLink>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
