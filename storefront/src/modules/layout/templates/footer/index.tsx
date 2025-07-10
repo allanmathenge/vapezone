@@ -21,14 +21,14 @@ export default async function Footer() {
             Pay Via Till No: 3763670
             </LocalizedClientLink>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
+          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 place-content-center sm:grid-cols-2">
             {product_categories && product_categories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
                   Brands
                 </span>
                 <ul
-                  className="grid grid-cols-1 gap-2"
+                  className="grid sm:grid-cols-2 gap-x-3"
                   data-testid="footer-categories"
                 >
                   {product_categories?.map((c) => {
@@ -45,7 +45,7 @@ export default async function Footer() {
 
                     return (
                       <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
+                        className="flex flex-col gap-1 text-ui-fg-subtle txt-small"
                         key={c.id}
                       >
                         <LocalizedClientLink
@@ -59,7 +59,7 @@ export default async function Footer() {
                           {c.name}
                         </LocalizedClientLink>
                         {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
+                          <ul className="grid grid-cols-1 ml-3 gap-1">
                             {children &&
                               children.map((child) => (
                                 <li key={child.id}>
@@ -81,13 +81,13 @@ export default async function Footer() {
               </div>
             )}
             {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
+              <div className="flex flex-col gap-y-1">
                 <span className="txt-small-plus txt-ui-fg-base">
                   Collections
                 </span>
                 <ul
                   className={clx(
-                    "flex flex-col gap-2 text-ui-fg-subtle txt-small",
+                    "flex flex-col gap-1 text-ui-fg-subtle txt-small",
                     {
                       "grid-cols-2": (collections?.length || 0) > 3,
                     }
@@ -106,7 +106,7 @@ export default async function Footer() {
                 </ul>
               </div>
             )}
-            <div className="flex flex-col gap-y-2">
+            {/* <div className="flex flex-col gap-y-2">
               <span className="txt-small-plus txt-ui-fg-base">Link with us</span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
@@ -140,7 +140,7 @@ export default async function Footer() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
