@@ -5,6 +5,19 @@ import { getRegion } from "./regions"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { sortProducts } from "@lib/util/sort-products"
 
+export const getAllProducts = cache(async function(
+) {
+  return sdk.store.product
+    .list(
+      {
+        fields: "*variants.calculated_price,+variants.inventory_quantity",
+        limit: 1000
+      },
+      { next: { tags: ["products"] } }
+    )
+    .then(({ products }) => products)
+})
+
 export const getProductsById = cache(async function ({
   ids,
   regionId,
