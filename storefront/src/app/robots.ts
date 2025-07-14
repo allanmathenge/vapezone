@@ -14,8 +14,7 @@ export default function robots(): MetadataRoute.Robots {
           '/ke/account',
           '/ke/cart',
           '/api/healthcheck',
-          '/opengraph-image.png',
-          '/sitemap.xml',
+          '/opengraph-image.png'
         ],
       },
     ],
