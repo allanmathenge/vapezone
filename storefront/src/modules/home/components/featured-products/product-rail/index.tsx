@@ -12,9 +12,9 @@ export default function ProductRail({
   region: HttpTypes.StoreRegion
 }) {
   const { products } = collection
-  if (!products) {
-    return null
-  }
+  // if (!products) {
+  //   return null
+  // }
 
   return (
     <div className="content-container py-3 small:py-6">
