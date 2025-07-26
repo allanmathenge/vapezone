@@ -18,6 +18,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://www.vapezone.co.ke/sitemap.xml',
+    sitemap: 'https://www.vapezone.co.ke/sitemap.xml/',
   }
 }
