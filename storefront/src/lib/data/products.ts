@@ -11,7 +11,7 @@ export const getAllProducts = cache(async function(
     .list(
       {
         fields: "*variants.calculated_price,+variants.inventory_quantity",
-        limit: 400
+        limit: 300
       },
       { next: { tags: ["products"] } }
     )
