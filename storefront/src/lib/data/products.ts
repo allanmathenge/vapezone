@@ -11,7 +11,7 @@ export const getAllProducts = cache(async function(
     .list(
       {
         fields: "*variants.calculated_price,+variants.inventory_quantity",
-        limit: 700
+        limit: 400
       },
       { next: { tags: ["products"] } }
     )
@@ -66,7 +66,7 @@ export const getProductsList = cache(async function ({
   nextPage: number | null
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams
 }> {
-  const limit = queryParams?.limit || 120
+  const limit = queryParams?.limit || 280
   const validPageParam = Math.max(pageParam, 1);
   const offset = (validPageParam - 1) * limit
   const region = await getRegion(countryCode)
