@@ -39,7 +39,7 @@ export default async function ProductPreview({
           isFeatured={isFeatured}
         />
         <div className="flex flex-col txt-compact-medium mt-4 justify-between">
-          <Text className="text-ui-fg-subtle" data-testid="product-title">
+          <Text className="text-ui-fg-subtle text-nowrap overflow-hidden text-ellipsis" data-testid="product-title">
             {product.title}
           </Text>
           <div className="flex items-center gap-x-2">
