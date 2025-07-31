@@ -95,8 +95,8 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 <div></div>
               )}
             </div>
-            <div className="w-full gap-x-4">
-              {/* <Button
+            <div className="w-full flex gap-x-4">
+              <Button
                 onClick={open}
                 variant="secondary"
                 className="w-full"
@@ -108,9 +108,8 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                       ? Object.values(options).join(" / ")
                       : "Select Options"}
                   </span>
-                  No Variant
                 </div>
-              </Button> */}
+              </Button>
               <Button
                 onClick={handleAddToCart}
                 disabled={!inStock || !variant}
