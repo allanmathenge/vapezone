@@ -20,10 +20,10 @@ const Hero = () => {
       />
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
         <Heading className="text-4xl font-bold text-white">
-          VAPEZONE
+          Kenya’s #1 Vape Superstore
         </Heading>
         <p className="text-ui-fg-subtle text-white text-small-regular max-w-[600px]">
-          Discover Kenya’s ultimate vape destination — where top brands, bold flavors and unbeatable deals come together to elevate your vaping experience.
+          Shop premium vapes, bold e-liquids and exclusive offers at unbeatable prices — trusted by Kenya’s fastest-growing vape community.
         </p>
       </div>
     </div>
