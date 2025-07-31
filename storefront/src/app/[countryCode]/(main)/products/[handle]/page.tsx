@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${product.title} | Vapezone`,
+      title: `${product.title}`,
       description: `${product.subtitle}`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
