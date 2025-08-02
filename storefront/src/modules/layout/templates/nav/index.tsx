@@ -23,20 +23,20 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular gap-2 sm:gap-8">
+        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular xsmall:gap-8">
 
           {/* Icon */}
-          <div className="flex gap-3 basis-0 h-full items-center">
+          <div className="flex gap-2 basis-0 h-full items-center">
             <div className="h-full">
               <SideMenu regions={regions} />
             </div>
             <LocalizedClientLink
               href="/"
-              className="sm:w-12 w-6 h-full flex items-center"
+              className="xsmall:w-12 w-6 h-full flex items-center"
             >
               <Image
                 src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
-                alt="Icon png"
+                alt="Logo png"
                 width={75}
                 height={75}
                 className="shadow rounded-full p-1"
@@ -46,7 +46,7 @@ export default async function Nav() {
           </div>
 
           {/* Collections */}
-          <div className="flex items-center flex-1 gap-x-3 h-full list-none">
+          <div className="flex items-center flex-1 xsmall:gap-x-3 gap-x-2 h-full list-none">
             <li key="store-link">
               <LocalizedClientLink
                 href="/store"
@@ -77,13 +77,13 @@ export default async function Nav() {
                 <span className="flex w-full flex-1 items-center px-2 py-1 gap-2 text-nowrap overflow-hidden cursor-text"><IoSearch /> Search products ...</span>
               </LocalizedClientLink>
             )}
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <a
                 href="tel:+254798769535"
-                className="text-red-500 hover:text-ui-fg-base"
+                className="text-blue-500 hover:text-ui-fg-base"
                 data-testid="nav-phone-link"
               >
-                <HiPhone />
+                <HiPhone className="text-xl" />
               </a>
               <a
                 href="https://wa.me/254798769535"
@@ -91,7 +91,7 @@ export default async function Nav() {
                 target="_blank"
                 data-testid="nav-whataspp-link"
               >
-                <SiWhatsapp />
+                <SiWhatsapp className="text-xl" />
               </a>
             </div>
             <div className="flex items-center gap-x-6 h-full">
