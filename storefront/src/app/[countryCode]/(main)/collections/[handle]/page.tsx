@@ -62,17 +62,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CollectionPage({ params, searchParams }: Props) {
   const { page, sortBy } = searchParams
+  const { countryCode, handle } = params
 
-  const collection = await getCollectionByHandle(params.handle)
+  const collection = await getCollectionByHandle(handle)
 
   if (!collection) notFound()
+
+  const canonicalUrl = `https://www.vapezone.co.ke/${countryCode}/collections/${handle}`
 
   return (
     <CollectionTemplate
       collection={collection}
       page={page}
       sortBy={sortBy}
-      countryCode={params.countryCode}
+      countryCode={countryCode}
+      url={canonicalUrl} // ✅ Pass to inject schema in child
     />
   )
 }

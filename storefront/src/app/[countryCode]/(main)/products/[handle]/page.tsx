@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import ProductTemplate from "@modules/products/templates"
 import { getRegion, listRegions } from "@lib/data/regions"
 import { getProductByHandle, getProductsList } from "@lib/data/products"
+import ProductSchema from "@modules/products/components/schema/ProductSchema"
 
 type Props = {
   params: { countryCode: string; handle: string }
@@ -83,10 +84,16 @@ export default async function ProductPage({ params }: Props) {
   }
 
   return (
-    <ProductTemplate
-      product={pricedProduct}
-      region={region}
-      countryCode={params.countryCode}
-    />
+    <>
+      {/* Schema Markup for SEO */}
+      <ProductSchema product={pricedProduct} />
+
+      {/* Actual Product Page UI */}
+      <ProductTemplate
+        product={pricedProduct}
+        region={region}
+        countryCode={params.countryCode}
+      />
+    </>
   )
 }
