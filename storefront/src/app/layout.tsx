@@ -1,7 +1,7 @@
-import { getBaseURL } from "@lib/util/env";
+import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next";
-import Script from "next/script";
 import "styles/globals.css";
+import type { WithContext, Organization } from "schema-dts";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -10,59 +10,32 @@ export const metadata: Metadata = {
   },
 };
 
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "VAPEZONE KENYA",
-  alternateName: "VAPEZONE KE",
-  url: "https://www.vapezone.co.ke",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://www.vapezone.co.ke/search?q={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
-};
-
-const organizationSchema = {
+const orgSchema: WithContext<Organization> = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "VAPEZONE KENYA",
+  name: "Vapezone Kenya",
   url: "https://www.vapezone.co.ke",
-  logo: "https://www.vapezone.co.ke/logo.png",
-  sameAs: [
-    "https://www.instagram.com/vapezoneke",
-    "https://www.facebook.com/vapezoneke",
-    "https://www.tiktok.com/@vapezoneke",
-  ],
+  logo: "https://www.vapezone.co.ke/logo.png"
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" data-mode="light">
       <head>
-
-        <Script
-          id="website-schema"
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {JSON.stringify(websiteSchema)}
-        </Script>
-
-        <Script
-          id="org-schema"
-          type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {JSON.stringify(organizationSchema)}
-        </Script>
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(orgSchema),
+          }}
+        />
       </head>
       <body>
-        <main className="relative">{children}</main>
+        <main className="relative">{props.children}</main>
       </body>
     </html>
   );
 }
+
 
 // import { getBaseURL } from "@lib/util/env"
 // import { Metadata } from "next"
