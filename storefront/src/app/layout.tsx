@@ -14,8 +14,12 @@ const orgSchema: WithContext<Organization> = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Vapezone Kenya",
-  url: "https://www.vapezone.co.ke",
-  logo: "https://www.vapezone.co.ke/logo.png"
+  url: "https://www.vapezone.co.ke/ke/",
+  logo: "https://www.vapezone.co.ke/logo.png",
+  sameAs: [
+    "https://twitter.com/1mathenge",
+    "https://www.youtube.com/@allanmathenge"
+  ]
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
@@ -23,6 +27,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" data-mode="light">
       <head>
         <script
+          key="org-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(orgSchema),
