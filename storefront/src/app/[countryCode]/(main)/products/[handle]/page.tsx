@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${product.title} | Kenya’s Trusted Vape Store for Top Brands & Flavors`,
+    title: `${product.title} | Kenya’s Trusted Vape Store For Top Brands & Flavors`,
     description: product.description,
     alternates: {
       canonical: canonicalUrl,
@@ -93,21 +93,21 @@ export default async function ProductPage({ params }: Props) {
       pricedProduct.subtitle ||
       `Explore ${pricedProduct.title} — available now at Vapezone Kenya. Premium quality, fast shipping.`,
     image: pricedProduct.thumbnail ? [pricedProduct.thumbnail] : [],
-    // sku: pricedProduct.sku ?? pricedProduct.id,
-    // brand: {
-    //   "@type": "Brand",
-    //   name: pricedProduct.brand || "Vapezone",
-    // },
+    sku: pricedProduct.id,
+    brand: {
+      "@type": "Brand",
+      name: "Vapezone",
+    },
     offers: {
       "@type": "Offer",
       url: `https://www.vapezone.co.ke/ke/products/${pricedProduct.handle}`,
       priceCurrency: region.currency_code.toUpperCase(),
-      // price: (pricedProduct.variants?.[0]?.prices?.[0]?.amount || 0) / 100,
+      price: (pricedProduct.variants?.[0]?.calculated_price?.original_amount || 0) / 100,
       itemCondition: "https://schema.org/NewCondition",
-      // availability:
-      //   pricedProduct.variants?.[0]?.inventory_quantity > 0
-      //     ? "https://schema.org/InStock"
-      //     : "https://schema.org/OutOfStock",
+      availability:
+        (pricedProduct.variants?.[0]?.inventory_quantity ?? 0) > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
     }
   }
 

@@ -30,7 +30,7 @@ export default function CollectionTemplate({
     url: url,
     numberOfItems: collection.products?.length || 0,
     itemListElement: (collection.products || [])
-      .slice(0, 12) // first 12 only for SEO
+      .slice(0, 12)
       .map((product, index) => ({
         "@type": "ListItem",
         position: index + 1,
@@ -39,7 +39,6 @@ export default function CollectionTemplate({
       })),
   }
 
-  // ✅ Optional: Breadcrumb schema
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -48,7 +47,7 @@ export default function CollectionTemplate({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.vapezone.co.ke/",
+        item: "https://www.vapezone.co.ke/ke/",
       },
       {
         "@type": "ListItem",
@@ -66,7 +65,6 @@ export default function CollectionTemplate({
         <div className="mb-8 text-2xl-semi">
           <h1>{collection.title}</h1>
         </div>
-        {/* ✅ Inject JSON-LD Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
