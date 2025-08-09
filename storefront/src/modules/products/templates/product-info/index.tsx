@@ -1,6 +1,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { Heading, Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import ReactMarkdown from "react-markdown"
 
 type ProductInfoProps = {
   product: HttpTypes.StoreProduct
@@ -18,9 +19,10 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
             {product.collection.title}
           </LocalizedClientLink>
         )}
+
         <Heading
           level="h2"
-          className="text-3xl leading-10 text-ui-fg-base"
+          className="text-2xl leading-10 text-ui-fg-base"
           data-testid="product-title"
         >
           {product.title}
@@ -30,7 +32,21 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           className="text-medium text-ui-fg-subtle whitespace-pre-line"
           data-testid="product-description"
         >
-          {product.description}
+          <ReactMarkdown
+            components={{
+              h2: ({ node, ...props }) => (
+                <h2 {...props} className="text-green-600 font-bold text-xl mt-6" />
+              ),
+              h3: ({ node, ...props }) => (
+                <h3 {...props} className="text-blue-500 font-semibold text-lg mt-4" />
+              ),
+              p: ({ node, ...props }) => (
+                <p {...props} className="text-gray-700 leading-relaxed" />
+              ),
+            }}
+          >
+            {product.description || ""}
+          </ReactMarkdown>
         </Text>
       </div>
     </div>

@@ -3,12 +3,12 @@ import { Button, clx } from "@medusajs/ui"
 import React, { Fragment, useMemo } from "react"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
-import ChevronDown from "@modules/common/icons/chevron-down"
 import X from "@modules/common/icons/x"
 
 import { getProductPrice } from "@lib/util/get-product-price"
 import OptionSelect from "./option-select"
 import { HttpTypes } from "@medusajs/types"
+import { FaWhatsapp } from "react-icons/fa"
 
 type MobileActionsProps = {
   product: HttpTypes.StoreProduct
@@ -49,6 +49,9 @@ const MobileActions: React.FC<MobileActionsProps> = ({
     return variantPrice || cheapestPrice || null
   }, [price])
 
+  const whatsappNumber = "254798769535"
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi, I'm interested in ${encodeURIComponent(product.title)}`
+
   return (
     <>
       <div
@@ -71,7 +74,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
             data-testid="mobile-actions"
           >
             <div className="flex items-center gap-x-2">
-              <span data-testid="mobile-title">{product.title}</span>
+              <span data-testid="mobile-title text-ui-fg-base">{product.title}</span>
               <span>—</span>
               {selectedPrice ? (
                 <div className="flex items-end gap-x-2 text-ui-fg-base">
@@ -95,38 +98,58 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 <div></div>
               )}
             </div>
-            <div className="w-full flex gap-x-4">
-              <Button
-                onClick={open}
-                variant="secondary"
+            <div className="w-full flex flex-col gap-y-3">
+              <div className="flex gap-x-4">
+                <Button
+                  onClick={open}
+                  variant="secondary"
+                  className="w-full"
+                  data-testid="mobile-actions-button"
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <span>
+                      {variant
+                        ? Object.values(options).join(" / ")
+                        : "Select Options"}
+                    </span>
+                  </div>
+                </Button>
+                <Button
+                  onClick={handleAddToCart}
+                  disabled={!inStock || !variant}
+                  className="w-full"
+                  isLoading={isAdding}
+                  data-testid="mobile-cart-button"
+                >
+                  {!variant
+                    ? "Select variant"
+                    : !inStock
+                    ? "Out of stock"
+                    : "Add to cart"}
+                </Button>
+              </div>
+
+              {/* WhatsApp Button */}
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full"
-                data-testid="mobile-actions-button"
               >
-                <div className="flex items-center justify-between w-full">
-                  <span>
-                    {variant
-                      ? Object.values(options).join(" / ")
-                      : "Select Options"}
-                  </span>
-                </div>
-              </Button>
-              <Button
-                onClick={handleAddToCart}
-                disabled={!inStock || !variant}
-                className="w-full"
-                isLoading={isAdding}
-                data-testid="mobile-cart-button"
-              >
-                {!variant
-                  ? "Select variant"
-                  : !inStock
-                  ? "Out of stock"
-                  : "Add to cart"}
-              </Button>
+                <Button
+                  variant="primary"
+                  className="w-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-x-2"
+                >
+                  <FaWhatsapp size={18} />
+                  Place Order
+                </Button>
+              </a>
             </div>
           </div>
         </Transition>
       </div>
+
+      {/* Dialog Modal */}
       <Transition appear show={state} as={Fragment}>
         <Dialog as="div" className="relative z-[75]" onClose={close}>
           <Transition.Child

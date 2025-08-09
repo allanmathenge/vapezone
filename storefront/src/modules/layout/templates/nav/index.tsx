@@ -5,8 +5,6 @@ import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
-import { HiPhone } from "react-icons/hi"
-import { SiWhatsapp } from "react-icons/si"
 import { FaUser } from "react-icons/fa"
 import { IoSearch } from "react-icons/io5"
 import { getCollectionsList } from "@lib/data/collections"
@@ -23,7 +21,7 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular xsmall:gap-8">
+        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular xsmall:gap-8 gap-3">
 
           {/* Icon */}
           <div className="flex gap-2 basis-0 h-full items-center">
@@ -47,15 +45,13 @@ export default async function Nav() {
 
           {/* Collections */}
           <div className="flex items-center flex-1 xsmall:gap-x-3 gap-x-2 h-full list-none">
-            <li key="store-link">
-              <LocalizedClientLink
-                href="/store"
-                className="leading-10 hover:text-ui-fg-disabled hidden small:flex"
-                data-testid="nav-link"
-              >
-                Store
-              </LocalizedClientLink>
-            </li>
+            <LocalizedClientLink
+              href="/store"
+              className="leading-10 hover:text-ui-fg-disabled hidden small:flex"
+              data-testid="nav-link"
+            >
+              Store
+            </LocalizedClientLink>
             {collections && collections.map((collection) => {
               return <div key={collection.id} className="hidden small:flex">
                 <LocalizedClientLink
@@ -77,45 +73,29 @@ export default async function Nav() {
                 <span className="flex w-full flex-1 items-center px-2 py-1 gap-2 text-nowrap overflow-hidden cursor-text"><IoSearch /> Search products ...</span>
               </LocalizedClientLink>
             )}
-            <div className="flex gap-2">
-              <a
-                href="tel:+254798769535"
-                className="text-blue-500 hover:text-ui-fg-base"
-                data-testid="nav-phone-link"
-              >
-                <HiPhone className="text-xl" />
-              </a>
-              <a
-                href="https://wa.me/254798769535"
-                className="hover:text-ui-fg-base text-green-500"
-                data-testid="nav-whataspp-link"
-              >
-                <SiWhatsapp className="text-xl" />
-              </a>
-            </div>
-            <div className="flex items-center gap-x-6 h-full">
-              <LocalizedClientLink
-                className="hover:text-ui-fg-base border rounded-full p-1"
-                href="/account"
-                data-testid="nav-account-link"
-              >
-                <FaUser className="h-3 w-3" />
-              </LocalizedClientLink>
-            </div>
-            <Suspense
-              fallback={
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
-                  href="/cart"
-                  data-testid="nav-cart-link"
-                >
-                  Cart (0)
-                </LocalizedClientLink>
-              }
-            >
-              <CartButton />
-            </Suspense>
           </div>
+          <div className="flex items-center gap-x-6 h-full">
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base border rounded-full p-1"
+              href="/account"
+              data-testid="nav-account-link"
+            >
+              <FaUser className="h-3 w-3" />
+            </LocalizedClientLink>
+          </div>
+          <Suspense
+            fallback={
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base flex gap-2"
+                href="/cart"
+                data-testid="nav-cart-link"
+              >
+                Cart (0)
+              </LocalizedClientLink>
+            }
+          >
+            <CartButton />
+          </Suspense>
         </nav>
       </header>
     </div>
