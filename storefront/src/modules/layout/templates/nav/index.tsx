@@ -88,7 +88,6 @@ export default async function Nav() {
               <a
                 href="https://wa.me/254798769535"
                 className="hover:text-ui-fg-base text-green-500"
-                target="_blank"
                 data-testid="nav-whataspp-link"
               >
                 <SiWhatsapp className="text-xl" />
