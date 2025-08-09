@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react"
 import { Button, clx } from "@medusajs/ui"
-import React, { Fragment, useMemo } from "react"
+import React, { Fragment, useMemo, useState } from "react"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
 import X from "@modules/common/icons/x"
@@ -34,6 +34,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   optionsDisabled,
 }) => {
   const { state, open, close } = useToggleState()
+  const [isWhatsAppLoading, setIsWhatsAppLoading] = useState(false)
 
   const price = getProductPrice({
     product: product,
@@ -45,12 +46,19 @@ const MobileActions: React.FC<MobileActionsProps> = ({
       return null
     }
     const { variantPrice, cheapestPrice } = price
-
     return variantPrice || cheapestPrice || null
   }, [price])
 
-  const whatsappNumber = "254798769535"
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi, I'm interested in ${encodeURIComponent(product.title)}`
+  const handleWhatsAppClick = () => {
+    setIsWhatsAppLoading(true)
+    setTimeout(() => {
+      const phoneNumber = "254798769535"
+      const message = `Hi, I'm interested in ${product.title}`
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+      window.open(url, "_blank", "noopener,noreferrer")
+      setIsWhatsAppLoading(false)
+    }, 300)
+  }
 
   return (
     <>
@@ -74,10 +82,10 @@ const MobileActions: React.FC<MobileActionsProps> = ({
             data-testid="mobile-actions"
           >
             <div className="flex items-center gap-x-2">
-              <span data-testid="mobile-title text-ui-fg-base">{product.title}</span>
+              <span data-testid="mobile-title">{product.title}</span>
               <span>—</span>
               {selectedPrice ? (
-                <div className="flex items-end gap-x-2 text-ui-fg-base">
+                <div className="flex items-end gap-x-2">
                   {selectedPrice.price_type === "sale" && (
                     <p>
                       <span className="line-through text-small-regular">
@@ -98,6 +106,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 <div></div>
               )}
             </div>
+
             <div className="w-full flex flex-col gap-y-3">
               <div className="flex gap-x-4">
                 <Button
@@ -129,21 +138,14 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 </Button>
               </div>
 
-              {/* WhatsApp Button */}
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full"
+              <Button
+                onClick={handleWhatsAppClick}
+                disabled={isWhatsAppLoading}
+                className="w-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-x-2"
               >
-                <Button
-                  variant="primary"
-                  className="w-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-x-2"
-                >
-                  <FaWhatsapp size={18} />
-                  Place Order
-                </Button>
-              </a>
+                <FaWhatsapp size={18} />
+                {isWhatsAppLoading ? "Opening..." : "Place Order"}
+              </Button>
             </div>
           </div>
         </Transition>
