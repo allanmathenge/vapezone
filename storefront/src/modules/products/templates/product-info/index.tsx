@@ -29,14 +29,14 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         </Heading>
 
         <Text
-          className="text-medium text-ui-fg-subtle whitespace-pre-line"
+          className="text-medium text-ui-fg-subtle text-small-regular whitespace-pre-line"
           data-testid="product-description"
         >
           <div className="prose prose-blue max-w-none">
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (
-                  <h2 {...props} className="text-green-600 font-bold text-xl mt-3" />
+                  <h2 {...props} className="text-blue-600 font-bold text-xl mt-3" />
                 ),
                 h3: ({ node, ...props }) => (
                   <h3 {...props} className="text-blue-500 font-semibold text-lg mt-2" />
