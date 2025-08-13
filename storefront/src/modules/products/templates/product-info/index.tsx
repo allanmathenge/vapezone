@@ -36,10 +36,10 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (
-                  <h2 {...props} className="text-blue-600 font-bold text-xl mt-3" />
+                  <h2 {...props} className="text-blue-600 font-bold text-xl mt-1" />
                 ),
                 h3: ({ node, ...props }) => (
-                  <h3 {...props} className="text-blue-500 font-semibold text-lg mt-2" />
+                  <h3 {...props} className="text-blue-500 font-semibold text-lg mt-1" />
                 ),
                 p: ({ node, ...props }) => (
                   <p {...props} className="text-gray-700 leading-relaxed" />

@@ -85,6 +85,11 @@ export default async function ProductPage({ params }: Props) {
     notFound()
   }
 
+  const productImage =
+  pricedProduct.thumbnail && pricedProduct.thumbnail.startsWith("http")
+    ? pricedProduct.thumbnail
+    : `https://www.vapezone.co.ke${pricedProduct.thumbnail || "/default-product.webp"}`;
+
   const productSchema: WithContext<SchemaProduct> = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -92,7 +97,7 @@ export default async function ProductPage({ params }: Props) {
     description:
       pricedProduct.subtitle ||
       `Explore ${pricedProduct.title} — available now at Vapezone Kenya. Premium quality, fast shipping.`,
-    image: pricedProduct.thumbnail ? [pricedProduct.thumbnail] : [],
+    image: [productImage],
     sku: pricedProduct.id,
     brand: {
       "@type": "Brand",
