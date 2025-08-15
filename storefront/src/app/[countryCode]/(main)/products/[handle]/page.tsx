@@ -86,9 +86,9 @@ export default async function ProductPage({ params }: Props) {
   }
 
   const productImage =
-  pricedProduct.thumbnail && pricedProduct.thumbnail.startsWith("http")
-    ? pricedProduct.thumbnail
-    : `https://www.vapezone.co.ke${pricedProduct.thumbnail || "/default-product.webp"}`;
+    pricedProduct.thumbnail && pricedProduct.thumbnail.startsWith("http")
+      ? pricedProduct.thumbnail
+      : `https://www.vapezone.co.ke${pricedProduct.thumbnail || "/default-product.webp"}`;
 
   const productSchema: WithContext<SchemaProduct> = {
     "@context": "https://schema.org",
@@ -113,7 +113,46 @@ export default async function ProductPage({ params }: Props) {
         (pricedProduct.variants?.[0]?.inventory_quantity ?? 0) > 0
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
+      priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+        .toISOString()
+        .split("T")[0],
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "KE",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 7,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn"
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "KE"
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 1,
+            unitCode: "d"
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 3,
+            unitCode: "d"
+          }
+        },
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "0",
+          currency: "KES"
+        }
+      }
     }
+
   }
 
   return (

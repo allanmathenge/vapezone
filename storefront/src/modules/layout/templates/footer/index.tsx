@@ -119,14 +119,14 @@ export default async function Footer() {
                     Twitter
                   </a>
                 </li>
-                {/* <li>
+                <li>
                   <a
                     href="/"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:text-ui-fg-base"
                   >
-                    Instagram
+                    +254 798769535
                   </a>
                 </li>
                 <li>
@@ -136,9 +136,9 @@ export default async function Footer() {
                     rel="noreferrer"
                     className="hover:text-ui-fg-base"
                   >
-                    Facebook
+                    +254 784131234
                   </a>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>
