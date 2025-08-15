@@ -101,7 +101,7 @@ export default async function ProductPage({ params }: Props) {
     sku: pricedProduct.id,
     brand: {
       "@type": "Brand",
-      name: "Vapezone",
+      name: "Vapezone Kenya",
     },
     offers: {
       "@type": "Offer",

@@ -42,7 +42,7 @@ export default async function ProductPreview({
           <Text className="text-ui-fg-subtle text-nowrap overflow-hidden text-ellipsis" data-testid="product-title">
             {product.title}
           </Text>
-          <div className="flex items-center gap-x-2">
+          <div className="flex justify-between items-center gap-x-2">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
         </div>

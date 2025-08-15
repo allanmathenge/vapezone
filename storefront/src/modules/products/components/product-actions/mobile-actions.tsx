@@ -78,14 +78,14 @@ const MobileActions: React.FC<MobileActionsProps> = ({
           leaveTo="opacity-0"
         >
           <div
-            className="bg-white flex flex-col gap-y-3 justify-center items-center text-large-regular p-4 h-full w-full border-t border-gray-200"
+            className="bg-white flex flex-col gap-y-1 justify-center items-center p-4 h-full w-full border-t border-gray-200"
             data-testid="mobile-actions"
           >
             <div className="flex items-center gap-x-2">
               <span data-testid="mobile-title">{product.title}</span>
               <span>—</span>
               {selectedPrice ? (
-                <div className="flex items-end gap-x-2">
+                <div className="flex flex-col items-end gap-x-2">
                   {selectedPrice.price_type === "sale" && (
                     <p>
                       <span className="line-through text-small-regular">
@@ -141,7 +141,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
               <Button
                 onClick={handleWhatsAppClick}
                 disabled={isWhatsAppLoading}
-                className="w-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-x-2"
+                className="w-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-x-2"
               >
                 <FaWhatsapp size={18} />
                 {isWhatsAppLoading ? "Opening..." : "Place Order"}
