@@ -33,6 +33,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
             __html: JSON.stringify(orgSchema),
           }}
         />
+        <meta name="google-site-verification" content="rvso-U-jCpwFY1c7ut5up56n4_dc4oL_0zqtiO4Pyf8" />
       </head>
       <body>
         <main className="relative">{props.children}</main>
