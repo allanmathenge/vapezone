@@ -76,31 +76,6 @@ export default function CategoryTemplate({
             <h1 data-testid="category-page-title">{category.name}</h1>
           </div>
 
-          {category.description && (
-            <Text
-              className="text-medium text-ui-fg-subtle text-small-regular whitespace-pre-line"
-              data-testid="category-description"
-            >
-              <div className="prose prose-blue max-w-none">
-                <ReactMarkdown
-                  components={{
-                    h2: ({ node, ...props }) => (
-                      <h2 {...props} className="text-blue-600 font-bold text-xl mt-1" />
-                    ),
-                    h3: ({ node, ...props }) => (
-                      <h3 {...props} className="text-blue-500 font-semibold text-lg mt-1" />
-                    ),
-                    p: ({ node, ...props }) => (
-                      <p {...props} className="text-gray-700 leading-relaxed" />
-                    ),
-                  }}
-                >
-                  {category.description.replace(/\\n/g, "\n")}
-                </ReactMarkdown>
-              </div>
-            </Text>
-          )}
-
           {category.category_children && (
             <div className="mb-8 text-base-large">
               <ul className="grid grid-cols-1 gap-2">
@@ -123,6 +98,31 @@ export default function CategoryTemplate({
               countryCode={countryCode}
             />
           </Suspense>
+
+          {category.description && (
+            <Text
+              className="text-medium text-ui-fg-subtle text-small-regular rounded my-5 shadow p-3 whitespace-pre-line"
+              data-testid="category-description"
+            >
+              <div className="prose prose-blue max-w-none">
+                <ReactMarkdown
+                  components={{
+                    h2: ({ node, ...props }) => (
+                      <h2 {...props} className="text-blue-600 font-bold text-xl mt-1" />
+                    ),
+                    h3: ({ node, ...props }) => (
+                      <h3 {...props} className="text-blue-500 font-semibold text-lg mt-1" />
+                    ),
+                    p: ({ node, ...props }) => (
+                      <p {...props} className="text-gray-700 leading-relaxed" />
+                    ),
+                  }}
+                >
+                  {category.description.replace(/\\n/g, "\n")}
+                </ReactMarkdown>
+              </div>
+            </Text>
+          )}
         </div>
       </div>
     </>
