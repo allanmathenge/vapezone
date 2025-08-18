@@ -29,7 +29,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         </Heading>
 
         <Text
-          className="text-medium text-ui-fg-subtle text-small-regular whitespace-pre-line"
+          className="text-medium text-ui-fg-subtle shadow p-2 rounded text-small-regular whitespace-pre-line"
           data-testid="product-description"
         >
           <div className="prose prose-blue max-w-none">
