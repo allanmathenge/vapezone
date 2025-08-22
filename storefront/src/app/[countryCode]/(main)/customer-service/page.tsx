@@ -107,7 +107,7 @@ export default function CustomerServicePage() {
                 href="mailto:in@vapezone.co.ke"
                 className="text-blue-600 hover:underline"
               >
-                in@vapezone.co.ke
+                sales@vapezone.co.ke
               </a>
             </li>
             <li>

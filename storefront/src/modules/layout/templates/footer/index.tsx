@@ -10,144 +10,158 @@ export default async function Footer() {
   const { product_categories } = await getCategoriesList()
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
+    <footer className="border-t border-ui-border-base w-full bg-slate-50">
       <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            >
-            M-Pesa. Buy Goods. Till No: 3763670
-            </LocalizedClientLink>
-          </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 place-content-center sm:grid-cols-3">
-            {product_categories && product_categories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul
-                  className="grid sm:grid-cols-1 gap-2"
-                  data-testid="footer-categories"
-                >
-                  {product_categories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
+        <div className="w-full py-20 px-6 sm:px-12">
+          <div className="max-w-screen-xl mx-auto flex flex-col gap-y-16 sm:gap-y-20">
 
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
+            {/* Categories */}
+            {product_categories?.length > 0 && (
+              <section>
+                <h2 className="text-lg font-semibold text-ui-fg-base mb-6 tracking-tight">Explore Categories</h2>
+                {product_categories?.length > 0 && (
+                  <section className="w-full">
+                    <div className="flex overflow-x-auto gap-6 pb-4 -mx-6 px-6 snap-x scroll-smooth sm:hidden" data-testid="footer-categories">
+                      {product_categories
+                        .filter((c) => !c.parent_category)
+                        .map((c) => {
+                          const children = c.category_children || []
 
-                    return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
-                          href={`/categories/${c.handle}`}
-                          data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
+                          return (
+                            <div
+                              key={c.id}
+                              className="flex-shrink-0 min-w-[200px] bg-slate-100 rounded snap-star p-4 border"
+                            >
+                              <LocalizedClientLink
+                                href={`/categories/${c.handle}`}
+                                className="text-ui-fg-base font-medium text-sm mb-2 block hover:text-ui-fg-hover"
+                                data-testid="category-link"
+                              >
+                                {c.name}
+                              </LocalizedClientLink>
+
+                              {children.length > 0 && (
+                                <ul className="space-y-2 pl-2 border-ui-border-light">
+                                  {children.map((child) => (
+                                    <li key={child.id}>
+                                      <LocalizedClientLink
+                                        href={`/categories/${child.handle}`}
+                                        className="text-ui-fg-subtle text-sm hover:text-ui-fg-base"
+                                        data-testid="category-link"
+                                      >
+                                        {child.name}
+                                      </LocalizedClientLink>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          )
+                        })}
+                    </div>
+
+                    <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 rounded xl:grid-cols-4 gap-10">
+                      {product_categories
+                        .filter((c) => !c.parent_category)
+                        .map((c) => {
+                          const children = c.category_children || []
+
+                          return (
+                            <div key={c.id} className="flex border bg-slate-100 flex-col gap-1">
+                              <LocalizedClientLink
+                                href={`/categories/${c.handle}`}
+                                className="text-ui-fg-base font-medium text-sm p-2 hover:text-ui-fg-hover"
+                                data-testid="category-link"
+                              >
+                                {c.name}
+                              </LocalizedClientLink>
+
+                              {children.length > 0 && (
+                                <ul className="space-y-2 pl-3">
+                                  {children.map((child) => (
+                                    <li key={child.id}>
+                                      <LocalizedClientLink
+                                        href={`/categories/${child.handle}`}
+                                        className="text-ui-fg-subtle text-sm hover:text-ui-fg-base"
+                                        data-testid="category-link"
+                                      >
+                                        {child.name}
+                                      </LocalizedClientLink>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          )
+                        })}
+                    </div>
+                  </section>
+                )}
+
+              </section>
             )}
-            {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
+
+            {collections?.length > 0 && (
+              <section>
+                <h2 className="text-lg font-semibold text-ui-fg-base mb-6 tracking-tight">Collections</h2>
                 <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
+                  className={`grid gap-4 text-sm text-ui-fg-subtle ${collections.length > 3 ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-1'
+                    }`}
                 >
-                  {collections?.slice(0, 6).map((c) => (
+                  {collections.slice(0, 8).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
                         href={`/collections/${c.handle}`}
+                        className="hover:text-ui-fg-base transition-colors"
                       >
                         {c.title}
                       </LocalizedClientLink>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Link with us</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+
+            {/* Contact */}
+            <section>
+              <h2 className="text-lg font-semibold text-ui-fg-base mb-6 tracking-tight">Link With Us</h2>
+              <ul className="space-y-4 text-sm text-ui-fg-subtle">
                 <li>
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
+                  <a href="/" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
                     Twitter
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    +254 798769535
+                  <a href="/" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
+                    +254 798 769 535
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    +254 784131234
+                  <a href="/" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
+                    +254 784 131 234
                   </a>
                 </li>
               </ul>
-            </div>
+            </section>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Vapezone. All rights reserved.
-          </Text>
-          <MedusaCTA />
+
+
+        <div className="w-full mb-16 text-ui-fg-muted">
+          <LocalizedClientLink
+            href="/"
+            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+          >
+            M-Pesa. Buy Goods. Till No: 3763670
+          </LocalizedClientLink>
+
+          <div className="flex justify-between py-8 items-center">
+            <Text className="txt-compact-small">
+              © {new Date().getFullYear()} Vapezone. All rights reserved.
+            </Text>
+            <MedusaCTA />
+          </div>
+
         </div>
       </div>
     </footer>
