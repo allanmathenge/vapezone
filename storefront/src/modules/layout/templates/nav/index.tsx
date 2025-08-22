@@ -20,7 +20,7 @@ export default async function Nav() {
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
-      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
+      <header className="relative h-16 mx-auto border-b duration-200 bg-slate-50 border-ui-border-base">
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular xsmall:gap-8 gap-3">
 
           {/* Icon */}
@@ -65,7 +65,7 @@ export default async function Nav() {
             })}
             {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
               <LocalizedClientLink
-                className="flex w-full hover:text-ui-fg-base border rounded-full"
+                className="flex w-full hover:text-ui-fg-base border rounded"
                 href="/search"
                 scroll={false}
                 data-testid="nav-search-link"
