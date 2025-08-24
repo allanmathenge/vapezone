@@ -4,6 +4,7 @@ import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
+import { FaFacebook, FaInstagram, FaEnvelope, FaXTwitter } from "react-icons/fa6";
 
 export default async function Footer() {
   const { collections } = await getCollectionsList()
@@ -12,7 +13,7 @@ export default async function Footer() {
   return (
     <footer className="border-t border-ui-border-base w-full bg-slate-50">
       <div className="content-container flex flex-col w-full">
-        <div className="w-full py-20 px-6 sm:px-12">
+        <div className="w-full py-10 sm:px-12">
           <div className="max-w-screen-xl mx-auto flex flex-col gap-y-16 sm:gap-y-20">
 
             {/* Categories */}
@@ -121,33 +122,11 @@ export default async function Footer() {
                 </ul>
               </section>
             )}
-
-            {/* Contact */}
-            <section>
-              <h2 className="text-lg font-semibold text-ui-fg-base mb-6 tracking-tight">Link With Us</h2>
-              <ul className="space-y-4 text-sm text-ui-fg-subtle">
-                <li>
-                  <a href="/" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a href="/" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
-                    +254 798 769 535
-                  </a>
-                </li>
-                <li>
-                  <a href="/" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
-                    +254 784 131 234
-                  </a>
-                </li>
-              </ul>
-            </section>
           </div>
         </div>
 
 
-        <div className="w-full mb-16 text-ui-fg-muted">
+        <div className="w-full mb-8 text-ui-fg-muted">
           <LocalizedClientLink
             href="/"
             className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"

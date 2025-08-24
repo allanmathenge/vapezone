@@ -1,6 +1,12 @@
 import React from "react";
 import { FAQPage, Question, Answer } from "schema-dts";
 import Head from "next/head";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaEnvelope,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 export default function CustomerServicePage() {
   const faqs = [
@@ -60,60 +66,100 @@ export default function CustomerServicePage() {
         />
       </Head>
 
-      <main className="max-w-5xl mx-auto px-6 py-12">
-        <header className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+      <main className="max-w-6xl mx-auto px-6 py-16 text-gray-900">
+        <header className="text-center mb-14">
+          <h1 className="text-5xl font-extrabold tracking-tight mb-4">
             Customer Service
           </h1>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            We’re committed to making your shopping experience smooth, secure,
-            and satisfying. Find answers to common questions or reach out to our
-            support team for further assistance.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Your satisfaction is our priority. Explore answers to common
+            questions or reach out directly—we’re here to help.
           </p>
         </header>
 
-        <section className="grid gap-6">
+        <section className="grid gap-8">
           {faqs.map((faq, index) => (
-            <div
+            <article
               key={index}
-              className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition"
+              className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition"
             >
               <h2 className="text-xl font-semibold text-gray-800">
                 {faq.question}
               </h2>
-              <p className="mt-2 text-gray-600">{faq.answer}</p>
-            </div>
+              <p className="mt-2 text-gray-700 leading-relaxed">
+                {faq.answer}
+              </p>
+            </article>
           ))}
         </section>
 
-        <section className="mt-16 bg-gray-50 rounded-xl shadow-inner p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Need More Help?
-          </h2>
-          <p className="text-gray-700 mb-6">
-            Our Customer Service team is here to help you every step of the way.
-            Contact us through any of the channels below:
+        <section className="mt-20 bg-white border border-gray-200 rounded-2xl p-10 shadow-md">
+          <h2 className="text-3xl font-bold mb-6">Need More Help?</h2>
+          <p className="text-gray-700 mb-8 max-w-2xl">
+            Our support team is available to assist you with orders, payments,
+            deliveries, and product inquiries. Reach us through any of the
+            following channels:
           </p>
-          <ul className="grid sm:grid-cols-2 gap-y-3 text-gray-700">
-            <li>
-              <strong>WhatsApp:</strong> +254 798 769 535
-            </li>
-            <li>
-              <strong>Call for Enquiries:</strong> +254 798 769 535
-            </li>
-            <li>
-              <strong>Email:</strong>{" "}
+
+          <div className="grid sm:grid-cols-2 gap-6 text-gray-800">
+            <div>
+              <h3 className="font-semibold mb-2">Connect With Us</h3>
+              <div className="flex gap-4 text-2xl">
+                <a
+                  href="https://twitter.com/vapezonekenya"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-black"
+                >
+                  <FaXTwitter />
+                </a>
+                <a
+                  href="https://www.instagram.com/vapezonekenya/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-pink-500"
+                >
+                  <FaInstagram />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61579752452893"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-blue-600"
+                >
+                  <FaFacebook />
+                </a>
+                <a
+                  href="mailto:vapezonekenya@gmail.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-red-500"
+                >
+                  <FaEnvelope />
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">Call for Enquiries</h3>
+              <p>+254 798 769 535</p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">Email</h3>
               <a
-                href="mailto:in@vapezone.co.ke"
+                href="mailto:vapezone@gmail.com"
                 className="text-blue-600 hover:underline"
               >
-                sales@vapezone.co.ke
+                vapezone@gmail.com
               </a>
-            </li>
-            <li>
-              <strong>Live Chat:</strong> Available during business hours
-            </li>
-          </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">Live Chat</h3>
+              <p>Available during business hours</p>
+            </div>
+          </div>
         </section>
       </main>
     </>
