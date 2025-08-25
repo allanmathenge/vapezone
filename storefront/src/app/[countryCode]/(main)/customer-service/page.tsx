@@ -33,7 +33,7 @@ export default function CustomerServicePage() {
     {
       question: "How do I contact customer support?",
       answer:
-        "You can reach us via WhatsApp, email (in@vapezone.co.ke), or by using our contact form on the website.",
+        "You can reach us via WhatsApp, email (vapezone@gmail.com), or by using our contact form on the website.",
     },
   ];
 
