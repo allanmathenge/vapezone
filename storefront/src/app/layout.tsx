@@ -17,8 +17,9 @@ const orgSchema: WithContext<Organization> = {
   url: "https://www.vapezone.co.ke/ke/",
   logo: "https://www.vapezone.co.ke/logo.png",
   sameAs: [
-    "https://twitter.com/1mathenge",
-    "https://www.youtube.com/@allanmathenge"
+    "https://twitter.com/vapezonekenya",
+    "https://www.instagram.com/vapezonekenya/",
+    "https://www.facebook.com/profile.php?id=61579752452893",
   ]
 };
 

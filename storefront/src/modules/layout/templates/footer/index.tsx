@@ -14,76 +14,39 @@ export default async function Footer() {
     <footer className="border-t border-ui-border-base w-full bg-slate-50">
       <div className="content-container flex flex-col w-full">
         <div className="w-full py-10 sm:px-12">
-          <div className="max-w-screen-xl mx-auto flex flex-col gap-y-16 sm:gap-y-20">
-
-            {/* Categories */}
+          <div className="flex flex-col gap-y-16 sm:gap-y-20">
             {product_categories?.length > 0 && (
               <section>
                 <h2 className="text-lg font-semibold text-ui-fg-base mb-6 tracking-tight">Explore Categories</h2>
                 {product_categories?.length > 0 && (
                   <section className="w-full">
-                    <div className="flex overflow-x-auto gap-6 pb-4 -mx-6 px-6 snap-x scroll-smooth sm:hidden" data-testid="footer-categories">
+                    <div
+                      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
+                      data-testid="footer-categories"
+                    >
                       {product_categories
                         .filter((c) => !c.parent_category)
                         .map((c) => {
                           const children = c.category_children || []
-
                           return (
                             <div
                               key={c.id}
-                              className="flex-shrink-0 min-w-[200px] bg-slate-100 rounded snap-star p-4 border"
+                              className="flex flex-col bg-white rounded-2xl border shadow-sm hover:shadow-md transition-all p-4"
                             >
                               <LocalizedClientLink
                                 href={`/categories/${c.handle}`}
-                                className="text-ui-fg-base font-medium text-sm mb-2 block hover:text-ui-fg-hover"
+                                className="text-base font-semibold text-gray-800 mb-3 hover:text-blue-600"
                                 data-testid="category-link"
                               >
                                 {c.name}
                               </LocalizedClientLink>
-
                               {children.length > 0 && (
-                                <ul className="space-y-2 pl-2 border-ui-border-light">
+                                <ul className="space-y-1 pl-3">
                                   {children.map((child) => (
                                     <li key={child.id}>
                                       <LocalizedClientLink
                                         href={`/categories/${child.handle}`}
-                                        className="text-ui-fg-subtle text-sm hover:text-ui-fg-base"
-                                        data-testid="category-link"
-                                      >
-                                        {child.name}
-                                      </LocalizedClientLink>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          )
-                        })}
-                    </div>
-
-                    <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 rounded xl:grid-cols-4 gap-10">
-                      {product_categories
-                        .filter((c) => !c.parent_category)
-                        .map((c) => {
-                          const children = c.category_children || []
-
-                          return (
-                            <div key={c.id} className="flex border bg-slate-100 flex-col gap-1">
-                              <LocalizedClientLink
-                                href={`/categories/${c.handle}`}
-                                className="text-ui-fg-base font-medium text-sm p-2 hover:text-ui-fg-hover"
-                                data-testid="category-link"
-                              >
-                                {c.name}
-                              </LocalizedClientLink>
-
-                              {children.length > 0 && (
-                                <ul className="space-y-2 pl-3">
-                                  {children.map((child) => (
-                                    <li key={child.id}>
-                                      <LocalizedClientLink
-                                        href={`/categories/${child.handle}`}
-                                        className="text-ui-fg-subtle text-sm hover:text-ui-fg-base"
+                                        className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
                                         data-testid="category-link"
                                       >
                                         {child.name}
@@ -99,21 +62,30 @@ export default async function Footer() {
                   </section>
                 )}
 
+
+
               </section>
             )}
 
             {collections?.length > 0 && (
               <section>
-                <h2 className="text-lg font-semibold text-ui-fg-base mb-6 tracking-tight">Collections</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">
+                  Collections
+                </h2>
                 <ul
-                  className={`grid gap-4 text-sm text-ui-fg-subtle ${collections.length > 3 ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-1'
+                  className={`grid gap-3 sm:gap-8 text-sm ${collections.length > 3
+                      ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
+                      : 'grid-cols-1'
                     }`}
                 >
                   {collections.slice(0, 8).map((c) => (
-                    <li key={c.id}>
+                    <li
+                      key={c.id}
+                      className="rounded-xl border border-gray-100 bg-slate-50 p-5 shadow-sm hover:shadow-md transform hover:scale-[1.02] transition-all"
+                    >
                       <LocalizedClientLink
                         href={`/collections/${c.handle}`}
-                        className="hover:text-ui-fg-base transition-colors"
+                        className="block text-base font-semibold text-gray-800 hover:text-blue-600 transition-colors"
                       >
                         {c.title}
                       </LocalizedClientLink>
@@ -122,6 +94,7 @@ export default async function Footer() {
                 </ul>
               </section>
             )}
+
           </div>
         </div>
 
