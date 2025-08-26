@@ -99,7 +99,7 @@ export default function CategoryTemplate({
             />
           </Suspense>
           {category.description && (
-            <Text
+            <div
               className="text-medium text-ui-fg-subtle text-small-regular rounded my-5 shadow p-3 whitespace-pre-line"
               data-testid="category-description"
             >
@@ -135,7 +135,7 @@ export default function CategoryTemplate({
                   {category.description.replace(/\\n/g, "\n")}
                 </ReactMarkdown>
               </div>
-            </Text>
+            </div>
           )}
         </div>
       </div>
