@@ -13,7 +13,7 @@ export default async function Footer() {
   return (
     <footer className="border-t border-ui-border-base w-full bg-slate-50">
       <div className="content-container flex flex-col w-full">
-        <div className="w-full py-10 sm:px-12">
+        <div className="w-full py-10">
           <div className="flex flex-col gap-y-16 sm:gap-y-20">
             {product_categories?.length > 0 && (
               <section>
@@ -21,7 +21,7 @@ export default async function Footer() {
                 {product_categories?.length > 0 && (
                   <section className="w-full">
                     <div
-                      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
+                      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2"
                       data-testid="footer-categories"
                     >
                       {product_categories
@@ -31,7 +31,7 @@ export default async function Footer() {
                           return (
                             <div
                               key={c.id}
-                              className="flex flex-col bg-white rounded-2xl border shadow-sm hover:shadow-md transition-all p-4"
+                              className="flex flex-col bg-white rounded border shadow-sm hover:shadow-md transition-all p-2"
                             >
                               <LocalizedClientLink
                                 href={`/categories/${c.handle}`}
@@ -46,7 +46,7 @@ export default async function Footer() {
                                     <li key={child.id}>
                                       <LocalizedClientLink
                                         href={`/categories/${child.handle}`}
-                                        className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
+                                        className="text-xs text-gray-500 hover:text-gray-800 transition-colors"
                                         data-testid="category-link"
                                       >
                                         {child.name}
