@@ -60,13 +60,15 @@ const MobileActions: React.FC<MobileActionsProps> = ({
     setIsWhatsAppLoading(true)
     setTimeout(() => {
       const phoneNumber = "254798769535"
-      const message = `Hi, I'd like to place an order 
-      Product: *${product.title}*
-      Quantity: ${quantity}
-      Delivery: ${delivery || "Nairobi CBD Pickup"}
-      Price Each: ${ selectedPrice?.original_price
-        ? `${(selectedPrice.original_price).toLocaleString()} KSH`
-        : "Check site for latest price"
+      const productUrl = `${window.location.origin}/ke/products/${product.handle}`
+      const message = `
+Product Link: ${productUrl}
+Hi, I'd like to place an order:
+Product: *${product.title}*
+Quantity: ${quantity}
+Delivery: ${delivery || "Nairobi CBD Pickup"}Price Each: ${ selectedPrice?.original_price
+? `${(selectedPrice.original_price).toLocaleString()} KSH`
+: "Check site for latest price"
     }`
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
         message
