@@ -101,19 +101,17 @@ export default function ProductActions({
     const productUrl = `${window.location.origin}/${countryCode}/products/${product.handle}`
 
     const whatsappMessage = `
+Product Link: ${productUrl}
 Hi, I'd like to place an order
 
 Product: ${product.title}
 ${selectedVariant ? `Variant: ${selectedVariant.title}` : ""}
 Quantity: ${quantity}
-Price: ${
-      selectedVariant?.calculated_price?.original_amount
+Price: ${selectedVariant?.calculated_price?.original_amount
         ? `${(selectedVariant.calculated_price?.original_amount).toLocaleString()} ${region.currency_code.toUpperCase()}`
         : "Check site for latest price"
-    }
-Delivery Location: ${address}
-Product Link: ${productUrl}
-    `
+      }
+Delivery Location: ${address}`
 
     const whatsappLink = `https://wa.me/254798769535?text=${encodeURIComponent(
       whatsappMessage
@@ -159,8 +157,8 @@ Product Link: ${productUrl}
           {!selectedVariant
             ? "Select variant"
             : !inStock
-            ? "Out of stock"
-            : "Add to cart"}
+              ? "Out of stock"
+              : "Add to cart"}
         </Button>
 
         <Button
@@ -221,11 +219,10 @@ Product Link: ${productUrl}
                 onClick={handleConfirmOrder}
                 disabled={!address}
                 variant="primary"
-                className={`flex-1 ${
-                  address
+                className={`flex-1 ${address
                     ? "bg-green-500 hover:bg-green-600 text-white"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 Confirm on WhatsApp
               </Button>
