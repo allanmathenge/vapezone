@@ -64,9 +64,11 @@ const MobileActions: React.FC<MobileActionsProps> = ({
       const message = `
 Product Link: ${productUrl}
 Hi, I'd like to place an order:
+
 Product: *${product.title}*
 Quantity: ${quantity}
-Delivery: ${delivery || "Nairobi CBD Pickup"}Price Each: ${ selectedPrice?.original_price
+Delivery: ${delivery || "Nairobi CBD"}
+Price Each: ${ selectedPrice?.original_price
 ? `${(selectedPrice.original_price).toLocaleString()} KSH`
 : "Check site for latest price"
     }`

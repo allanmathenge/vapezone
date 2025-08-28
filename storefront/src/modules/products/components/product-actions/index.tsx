@@ -102,6 +102,7 @@ export default function ProductActions({
     const whatsappMessage = `
 Product Link: ${productUrl}
 Hi, I'd like to place an order:
+
 Product: ${product.title}
 ${selectedVariant ? `Variant: ${selectedVariant.title}` : ""}
 Quantity: ${quantity}
