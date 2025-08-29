@@ -5,15 +5,6 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
   if (!price) {
     return null
   }
-  const formatPrice = (value: string | number) => {
-    const numeric = typeof value === "string" ? parseFloat(value.replace(/[^0-9.-]+/g, "")) : value
-    return new Intl.NumberFormat("en-KE", {
-      style: "currency",
-      currency: "KES",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2,
-    }).format(numeric)
-  }
 
   return (
     <>
@@ -22,7 +13,7 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
           className="line-through text-xs text-ui-fg-muted"
           data-testid="original-price"
         >
-          {formatPrice(price.original_price_number)}
+          {price.original_price}
         </Text>
       )}
       <Text
@@ -31,7 +22,7 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
         })}
         data-testid="price"
       >
-        {formatPrice(price.calculated_price_number)}
+        {price.calculated_price}
       </Text>
     </>
   )
