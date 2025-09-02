@@ -1,10 +1,6 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-
-import {
-  getCollectionByHandle,
-  getCollectionsList,
-} from "@lib/data/collections"
+import { getCollectionByHandle, getCollectionsList } from "@lib/data/collections"
 import { listRegions } from "@lib/data/regions"
 import { StoreCollection, StoreRegion } from "@medusajs/types"
 

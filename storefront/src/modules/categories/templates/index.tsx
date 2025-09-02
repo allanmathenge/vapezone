@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
-import { ItemList, WithContext } from "schema-dts"
 import ReactMarkdown from "react-markdown"
 
 import InteractiveLink from "@modules/common/components/interactive-link"
@@ -10,8 +9,6 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
-
-import { Text } from "@medusajs/ui"
 
 export default function CategoryTemplate({
   categories,
@@ -32,26 +29,8 @@ export default function CategoryTemplate({
 
   if (!category || !countryCode) notFound()
 
-  const schemaData: WithContext<ItemList> = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: category.name,
-    itemListElement:
-      category.category_children?.map((child, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: child.name,
-        url: `/categories/${child.handle}`,
-      })) || [],
-  }
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-
       <div
         className="flex flex-col small:flex-row small:items-start py-6 content-container"
         data-testid="category-container"

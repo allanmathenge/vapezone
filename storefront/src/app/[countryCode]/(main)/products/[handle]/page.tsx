@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: Props) {
       "@type": "Offer",
       url: `https://www.vapezone.co.ke/ke/products/${pricedProduct.handle}`,
       priceCurrency: region.currency_code.toUpperCase(),
-      price: (pricedProduct.variants?.[0]?.calculated_price?.original_amount || 0) / 100,
+      price: (pricedProduct.variants?.[0]?.calculated_price?.original_amount || 0),
       itemCondition: "https://schema.org/NewCondition",
       availability:
         (pricedProduct.variants?.[0]?.inventory_quantity ?? 0) > 0
