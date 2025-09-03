@@ -28,7 +28,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           {product.title}
         </Heading>
 
-        <Text
+        <div
           className="text-medium text-ui-fg-subtle shadow p-2 rounded text-small-regular whitespace-pre-line"
           data-testid="product-description"
         >
@@ -49,7 +49,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               {product.description || ""}
             </ReactMarkdown>
           </div>
-        </Text>
+        </div>
       </div>
     </div>
   )
