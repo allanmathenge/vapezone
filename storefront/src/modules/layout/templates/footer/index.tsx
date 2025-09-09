@@ -4,7 +4,6 @@ import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
-import { FaFacebook, FaInstagram, FaEnvelope, FaXTwitter } from "react-icons/fa6";
 
 export default async function Footer() {
   const { collections } = await getCollectionsList()
@@ -61,9 +60,6 @@ export default async function Footer() {
                     </div>
                   </section>
                 )}
-
-
-
               </section>
             )}
 

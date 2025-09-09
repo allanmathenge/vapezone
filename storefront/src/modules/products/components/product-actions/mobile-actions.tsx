@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react"
-import { Button, clx, Input } from "@medusajs/ui"
+import { Button, clx } from "@medusajs/ui"
 import React, { Fragment, useMemo, useState } from "react"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
@@ -34,10 +34,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
 }) => {
   const { state, open, close } = useToggleState()
   const [isWhatsAppLoading, setIsWhatsAppLoading] = useState(false)
-  const [confirmModal, setConfirmModal] = useState(false)
-
-  const [quantity, setQuantity] = useState(1)
-  const [delivery, setDelivery] = useState("")
+  const [quantity] = useState(1)
 
   const price = getProductPrice({
     product: product,
@@ -53,31 +50,24 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   }, [price])
 
   const handleWhatsAppClick = () => {
-    setConfirmModal(true)
-  }
-
-  const confirmAndRedirect = () => {
     setIsWhatsAppLoading(true)
     setTimeout(() => {
       const phoneNumber = "254798769535"
       const productUrl = `${window.location.origin}/ke/products/${product.handle}`
       const message = `
-Product Link: ${productUrl}
-Hi, I'd like to place an order:
+Link: ${productUrl}
+Hi, I'd like to place an order: *${product.title}*, ${
+        selectedPrice?.original_price
+          ? `${selectedPrice.original_price.toLocaleString()}`
+          : "Check site for latest price"
+      }
+Quantity: ${quantity}`
 
-Product: *${product.title}*
-Quantity: ${quantity}
-Delivery: ${delivery || "Nairobi CBD"}
-Price Each: ${ selectedPrice?.original_price
-? `${(selectedPrice.original_price).toLocaleString()} KSH`
-: "Check site for latest price"
-    }`
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
         message
       )}`
       window.open(url, "_blank", "noopener,noreferrer")
       setIsWhatsAppLoading(false)
-      setConfirmModal(false)
     }, 300)
   }
 
@@ -104,7 +94,7 @@ Price Each: ${ selectedPrice?.original_price
             data-testid="mobile-actions"
           >
             <div className="flex items-center justify-between w-full gap-x-2">
-              <span className="font-semibold text-base">{product.title}</span>
+              <span className="text-base">{product.title}</span>
               <span>—</span>
               {selectedPrice ? (
                 <div className="flex flex-col items-end gap-x-2">
@@ -153,8 +143,8 @@ Price Each: ${ selectedPrice?.original_price
                   {!variant
                     ? "Select variant"
                     : !inStock
-                      ? "Out of stock"
-                      : "Add to cart"}
+                    ? "Out of stock"
+                    : "Add to cart"}
                 </Button>
               </div>
 
@@ -170,78 +160,6 @@ Price Each: ${ selectedPrice?.original_price
           </div>
         </Transition>
       </div>
-
-      {/* Confirm Order Modal */}
-      <Transition appear show={confirmModal} as={Fragment}>
-        <Dialog as="div" className="relative z-[80]" onClose={() => setConfirmModal(false)}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-gray-700 bg-opacity-75 backdrop-blur-sm" />
-          </Transition.Child>
-
-          <div className="fixed bottom-0 inset-x-0">
-            <div className="flex min-h-full items-center justify-center text-center">
-              <Dialog.Panel className="bg-white rounded-2xl shadow-xl w-[95%] max-w-md p-6 flex flex-col gap-y-4">
-                <Dialog.Title className="text-lg font-semibold">
-                  Confirm Order
-                </Dialog.Title>
-                <p className="text-sm text-gray-600">
-                  Please confirm your order details before checkout on WhatsApp.
-                </p>
-
-                <div className="flex flex-col gap-y-3 mt-2">
-                  <div>
-                    <label className="text-sm font-medium">Quantity</label>
-                    <Input
-                      type="number"
-                      min={1}
-                      value={quantity}
-                      onChange={(e) => setQuantity(Number(e.target.value))}
-                      className="w-full mt-1"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium">
-                      Delivery Location
-                    </label>
-                    <Input
-                      type="text"
-                      placeholder="Delivery Location"
-                      value={delivery}
-                      onChange={(e) => setDelivery(e.target.value)}
-                      className="w-full mt-1"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex gap-x-3 mt-4">
-                  <Button
-                    variant="secondary"
-                    onClick={() => setConfirmModal(false)}
-                    className="w-full"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    onClick={confirmAndRedirect}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white"
-                    isLoading={isWhatsAppLoading}
-                  >
-                    Proceed
-                  </Button>
-                </div>
-              </Dialog.Panel>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
 
       {/* Variant Select Modal (unchanged) */}
       <Transition appear show={state} as={Fragment}>
