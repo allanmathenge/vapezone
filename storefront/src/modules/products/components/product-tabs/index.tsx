@@ -25,14 +25,15 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   ]
 
   return (
-    <div className="w-full">
-      <Accordion type="multiple">
+    <div className="w-full border border-gray-200 rounded-xl overflow-hidden shadow-elegant">
+      <Accordion type="single" collapsible className="w-full">
         {tabs.map((tab, i) => (
           <Accordion.Item
             key={i}
             title={tab.label}
             headingSize="medium"
-            value={tab.label}
+            value={`item-${i}`}
+            className="border-b border-gray-100 last:border-b-0"
           >
             {tab.component}
           </Accordion.Item>
@@ -44,62 +45,79 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <div className="text-small-regular flex flex-col space-y-6">
-      {/*  */}
-      <div className="lg:max-w-[500px] mx-auto">
+    <div className="flex flex-col space-y-8 py-6 px-6 bg-white">
+      <div className="lg:max-w-[600px] mx-auto">
         <div
-          className="text-medium text-ui-fg-subtle rounded text-small-regular whitespace-pre-line"
+          className="rounded-2xl text-small-regular whitespace-pre-line"
           data-testid="product-description"
         >
-          <div className="prose prose-blue max-w-none">
+          <div className="prose prose-slate max-w-none">
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (
-                  <h2 {...props} className="text-blue-600 font-bold text-xl mt-1" />
+                  <h2 {...props} className="text-slate-800 font-semibold text-xl mt-6 mb-3 pb-2 border-b border-slate-100" />
                 ),
                 h3: ({ node, ...props }) => (
-                  <h3 {...props} className="text-blue-500 font-semibold text-lg mt-1" />
+                  <h3 {...props} className="text-slate-700 font-medium text-lg mt-5 mb-2" />
                 ),
                 p: ({ node, ...props }) => (
-                  <p {...props} className="text-gray-700 leading-relaxed" />
+                  <p {...props} className="text-slate-600 leading-relaxed mb-4" />
                 ),
                 ul: ({ node, ...props }) => (
-                  <ul {...props} className="list-disc pl-3 text-gray-700" />
+                  <ul {...props} className="list-disc pl-5 text-slate-600 mb-4 space-y-1" />
                 ),
                 li: ({ node, ...props }) => (
                   <li {...props} className="leading-relaxed" />
                 ),
+                strong: ({ node, ...props }) => (
+                  <strong {...props} className="font-semibold text-slate-700" />
+                ),
               }}
             >
-              {product.description || "-"}
+              {product.description || "No description available."}
             </ReactMarkdown>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-8">
-        <div className="flex flex-col gap-y-4">
-          <div>
-            <span className="font-semibold text-blue-600">Material</span>
-            <p>{product.material ? product.material : "-"}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+        <div className="flex flex-col gap-y-5">
+          <div className="flex flex-col">
+            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+              Material
+            </span>
+            <p className="text-slate-600 pl-3.5">{product.material ? product.material : "-"}</p>
           </div>
-          <div>
-            <span className="font-semibold text-blue-600">Country of origin</span>
-            <p>{product.origin_country ? product.origin_country : "-"}</p>
+          <div className="flex flex-col">
+            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+              Country of origin
+            </span>
+            <p className="text-slate-600 pl-3.5">{product.origin_country ? product.origin_country : "-"}</p>
           </div>
-          <div>
-            <span className="font-semibold text-blue-600">Type</span>
-            <p>{product.type ? product.type.value : "-"}</p>
+          <div className="flex flex-col">
+            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+              Type
+            </span>
+            <p className="text-slate-600 pl-3.5">{product.type ? product.type.value : "-"}</p>
           </div>
         </div>
-        <div className="flex flex-col gap-y-4">
-          <div>
-            <span className="font-semibold text-blue-600">Weight</span>
-            <p>{product.weight ? `${product.weight} g` : "-"}</p>
+        <div className="flex flex-col gap-y-5">
+          <div className="flex flex-col">
+            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+              Weight
+            </span>
+            <p className="text-slate-600 pl-3.5">{product.weight ? `${product.weight} g` : "-"}</p>
           </div>
-          <div>
-            <span className="font-semibold text-blue-600">Dimensions</span>
-            <p>
+          <div className="flex flex-col">
+            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+              Dimensions
+            </span>
+            <p className="text-slate-600 pl-3.5">
               {product.length && product.width && product.height
                 ? `${product.length}L x ${product.width}W x ${product.height}H`
                 : "-"}
@@ -107,40 +125,45 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
           </div>
         </div>
       </div>
-      {/*  */}
     </div>
   )
 }
 
 const ShippingInfoTab = () => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="py-6 px-6 bg-white">
       <div className="grid grid-cols-1 gap-y-8">
-        <div className="flex items-start gap-x-2">
-          <FastDelivery />
+        <div className="flex items-start gap-x-4 p-4 rounded-xl bg-blue-50/50 hover:bg-blue-50 transition-colors duration-200">
+          <div className="p-2.5 bg-blue-100 rounded-lg flex-shrink-0">
+            <FastDelivery className="text-blue-600 w-5 h-5" />
+          </div>
           <div>
-            <span className="font-semibold text-blue-600">Fast delivery</span>
-            <p className="max-w-sm">
+            <span className="font-semibold text-slate-800 block mb-2">Fast delivery</span>
+            <p className="text-slate-600 max-w-sm leading-relaxed">
               Your package will arrive in 30-50 minutes at your pick up
               location or in the comfort of your home.
             </p>
           </div>
         </div>
-        <div className="flex items-start gap-x-2">
-          <Refresh />
+        <div className="flex items-start gap-x-4 p-4 rounded-xl bg-green-50/50 hover:bg-green-50 transition-colors duration-200">
+          <div className="p-2.5 bg-green-100 rounded-lg flex-shrink-0">
+            <Refresh className="text-green-600 w-5 h-5" />
+          </div>
           <div>
-            <span className="font-semibold text-blue-600">Simple exchanges</span>
-            <p className="max-w-sm">
+            <span className="font-semibold text-slate-800 block mb-2">Simple exchanges</span>
+            <p className="text-slate-600 max-w-sm leading-relaxed">
               Is the taste not quite right? No worries - we&apos;ll exchange your
               product for a new one.
             </p>
           </div>
         </div>
-        <div className="flex items-start gap-x-2">
-          <Back />
+        <div className="flex items-start gap-x-4 p-4 rounded-xl bg-amber-50/50 hover:bg-amber-50 transition-colors duration-200">
+          <div className="p-2.5 bg-amber-100 rounded-lg flex-shrink-0">
+            <Back className="text-amber-600 w-5 h-5" />
+          </div>
           <div>
-            <span className="font-semibold text-blue-600">Easy returns</span>
-            <p className="max-w-sm">
+            <span className="font-semibold text-slate-800 block mb-2">Easy returns</span>
+            <p className="text-slate-600 max-w-sm leading-relaxed">
               Just return your product and we&apos;ll refund your money. No
               questions asked – we&apos;ll do our best to make sure your return
               is hassle-free.

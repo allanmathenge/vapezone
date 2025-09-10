@@ -7,7 +7,6 @@ type ProductInfoProps = {
 }
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
-
   const inStock = product.variants?.some(
     (variant) =>
       !variant.manage_inventory ||
@@ -16,47 +15,56 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   )
 
   return (
-    <div id="product-info">
-      <div className="flex flex-col space-y-6 lg:max-w-[500px] mx-auto">
-        <div className="flex flex-col border p-2 space-y-2">
-          <div className="flex gap-2 items-center text-sm text-ui-fg-muted">
-            <span className="font-semibold">Collection:</span>
-            {product.collection && (
-              <LocalizedClientLink
-                href={`/collections/${product.collection.handle}`}
-                className="hover:text-blue-700"
-              >
-                {product.collection.title}
-              </LocalizedClientLink>
-            )}
-          </div>
-
-          <div className="flex gap-2 items-center text-ui-fg-muted">
-            <span className="font-semibold">Name:</span>
-            <Heading
-              level="h1"
-              className="text-xs sm:text-sm"
-              data-testid="product-title"
+    <div id="product-info" className="bg-ui-bg-subtle rounded-xl p-6 shadow-sm border border-ui-border-base">
+      <div className="flex flex-col space-y-6">
+        {/* Collection */}
+        {product.collection && (
+          <div className="flex flex-col space-y-1">
+            <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Collection</Text>
+            <LocalizedClientLink
+              href={`/collections/${product.collection.handle}`}
+              className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover font-medium transition-colors duration-200"
             >
-              {product.title}
-            </Heading>
+              {product.collection.title}
+            </LocalizedClientLink>
           </div>
-          {product.variants && product.variants.length > 0 && (
-            <div className="flex gap-2 items-start text-ui-fg-muted">
-              <span className="font-semibold">Variant:</span>
-              <div className="flex flex-col text-xs">
-                {product.variants.map((variant) => (
-                  <span key={variant.id}>{variant.title}</span>
-                ))}
-              </div>
-            </div>
-          )}
+        )}
 
-          <div className="flex gap-2 items-center text-ui-fg-muted">
-            <span className="font-semibold">Availability:</span>
-            <span className={inStock ? "text-green-600" : "text-red-600"}>
-              {inStock ? "In Stock" : "Out of Stock"}
-            </span>
+        {/* Product Title */}
+        <div className="flex flex-col space-y-1">
+          <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Product</Text>
+          <Heading
+            level="h1"
+            className="text-ui-fg-base text-xl font-semibold"
+            data-testid="product-title"
+          >
+            {product.title}
+          </Heading>
+        </div>
+
+        {/* Variants */}
+        {product.variants && product.variants.length > 0 && (
+          <div className="flex flex-col space-y-2">
+            <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Variants</Text>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {product.variants.map((variant) => (
+                <div 
+                  key={variant.id} 
+                  className="bg-ui-bg-component hover:bg-ui-bg-component-hover transition-colors duration-150 rounded-lg px-3 py-2 text-sm"
+                >
+                  {variant.title}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Availability */}
+        <div className="flex items-center justify-between pt-4 border-t border-ui-border-base">
+          <Text className="text-ui-fg-muted text-sm font-medium">Availability</Text>
+          <div className={`flex items-center ${inStock ? 'text-ui-tag-green-text' : 'text-ui-tag-red-text'}`}>
+            <div className={`w-2 h-2 rounded-full mr-2 ${inStock ? 'bg-ui-tag-green-icon' : 'bg-ui-tag-red-icon'}`}></div>
+            <span className="font-medium">{inStock ? 'In Stock' : 'Out of Stock'}</span>
           </div>
         </div>
       </div>
