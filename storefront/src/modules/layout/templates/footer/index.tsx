@@ -17,7 +17,7 @@ export default async function Footer() {
             {product_categories?.length > 0 && (
               <section className="px-4">
                 <div className="flex flex-col items-center mb-12">
-                  <h2 className="text-2xl font-light text-slate-800 mb-3 tracking-wide">Explore Our Collections</h2>
+                  <h2 className="text-2xl font-light text-slate-800 mb-3 tracking-wide">Explore Our Categories</h2>
                   <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </div>
                 {product_categories?.length > 0 && (
