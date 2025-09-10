@@ -90,7 +90,7 @@ Quantity: ${quantity}`
           leaveTo="opacity-0"
         >
           <div
-            className="bg-white flex flex-col gap-y-1 justify-center items-center px-4 pb-3 h-full w-full border-t border-gray-200 shadow-xl"
+            className="bg-white flex flex-col gap-y-1 justify-center items-center px-4 pb-2 h-full w-full border-t border-gray-200 shadow-xl"
             data-testid="mobile-actions"
           >
             <div className="flex items-center justify-between w-full gap-x-2">
