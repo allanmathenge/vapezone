@@ -114,7 +114,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const itemListScript = `<script type="application/ld+json">${JSON.stringify(itemListSchema)}</script>`
 
     return {
-      title: `${title} – Best Vapes in Kenya | Shop Vapes Online At Vapezone`,
+      title: `Shop ${title} – Best Vapes in Kenya | Shop Vapes Online At Vapezone Kenya`,
       description,
       alternates: {
         canonical: url,
