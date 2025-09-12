@@ -152,7 +152,7 @@ const ShippingInfoTab = () => {
           <div>
             <span className="font-semibold text-slate-800 block mb-2">Simple exchanges</span>
             <p className="text-slate-600 max-w-sm leading-relaxed">
-              Is the taste not quite right? No worries - we&apos;ll exchange your
+              Is the product not quite right? No worries - we&apos;ll exchange your
               product for a new one.
             </p>
           </div>
