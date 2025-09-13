@@ -52,7 +52,7 @@ export default function CategoryTemplate({
                   /
                 </span>
               ))}
-            <h1 data-testid="category-page-title">{category.name}</h1>
+            <h1 className="text-xl sm:text-2xl text-slate-600" data-testid="category-page-title">{`${category.name} - Price & Delivery Nairobi`}</h1>
           </div>
 
           {category.category_children && (
@@ -88,13 +88,13 @@ export default function CategoryTemplate({
                     h2: ({ node, ...props }) => (
                       <h2
                         {...props}
-                        className="text-blue-600 font-bold text-xl mt-1"
+                        className="text-blue-600 font-bold text-xl"
                       />
                     ),
                     h3: ({ node, ...props }) => (
                       <h3
                         {...props}
-                        className="text-blue-500 font-semibold text-lg mt-1"
+                        className="text-blue-500 font-semibold text-lg"
                       />
                     ),
                     p: ({ node, ...props }) => (

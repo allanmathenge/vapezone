@@ -45,7 +45,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <div className="flex flex-col space-y-8 py-6 px-6 bg-white">
+    <div className="flex flex-col py-6 bg-white">
       <div className="lg:max-w-[600px] mx-auto">
         <div
           className="rounded-2xl text-small-regular whitespace-pre-line"
@@ -55,19 +55,19 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (
-                  <h2 {...props} className="text-slate-800 font-semibold text-xl mt-6 mb-3 pb-2 border-b border-slate-100" />
+                  <h2 {...props} className="text-blue-800 font-semibold text-xl border-b border-slate-100" />
                 ),
                 h3: ({ node, ...props }) => (
-                  <h3 {...props} className="text-slate-700 font-medium text-lg mt-5 mb-2" />
+                  <h3 {...props} className="text-blue-700 font-medium text-lg my-2" />
                 ),
                 p: ({ node, ...props }) => (
-                  <p {...props} className="text-slate-600 leading-relaxed mb-4" />
+                  <p {...props} className="text-slate-600 " />
                 ),
                 ul: ({ node, ...props }) => (
-                  <ul {...props} className="list-disc pl-5 text-slate-600 mb-4 space-y-1" />
+                  <ul {...props} className="list-disc pl-5 text-slate-600" />
                 ),
                 li: ({ node, ...props }) => (
-                  <li {...props} className="leading-relaxed" />
+                  <li {...props} className="" />
                 ),
                 strong: ({ node, ...props }) => (
                   <strong {...props} className="font-semibold text-slate-700" />
@@ -80,8 +80,8 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
-        <div className="flex flex-col gap-y-5">
+      <div className="grid grid-cols-1 gap-6 pt-4 border-t border-slate-100">
+        <div className="flex flex-col gap-y-5 text-small-regular">
           <div className="flex flex-col">
             <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
               <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
@@ -92,9 +92,9 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
           <div className="flex flex-col">
             <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
               <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-              Country of origin
+              Country Of Origin
             </span>
-            <p className="text-slate-600 pl-3.5">{product.origin_country ? product.origin_country : "-"}</p>
+            <p className="text-slate-600 pl-3.5 uppercase">{product.origin_country ? product.origin_country : "-"}</p>
           </div>
           <div className="flex flex-col">
             <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
@@ -102,26 +102,6 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
               Type
             </span>
             <p className="text-slate-600 pl-3.5">{product.type ? product.type.value : "-"}</p>
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-5">
-          <div className="flex flex-col">
-            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
-              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-              Weight
-            </span>
-            <p className="text-slate-600 pl-3.5">{product.weight ? `${product.weight} g` : "-"}</p>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
-              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-              Dimensions
-            </span>
-            <p className="text-slate-600 pl-3.5">
-              {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
-                : "-"}
-            </p>
           </div>
         </div>
       </div>
@@ -176,3 +156,24 @@ const ShippingInfoTab = () => {
 }
 
 export default ProductTabs
+
+{/* <div className="flex flex-col gap-y-5">
+          <div className="flex flex-col">
+            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+              Weight
+            </span>
+            <p className="text-slate-600 pl-3.5">{product.weight ? `${product.weight} g` : "-"}</p>
+          </div>
+          <div className="flex flex-col">
+            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
+              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+              Dimensions
+            </span>
+            <p className="text-slate-600 pl-3.5">
+              {product.length && product.width && product.height
+                ? `${product.length}L x ${product.width}W x ${product.height}H`
+                : "-"}
+            </p>
+          </div>
+        </div> */}
