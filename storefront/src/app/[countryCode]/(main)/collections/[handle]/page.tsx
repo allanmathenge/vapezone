@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!collection) notFound()
 
   return {
-    title: `Shop ${collection.title} Online in Kenya`,
-    description: `Shop the ${collection.title} online at Vapezone – top brands, great flavors, fast delivery in Kenya.`,
+    title: `Explore ${collection.title} Online In Kenya, Price & Delivery`,
+    description: `Shop the ${collection.title} online at Vapezone Kenya – top brands, great flavors, fast delivery in Kenya.`,
     alternates: {
       canonical: `/${params.countryCode}/collections/${collection.handle}`
     }

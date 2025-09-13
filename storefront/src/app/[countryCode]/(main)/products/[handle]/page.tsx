@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `Buy ${product.title} & Price In Kenya | Kenya’s Trusted Vape Store For Top Brands & Flavors`,
+    title: `Buy ${product.title} Vape, Price & Delivery Nairobi | Kenya’s Trusted Vape Store For Top Brands & Flavors`,
     description: product.description,
     alternates: {
       canonical: canonicalUrl,
