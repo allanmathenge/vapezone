@@ -55,7 +55,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (
-                  <h2 {...props} className="text-blue-800 font-semibold text-xl border-b border-slate-100" />
+                  <h2 {...props} className="text-blue-800 font-semibold text-xl" />
                 ),
                 h3: ({ node, ...props }) => (
                   <h3 {...props} className="text-blue-700 font-medium text-lg my-2" />
