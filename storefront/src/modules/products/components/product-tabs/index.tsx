@@ -58,7 +58,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
                   <h2 {...props} className="text-blue-800 font-semibold text-xl" />
                 ),
                 h3: ({ node, ...props }) => (
-                  <h3 {...props} className="text-blue-700 font-medium text-lg my-2" />
+                  <h3 {...props} className="text-blue-700 font-medium text-lg" />
                 ),
                 p: ({ node, ...props }) => (
                   <p {...props} className="text-slate-600 " />
