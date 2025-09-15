@@ -44,10 +44,10 @@ export default async function Nav() {
           </div>
 
           {/* Collections */}
-          <div className="flex items-center flex-1 xsmall:gap-x-3 gap-x-2 h-full list-none">
+          <div className="flex items-center text-sm text-blue-900 flex-1 xsmall:gap-x-3 gap-x-2 h-full list-none">
             <LocalizedClientLink
               href="/store"
-              className="leading-10 hover:text-ui-fg-disabled hidden small:flex"
+              className="leading-10 hover:text-blue-700 hidden small:flex"
               data-testid="nav-link"
             >
               Store
@@ -55,7 +55,7 @@ export default async function Nav() {
             {collections && collections.map((collection) => {
               return <div key={collection.id} className="hidden small:flex">
                 <LocalizedClientLink
-                  className="text-nowrap hover:text-ui-fg-disabled"
+                  className="text-nowrap hover:text-blue-700"
                   href={`/collections/${collection.handle}`}
                   data-testid="nav-link"
                 >
@@ -74,7 +74,7 @@ export default async function Nav() {
               </LocalizedClientLink>
             )}
           </div>
-          <div className="flex items-center gap-x-6 h-full">
+          <div className="flex items-center gap-x-3 sm:gap-x-6 h-full">
             <LocalizedClientLink
               className="hover:text-ui-fg-base border rounded-full p-1"
               href="/account"

@@ -37,7 +37,7 @@ export default async function Footer() {
                             >
                               <LocalizedClientLink
                                 href={`/categories/${c.handle}`}
-                                className="text-base font-medium text-gray-800 mb-3 group-hover:text-blue-700 transition-colors duration-200 flex items-center"
+                                className="text-base font-normal tracking-wide text-gray-800 mb-3 group-hover:text-blue-700 transition-colors duration-200 flex items-center"
                                 data-testid="category-link"
                               >
                                 <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-200"></span>
@@ -49,7 +49,7 @@ export default async function Footer() {
                                     <li key={child.id}>
                                       <LocalizedClientLink
                                         href={`/categories/${child.handle}`}
-                                        className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200 block"
+                                        className="text-sm font-thin text-gray-600 hover:text-blue-900 transition-colors duration-200 block"
                                         data-testid="category-link"
                                       >
                                         {child.name}
