@@ -68,7 +68,7 @@ export default function CustomerServicePage() {
 
       <main className="max-w-6xl mx-auto px-6 py-16 text-gray-900">
         <header className="text-center mb-14">
-          <h1 className="text-5xl font-extrabold tracking-tight mb-4">
+          <h1 className="text-3xl font-extrabold tracking-tight mb-4">
             Customer Service
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">

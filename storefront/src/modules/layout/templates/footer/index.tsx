@@ -10,12 +10,12 @@ export default async function Footer() {
   const { product_categories } = await getCategoriesList()
 
   return (
-    <footer className="border-t border-gray-200 w-full bg-white">
+    <footer className="w-full bg-slate-50 border-t border-gray-100 ">
       <div className="content-container flex flex-col w-full">
-        <div className="w-full py-16">
-          <div className="flex flex-col gap-y-20">
+        <div className="w-full py-12">
+          <div className="flex flex-col gap-y-16">
             {product_categories?.length > 0 && (
-              <section className="px-4">
+              <section className="">
                 <div className="flex flex-col items-center mb-12">
                   <h2 className="text-2xl font-light text-slate-800 mb-3 tracking-wide">Explore Our Categories</h2>
                   <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
@@ -23,7 +23,7 @@ export default async function Footer() {
                 {product_categories?.length > 0 && (
                   <section className="w-full">
                     <div
-                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
                       data-testid="footer-categories"
                     >
                       {product_categories
@@ -33,23 +33,23 @@ export default async function Footer() {
                           return (
                             <div
                               key={c.id}
-                              className="flex flex-col bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-elegant transition-all duration-300 group"
+                              className="flex flex-col bg-white rounded-sm p-5 border border-gray-100 hover:shadow-sm transition-all duration-200 group"
                             >
                               <LocalizedClientLink
                                 href={`/categories/${c.handle}`}
-                                className="text-lg font-medium text-slate-800 mb-4 group-hover:text-blue-600 transition-colors duration-200 flex items-center"
+                                className="text-base font-medium text-gray-800 mb-3 group-hover:text-blue-700 transition-colors duration-200 flex items-center"
                                 data-testid="category-link"
                               >
-                                <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-200"></span>
+                                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-200"></span>
                                 {c.name}
                               </LocalizedClientLink>
                               {children.length > 0 && (
-                                <ul className="space-y-2 pl-5 border-l border-gray-100">
+                                <ul className="space-y-1 pl-5">
                                   {children.map((child) => (
                                     <li key={child.id}>
                                       <LocalizedClientLink
                                         href={`/categories/${child.handle}`}
-                                        className="text-sm text-slate-500 hover:text-slate-800 transition-colors duration-200 py-1 block"
+                                        className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200 block"
                                         data-testid="category-link"
                                       >
                                         {child.name}
@@ -67,59 +67,125 @@ export default async function Footer() {
               </section>
             )}
 
-            {collections?.length > 0 && (
-              <section className="px-4">
-                <div className="flex flex-col items-center mb-12">
-                  <h2 className="text-2xl font-light text-slate-800 mb-3 tracking-wide">Featured Collections</h2>
-                  <div className="w-16 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:px-6 ">
+              <div className="flex flex-col">
+                <div className="flex flex-col mb-3">
+                  <h3 className="text-lg font-light text-slate-800 tracking-wide text-nowrap overflow-hidden">Vapezone Kenya</h3>
+                  <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </div>
-                <ul
-                  className={`grid gap-6 ${collections.length > 3
-                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-                      : 'grid-cols-1'
-                    }`}
-                >
-                  {collections.slice(0, 8).map((c) => (
-                    <li
-                      key={c.id}
-                      className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-elegant transform hover:-translate-y-1 transition-all duration-300 group"
-                    >
-                      <LocalizedClientLink
-                        href={`/collections/${c.handle}`}
-                        className="flex items-center text-lg font-medium text-slate-800 group-hover:text-blue-600 transition-colors duration-200"
-                      >
-                        <span className="w-1.5 h-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-200"></span>
-                        {c.title}
-                      </LocalizedClientLink>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+                <p className="hidden sm:flex text-gray-600 text-sm mb-4">
+                  Premium vaping products and accessories for enthusiasts and beginners alike.
+                </p>
+                <div className="flex flex-col space-y-2 mt-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <span className="text-sm font-medium text-gray-900">M-Pesa • Buy Goods</span>
+                    <span className="text-sm font-medium text-gray-900">Till No: 3763670</span>
+                  </div>
+                  <span className="text-xs text-gray-500 mt-1">Secure mobile payments powered by Safaricom</span>
+                </div>
+              </div>
 
+              {/* Collections */}
+              {collections?.length > 0 && (
+                <div className="flex flex-col">
+                  <div className="flex flex-col mb-3">
+                    <h3 className="text-lg font-light text-slate-800 tracking-wide">Collections</h3>
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                  </div>
+                  <ul className="">
+                    {collections.slice(0, 6).map((c) => (
+                      <li key={c.id}>
+                        <LocalizedClientLink
+                          href={`/collections/${c.handle}`}
+                          className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200"
+                        >
+                          {c.title}
+                        </LocalizedClientLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Categories Quick Links */}
+              {product_categories?.length > 0 && (
+                <div className="flex flex-col">
+                  <div className="flex flex-col mb-3">
+                    <h3 className="text-lg font-light text-slate-800 tracking-wide">Categories</h3>
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                  </div>
+                  <ul className="">
+                    {product_categories
+                      .filter((c) => !c.parent_category)
+                      .slice(0, 6)
+                      .map((c) => (
+                        <li key={c.id}>
+                          <LocalizedClientLink
+                            href={`/categories/${c.handle}`}
+                            className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200"
+                          >
+                            {c.name}
+                          </LocalizedClientLink>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Legal & Blog Links */}
+              <div className="flex flex-col">
+                <div className="flex flex-col mb-3">
+                  <h3 className="text-lg font-light text-slate-800 tracking-wide">Information</h3>
+                  <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                </div>
+                <ul className="">
+                  <li>
+                    <LocalizedClientLink
+                      href="/content/terms-of-use"
+                      className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200"
+                    >
+                      Terms of Service
+                    </LocalizedClientLink>
+                  </li>
+                  <li>
+                    <LocalizedClientLink
+                      href="/content/privacy-policy"
+                      className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200"
+                    >
+                      Privacy Policy
+                    </LocalizedClientLink>
+                  </li>
+                  <li>
+                    <LocalizedClientLink
+                      href="/content/blog"
+                      className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200"
+                    >
+                      Blog
+                    </LocalizedClientLink>
+                  </li>
+
+                  <li>
+                    <LocalizedClientLink
+                      href="/customer-service"
+                      className="text-sm text-gray-600 hover:text-blue-900 transition-colors duration-200"
+                    >
+                      Customer Service
+                    </LocalizedClientLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="w-full border-t border-gray-100 pt-12 pb-8">
-          <div className="flex flex-col items-center mb-8">
-            <LocalizedClientLink
-              href="/"
-              className="text-xl font-light text-slate-700 hover:text-slate-900 transition-colors duration-200 tracking-wide mb-4"
-            >
-              M-Pesa • Buy Goods • Till No: 3763670
-            </LocalizedClientLink>
-            <p className="text-sm text-slate-400">Secure mobile payments powered by Safaricom</p>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-center py-6 px-4">
-            <Text className="text-sm text-slate-500 mb-4 md:mb-0">
+        <div className="w-full border-t border-gray-200 pt-8 pb-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <Text className="text-sm text-gray-600 mb-4 md:mb-0">
               © {new Date().getFullYear()} Vapezone. All rights reserved.
             </Text>
             <div className="flex items-center space-x-6">
               <MedusaCTA />
-              <div className="flex space-x-4">
-                <span className="text-xs text-slate-400">Premium E-Commerce Experience</span>
-              </div>
+              <span className="text-xs text-gray-500">Premium E-Commerce Experience</span>
             </div>
           </div>
         </div>
