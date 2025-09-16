@@ -32,7 +32,7 @@ const Hero = () => {
 
           {/* Main Heading */}
           <Heading className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight tracking-tight">
-            Kenya’s Number One
+            Kenya’s Number One {" "}
             <span className="flex sm:block font-semibold bg-gradient-to-l from-blue-400 via-purple-200 to-cyan-300 bg-clip-text text-transparent mt-2">
               Vape Superstore
             </span>

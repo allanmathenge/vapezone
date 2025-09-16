@@ -45,6 +45,14 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "pixabay.com",
+      },
+      {
+        protocol: "https",
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
       },
       ...(process.env.NEXT_PUBLIC_MINIO_ENDPOINT
