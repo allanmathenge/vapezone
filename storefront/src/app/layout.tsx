@@ -16,7 +16,7 @@ const orgSchema: WithContext<Organization> = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Vapezone Kenya",
-  url: "https://www.vapezone.co.ke/ke/",
+  url: "https://www.vapezone.co.ke/",
   logo: "https://www.vapezone.co.ke/logo.png",
   sameAs: [
     "https://twitter.com/vapezonekenya",
