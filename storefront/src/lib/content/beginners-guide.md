@@ -3,6 +3,9 @@ title: What Exactly Is Vaping?
 subtitle: "Learn the basics of vaping, from device components to e-liquid selection."
 category: "Beginner Guides"
 date: "2019-04-15"
+tags: ["beginners", "guide", "basics"]
+author: "AM"
+image: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
 ---
 
 # What Exactly Is Vaping?

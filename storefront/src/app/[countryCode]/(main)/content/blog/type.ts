@@ -6,4 +6,6 @@ export interface BlogPost {
   category: string
   content: string
   image?: string
+  tags?: string[]
+  author?: string
 }

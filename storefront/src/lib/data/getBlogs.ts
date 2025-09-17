@@ -1,14 +1,7 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
-
-export interface BlogPost {
-  slug: string
-  title: string
-  date: string
-  category: string,
-  content: string
-}
+import { BlogPost } from "app/[countryCode]/(main)/content/blog/type"
 
 export function getAllBlogs(): BlogPost[] {
   const blogsDir = path.join(process.cwd(), "src/lib/content")
@@ -26,8 +19,12 @@ export function getAllBlogs(): BlogPost[] {
     return {
       slug: filename.replace(/\.md$/, ""),
       title: data.title,
+      subtitle: data.subtitle,
       date: data.date,
       category: data.category,
+      image: data.image,
+      tags: data.tags || [],
+      author: data.author,
       content,
     }
   })

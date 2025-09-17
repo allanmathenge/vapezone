@@ -44,6 +44,7 @@
     "@stripe/stripe-js": "^1.29.0",
     "algoliasearch": "^4.20.0",
     "axios": "^1.6.7",
+    "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "medusajs-launch-utils": "latest",

@@ -96,7 +96,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                 <p className="mt-2 text-gray-600 line-clamp-2">{post.subtitle}</p>
 
                 <Link
-                  href={`/blogs/${post.slug}`}
+                  href={`/content/blog/${post.slug}`}
                   className="mt-4 block w-full text-center py-2.5 text-sm font-medium text-blue-600 hover:text-blue-800 transition duration-200"
                 >
                   Read More →
