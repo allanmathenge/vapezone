@@ -27,7 +27,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       : posts.filter((post) => post.category === activeCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-2xl font-medium text-gray-900 mb-4">
@@ -40,8 +40,8 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
         </div>
 
         {/* Category Filters */}
-        <div className="mb-12 flex w-full items-center">
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-12 flex w-full">
+          <div className="flex flex-wrap gap-2 mx-auto">
             {categories.map((category) => (
               <button
                 key={category}
@@ -71,8 +71,8 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                   className="h-48 w-full object-cover"
                   src={post.image}
                   alt={post.title}
-                  width={500}
-                  height={300}
+                  width={700}
+                  height={500}
                 />
               )}
 

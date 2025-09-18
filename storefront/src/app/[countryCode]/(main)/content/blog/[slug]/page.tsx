@@ -4,6 +4,9 @@ import { BlogPost } from "../type";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { format } from "date-fns";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const blogs: BlogPost[] = getAllBlogs();
@@ -18,26 +21,29 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <article className="max-w-4xl mx-auto px-6 py-10 md:py-16">
+
+      <article className="max-w-4xl mx-auto px-1 py-10 md:py-16">
         {/* Header */}
+
         <header className="mb-12 text-center">
-          <div className="flex justify-center items-center gap-2 text-sm text-gray-500 mb-6">
-            <span className="font-medium text-indigo-600">{post.category}</span>
-            {post.category && formattedDate && <span>•</span>}
-            <time dateTime={post.date}>{formattedDate}</time>
+          <div className="flex justify-between items-center text-sm text-gray-500 mb-6">
+            <Link
+              href="/content/blog"
+              className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition-colors group"
+            >
+              <FaArrowLeft className="w-3 h-3 mr-0.5 transition-transform group-hover:-translate-x-1" />
+              Back
+            </Link>
+            <div className="flex gap-2">
+              <span className="font-medium text-indigo-600">{post.category}</span>
+              {post.category && formattedDate && <span>•</span>}
+              <time dateTime={post.date}>{formattedDate}</time>
+            </div>
           </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-800 leading-tight mb-6">
             {post.title}
           </h1>
-          
-          {post.subtitle && (
-            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed mb-8">
-              {post.subtitle}
-            </p>
-          )}
-          
-          {/* Tags */}
           {post.tags && post.tags.length > 0 && (
             <div className="flex flex-wrap justify-center gap-2 mt-8">
               {post.tags.map((tag) => (
@@ -54,7 +60,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
         {/* Featured Image */}
         {post.image && (
-          <div className="relative w-full h-80 md:h-96 mb-12 rounded-2xl overflow-hidden shadow-lg">
+          <div className="relative w-full h-80 md:h-96 mb-8 rounded-sm overflow-hidden shadow-lg">
             <Image
               src={post.image}
               alt={post.title}
@@ -64,70 +70,75 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             />
           </div>
         )}
+        {post.subtitle && (
+          <p className="text-xl text-gray-600 font-light mx-auto leading-relaxed mb-8">
+            {post.subtitle}
+          </p>
+        )}
 
         {/* Content */}
         <div className="prose prose-lg md:prose-xl max-w-none">
           <ReactMarkdown
             components={{
-              h2: ({node, ...props}) => (
-                <h2 
-                  className="text-2xl md:text-3xl font-bold text-gray-900 mt-16 mb-6 pb-2 border-b border-gray-200" 
-                  {...props} 
+              h2: ({ node, ...props }) => (
+                <h2
+                  className="text-xl md:text-2xl font-bold text-gray-800 mt-16 mb-6 pb-2 border-b border-gray-200"
+                  {...props}
                 />
               ),
-              h3: ({node, ...props}) => (
-                <h3 
-                  className="text-xl md:text-2xl font-semibold text-gray-800 mt-12 mb-4" 
-                  {...props} 
+              h3: ({ node, ...props }) => (
+                <h3
+                  className="text-xl md:text-2xl font-semibold text-gray-800 mt-12 mb-4"
+                  {...props}
                 />
               ),
-              p: ({node, ...props}) => (
-                <p 
-                  className="text-gray-700 leading-relaxed mb-7 text-lg" 
-                  {...props} 
+              p: ({ node, ...props }) => (
+                <p
+                  className="text-gray-700 leading-relaxed mb-7 text-lg"
+                  {...props}
                 />
               ),
-              a: ({node, ...props}) => (
-                <a 
-                  className="text-indigo-600 hover:text-indigo-800 underline transition-colors font-medium" 
-                  {...props} 
+              a: ({ node, ...props }) => (
+                <a
+                  className="text-indigo-600 hover:text-indigo-800 underline transition-colors font-medium"
+                  {...props}
                 />
               ),
-              blockquote: ({node, ...props}) => (
-                <blockquote 
-                  className="border-l-4 border-indigo-500 pl-6 italic text-gray-600 my-10 bg-indigo-50 py-5 rounded-r text-lg" 
-                  {...props} 
+              blockquote: ({ node, ...props }) => (
+                <blockquote
+                  className="border-l-4 border-indigo-500 pl-6 italic text-gray-600 my-10 bg-indigo-50 py-5 rounded-r text-lg"
+                  {...props}
                 />
               ),
-              ul: ({node, ...props}) => (
-                <ul 
-                  className="my-7 space-y-3 list-disc list-inside" 
-                  {...props} 
+              ul: ({ node, ...props }) => (
+                <ul
+                  className="my-7 space-y-3 list-disc list-inside"
+                  {...props}
                 />
               ),
-              ol: ({node, ...props}) => (
-                <ol 
-                  className="my-7 space-y-3 list-decimal list-inside" 
-                  {...props} 
+              ol: ({ node, ...props }) => (
+                <ol
+                  className="my-7 space-y-3 list-decimal list-inside"
+                  {...props}
                 />
               ),
-              li: ({node, ...props}) => (
-                <li 
-                  className="text-gray-700 text-lg pl-2" 
-                  {...props} 
+              li: ({ node, ...props }) => (
+                <li
+                  className="text-gray-700 text-lg pl-2"
+                  {...props}
                 />
               ),
-              code: ({node, className, ...props}) => {
+              code: ({ node, className, ...props }) => {
                 const isInline = !className?.includes('language-');
                 return isInline ? (
-                  <code 
-                    className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-base font-mono" 
-                    {...props} 
+                  <code
+                    className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-base font-mono"
+                    {...props}
                   />
                 ) : (
-                  <code 
-                    className="block bg-gray-900 text-gray-100 p-5 rounded-lg overflow-x-auto text-base font-mono my-8" 
-                    {...props} 
+                  <code
+                    className="block bg-gray-900 text-gray-100 p-5 rounded-lg overflow-x-auto text-base font-mono my-8"
+                    {...props}
                   />
                 );
               },
