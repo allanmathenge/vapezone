@@ -37,7 +37,7 @@ const Hits = ({
         className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4"
         data-testid="search-results"
       >
-        {hits.slice(0, 6).map((hit, index) => ( //12, 18
+        {hits.slice(12, 18).map((hit, index) => (
           <li
             key={index}
             className={clx("list-none", {
