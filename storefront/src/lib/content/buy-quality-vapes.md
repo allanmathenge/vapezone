@@ -1,5 +1,5 @@
 ---
-title: "Where to Buy Quality Vape Products in Kenya - legit Shops & Prices(2025)"
+title: "Where to Buy Vapes in Kenya - Quality Products & Prices(2025)"
 subtitle: "This guide will walk you through the most trusted ways to buy quality vape products in Kenya, whether you prefer shopping online or in person."
 category: "Beginner Guides"
 date: "2025-04-15"

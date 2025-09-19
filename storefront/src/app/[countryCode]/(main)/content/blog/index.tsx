@@ -68,7 +68,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
               
               {post.image && (
                 <Image
-                  className="h-48 w-full object-cover"
+                  className="h-48 w-full object-cover transition-transform duration-700 hover:scale-105"
                   src={post.image}
                   alt={post.title}
                   width={700}

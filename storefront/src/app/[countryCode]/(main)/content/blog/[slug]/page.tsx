@@ -31,7 +31,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition-all duration-300 group"
           >
             <FaArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
-            Back to Blog
+            Back to Blogs
           </Link>
         </div>
       </nav>
@@ -81,7 +81,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </h1>
           
           {post.subtitle && (
-            <p className="text-xl md:text-2xl text-gray-600 font-light max-w-2xl leading-relaxed mb-8">
+            <p className="text-sm md:text-xl text-gray-800 font-light max-w-2xl leading-relaxed mb-8">
               {post.subtitle}
             </p>
           )}
@@ -102,7 +102,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
         {/* Featured Image */}
         {post.image && (
-          <div className="relative w-full h-64 sm:h-80 md:h-96 mb-10 rounded-xl overflow-hidden shadow-lg transition-all duration-500 hover:shadow-xl">
+          <div className="relative w-full h-64 sm:h-80 md:h-96 mb-10 rounded-sm overflow-hidden shadow-xl transition-all duration-500 hover:shadow-md">
             <Image
               src={post.image}
               alt={post.title}
@@ -120,19 +120,19 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             components={{
               h2: ({ node, ...props }) => (
                 <h2
-                  className="text-2xl md:text-3xl font-bold text-gray-900 mt-16 mb-6 pb-2 border-b border-gray-100"
+                  className="text-xl md:text-2xl font-bold text-gray-800 mt-16 mb-6 pb-2 border-b border-gray-300"
                   {...props}
                 />
               ),
               h3: ({ node, ...props }) => (
                 <h3
-                  className="text-xl md:text-2xl font-semibold text-gray-900 mt-12 mb-4"
+                  className="text-xl md:text-2xl font-semibold text-gray-800 mt-12 mb-4 border-b border-gray-200"
                   {...props}
                 />
               ),
               p: ({ node, ...props }) => (
                 <p
-                  className="text-gray-700 leading-relaxed mb-7 text-lg md:text-xl"
+                  className="text-gray-700 font-normal leading-relaxed mb-7 text-sm md:text-lg"
                   {...props}
                 />
               ),
@@ -150,13 +150,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               ),
               ul: ({ node, ...props }) => (
                 <ul
-                  className="my-7 space-y-3 list-disc list-inside marker:text-indigo-500"
+                  className="my-3 space-y-3 list-disc list-inside marker:text-indigo-500"
                   {...props}
                 />
               ),
               ol: ({ node, ...props }) => (
                 <ol
-                  className="my-7 space-y-3 list-decimal list-inside marker:text-indigo-500 marker:font-bold"
+                  className="my-3 space-y-3 list-decimal list-inside marker:text-blue-500 marker:font-semibold"
                   {...props}
                 />
               ),
@@ -247,7 +247,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               className="px-6 py-2.5 text-indigo-600 rounded-full font-medium hover:bg-indigo-50 transition-colors inline-flex items-center"
             >
               <FaArrowLeft className="w-4 h-4 mr-2" />
-              Back to Blog
+              Back to Blogs
             </Link>
           </div>
         </footer>
