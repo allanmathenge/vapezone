@@ -18,7 +18,7 @@ image: "https://res.cloudinary.com/dfndhiz82/image/upload/v1758264053/best-for-b
 
 Our Top Picks for Kenyan Beginners in 2025
 
-## ***1. The Budget King: Uwell Caliburn G3*
+## **1. The Budget King: Uwell Caliburn G3**
 
 Why it's great: Uwell is another titan in the pod world, and the Caliburn G3 offers premium features at a very accessible price point. It’s a massive favourite among Kenyan vapers for its value and performance.
 
