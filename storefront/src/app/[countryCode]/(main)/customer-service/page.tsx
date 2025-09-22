@@ -33,7 +33,7 @@ export default function CustomerServicePage() {
     {
       question: "How do I contact customer support?",
       answer:
-        "You can reach us via WhatsApp, email (vapezone@gmail.com), or by using our contact form on the website.",
+        "You can reach us via WhatsApp, email (vapezonekenya@gmail.com), or by using our contact form on the website.",
     },
   ];
 
@@ -148,10 +148,10 @@ export default function CustomerServicePage() {
             <div>
               <h3 className="font-semibold mb-2">Email</h3>
               <a
-                href="mailto:vapezone@gmail.com"
+                href="mailto:vapezonekenya@gmail.com"
                 className="text-blue-600 hover:underline"
               >
-                vapezone@gmail.com
+                vapezonekenya@gmail.com
               </a>
             </div>
 
