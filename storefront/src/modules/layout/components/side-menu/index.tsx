@@ -2,10 +2,10 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { Popover, Transition } from "@headlessui/react"
-import { BarsThree, XMark, ArrowRightMini } from "@medusajs/icons"
-import { clx, Text, useToggleState } from "@medusajs/ui"
+import { BarsThree } from "@medusajs/icons"
+import { RiCloseLargeFill } from "react-icons/ri";
+import { useToggleState } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import CountrySelect from "../country-select"
 import { HttpTypes } from "@medusajs/types"
 import { getCollectionsList } from "@lib/data/collections"
 
@@ -51,11 +51,11 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                 leaveFrom="opacity-100 backdrop-blur-2xl"
                 leaveTo="opacity-0"
               >
-                <Popover.Panel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 inset-x-0 text-sm text-ui-fg-on-color m-2 backdrop-blur-3xl">
-                  <div className="flex flex-col h-full bg-[rgba(3,7,18,0.5)] rounded-rounded justify-between p-6">
+                <Popover.Panel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 inset-x-0 text-sm text-ui-fg-on-color m-2 backdrop-blur-2xl">
+                  <div className="flex flex-col h-full bg-black/90 rounded-rounded p-6">
                     <div className="flex justify-end" id="xmark">
                       <button data-testid="close-menu-button" onClick={close}>
-                        <XMark />
+                        <RiCloseLargeFill className="text-2xl"/>
                       </button>
                     </div>
 
@@ -85,30 +85,6 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                         </li>
                       ))}
                     </ul>
-
-                    <div className="flex flex-col gap-y-3">
-                      <div
-                        className="flex justify-between"
-                        onMouseEnter={toggleState.open}
-                        onMouseLeave={toggleState.close}
-                      >
-                        {regions && (
-                          <CountrySelect
-                            toggleState={toggleState}
-                            regions={regions}
-                          />
-                        )}
-                        <ArrowRightMini
-                          className={clx(
-                            "transition-transform duration-150",
-                            toggleState.state ? "-rotate-90" : ""
-                          )}
-                        />
-                      </div>
-                      <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Vapezone. All rights reserved.
-                      </Text>
-                    </div>
                   </div>
                 </Popover.Panel>
               </Transition>
@@ -121,3 +97,28 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
 }
 
 export default SideMenu
+
+
+    {/* <div className="flex flex-col gap-y-3">
+          <div
+            className="flex justify-between"
+            onMouseEnter={toggleState.open}
+            onMouseLeave={toggleState.close}
+          >
+            {regions && (
+              <CountrySelect
+                toggleState={toggleState}
+                regions={regions}
+              />
+            )}
+            <ArrowRightMini
+              className={clx(
+                "transition-transform duration-150",
+                toggleState.state ? "-rotate-90" : ""
+              )}
+            /> 
+          </div>
+        <Text className="flex justify-between txt-compact-small">
+            © {new Date().getFullYear()} Vapezone. All rights reserved.
+        </Text>
+    </div> */}

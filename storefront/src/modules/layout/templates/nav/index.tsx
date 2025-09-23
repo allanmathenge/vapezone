@@ -19,7 +19,7 @@ export default async function Nav() {
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md transition-all duration-300 shadow-sm hover:shadow-md">
-      <header className="relative h-16 mx-auto">
+      <header className="relative h-14 mx-auto">
         <nav className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full h-full">
           
           {/* Left section - Logo and mobile menu */}
@@ -34,8 +34,8 @@ export default async function Nav() {
               <Image
                 src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
                 alt="Logo"
-                width={40}
-                height={40}
+                width={30}
+                height={30}
                 className="rounded-full"
               />
               <span className="ml-2 text-xl font-semibold text-slate-800 hidden sm:block">Vapezone Kenya</span>
