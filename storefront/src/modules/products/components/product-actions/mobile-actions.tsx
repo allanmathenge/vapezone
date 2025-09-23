@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react"
-import { Button, clx } from "@medusajs/ui"
+import { Button, clx, Text } from "@medusajs/ui"
 import React, { Fragment, useMemo, useState } from "react"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
@@ -7,7 +7,7 @@ import X from "@modules/common/icons/x"
 import { getProductPrice } from "@lib/util/get-product-price"
 import OptionSelect from "./option-select"
 import { HttpTypes } from "@medusajs/types"
-import { FaWhatsapp } from "react-icons/fa"
+import { FaWhatsapp, FaShoppingCart, FaChevronUp } from "react-icons/fa"
 
 type MobileActionsProps = {
   product: HttpTypes.StoreProduct
@@ -71,97 +71,125 @@ Quantity: ${quantity}`
     }, 300)
   }
 
+  const hasVariants = (product.variants?.length ?? 0) > 1
+  const variantText = variant ? Object.values(options).join(" / ") : "Select Options"
+
   return (
     <>
-      {/* Bottom action bar */}
+      {/* Enhanced Bottom Action Bar */}
       <div
-        className={clx("lg:hidden inset-x-0 z-20 bottom-0 fixed", {
-          "pointer-events-none": !show,
+        className={clx("lg:hidden inset-x-0 z-50 bottom-0 fixed transition-transform duration-300", {
+          "translate-y-0": show,
+          "translate-y-full": !show,
         })}
       >
-        <Transition
-          as={Fragment}
-          show={show}
-          enter="ease-in-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-300"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div
-            className="bg-white flex flex-col gap-y-1 justify-center items-center px-4 h-full w-full border-t border-gray-200 shadow-xl"
-            data-testid="mobile-actions"
-          >
-            <div className="flex items-center justify-between w-full gap-x-2">
-              <span className="text-base">{product.title}</span>
-              <span>—</span>
-              {selectedPrice ? (
-                <div className="flex flex-col items-end gap-x-2">
-                  {selectedPrice.price_type === "sale" && (
-                    <p>
-                      <span className="line-through text-sm text-gray-400">
-                        {selectedPrice.original_price}
-                      </span>
-                    </p>
+        <div className="bg-gradient-to-t from-white/95 via-white/95 to-white/90 backdrop-blur-xl border-t border-gray-100/50 shadow-2xl">
+          <div className="px-4 py-3">
+            {/* Product Summary */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex-1 min-w-0">
+                <Text className="text-sm font-medium text-gray-900 truncate" as="p">
+                  {product.title}
+                </Text>
+                <div className="flex items-center gap-2 mt-1">
+                  {selectedPrice ? (
+                    <div className="flex items-center gap-1">
+                      {selectedPrice.price_type === "sale" && (
+                        <Text className="line-through text-gray-500 text-xs" as="span">
+                          {selectedPrice.original_price}
+                        </Text>
+                      )}
+                      <Text
+                        className={clx("font-bold text-sm", {
+                          "text-green-600": selectedPrice.price_type === "sale",
+                          "text-gray-900": selectedPrice.price_type !== "sale",
+                        })}
+                        as="span"
+                      >
+                        {selectedPrice.calculated_price}
+                      </Text>
+                    </div>
+                  ) : (
+                    <Text className="text-gray-500 text-sm" as="span">
+                      Price unavailable
+                    </Text>
                   )}
-                  <span
-                    className={clx("font-semibold", {
-                      "text-ui-fg-interactive":
-                        selectedPrice.price_type === "sale",
-                    })}
-                  >
-                    {selectedPrice.calculated_price}
-                  </span>
+                  {!inStock && variant && (
+                    <span className="px-2 py-1 bg-red-50 text-red-700 text-xs font-medium rounded-full">
+                      Out of stock
+                    </span>
+                  )}
                 </div>
-              ) : (
-                <div></div>
+              </div>
+              
+              {hasVariants && (
+                <Button
+                  onClick={open}
+                  variant="transparent"
+                  size="small"
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <FaChevronUp size={14} />
+                </Button>
               )}
             </div>
 
-            <div className="w-full flex flex-col gap-y-3 mt-3">
-              <div className="flex gap-x-4">
-                <Button
-                  onClick={open}
-                  variant="secondary"
-                  className="w-full"
-                  data-testid="mobile-actions-button"
-                >
-                  <span>
-                    {variant
-                      ? Object.values(options).join(" / ")
-                      : "Select Options"}
-                  </span>
-                </Button>
+            {/* Action Buttons */}
+            <div className="grid grid-cols-1 gap-2">
+              <div className="flex gap-2">
+                {hasVariants ? (
+                  <Button
+                    onClick={open}
+                    variant="secondary"
+                    className="flex-1 min-w-0"
+                    data-testid="mobile-actions-button"
+                  >
+                    <span className="truncate">{variantText}</span>
+                  </Button>
+                ) : (
+                  <div className="flex-1" />
+                )}
+                
                 <Button
                   onClick={handleAddToCart}
                   disabled={!inStock || !variant}
-                  className="w-full"
+                  className="flex-1 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-black"
                   isLoading={isAdding}
                   data-testid="mobile-cart-button"
                 >
-                  {!variant
-                    ? "Select variant"
-                    : !inStock
-                    ? "Out of stock"
-                    : "Add to cart"}
+                  {!variant ? (
+                    "Select variant"
+                  ) : !inStock ? (
+                    "Out of stock"
+                  ) : (
+                    <>
+                      <FaShoppingCart className="mr-2" size={14} />
+                      Add to cart
+                    </>
+                  )}
                 </Button>
               </div>
 
               <Button
                 onClick={handleWhatsAppClick}
-                disabled={isWhatsAppLoading}
-                className="w-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-x-2 rounded py-2 shadow"
+                disabled={isWhatsAppLoading || !variant}
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-600 text-black font-medium py-3 transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg"
               >
-                <FaWhatsapp size={18} />
-                {isWhatsAppLoading ? "Opening..." : "Place Order"}
+                <FaWhatsapp className="mr-2" size={18} />
+                {isWhatsAppLoading ? (
+                  <span className="flex items-center">
+                    <span className="animate-pulse">Opening WhatsApp...</span>
+                  </span>
+                ) : (
+                  "Place Order"
+                )}
               </Button>
             </div>
           </div>
-        </Transition>
+        </div>
       </div>
 
-      {/* Variant Select Modal (unchanged) */}
+      {/* Enhanced Variant Select Modal */}
       <Transition appear show={state} as={Fragment}>
         <Dialog as="div" className="relative z-[75]" onClose={close}>
           <Transition.Child
@@ -173,39 +201,70 @@ Quantity: ${quantity}`
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-700 bg-opacity-75 backdrop-blur-sm" />
+            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
           </Transition.Child>
 
           <div className="fixed bottom-0 inset-x-0">
-            <div className="flex min-h-full h-full items-center justify-center text-center">
-              <Dialog.Panel className="w-full h-full transform overflow-hidden text-left flex flex-col gap-y-3">
-                <div className="w-full flex justify-end pr-6">
-                  <button
+            <Transition.Child
+              as={Fragment}
+              enter="transform transition ease-in-out duration-300"
+              enterFrom="translate-y-full"
+              enterTo="translate-y-0"
+              leave="transform transition ease-in-out duration-300"
+              leaveFrom="translate-y-0"
+              leaveTo="translate-y-full"
+            >
+              <Dialog.Panel className="w-full transform overflow-hidden rounded-t-2xl bg-white shadow-2xl">
+                {/* Header */}
+                <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                  <Dialog.Title as="h3" className="text-lg font-semibold text-gray-900">
+                    Select Options
+                  </Dialog.Title>
+                  <Button
                     onClick={close}
-                    className="bg-white w-12 h-12 rounded-full text-ui-fg-base flex justify-center items-center"
+                    variant="transparent"
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                   >
-                    <X />
-                  </button>
+                    <X size={20} />
+                  </Button>
                 </div>
-                <div className="bg-white px-6 py-12">
-                  {(product.variants?.length ?? 0) > 1 && (
-                    <div className="flex flex-col gap-y-6">
-                      {(product.options || []).map((option) => (
-                        <div key={option.id}>
-                          <OptionSelect
-                            option={option}
-                            current={options[option.title ?? ""]}
-                            updateOption={updateOptions}
-                            title={option.title ?? ""}
-                            disabled={optionsDisabled}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
+
+                {/* Content */}
+                <div className="max-h-[60vh] overflow-y-auto p-6">
+                  <div className="flex flex-col gap-6">
+                    {(product.options || []).map((option) => (
+                      <div key={option.id} className="space-y-3">
+                        <Text className="font-medium text-gray-900">
+                          {option.title}
+                        </Text>
+                        <OptionSelect
+                          option={option}
+                          current={options[option.title ?? ""]}
+                          updateOption={updateOptions}
+                          title={option.title ?? ""}
+                          disabled={optionsDisabled}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="p-6 border-t border-gray-100 bg-gray-50/50">
+                  <Button
+                    onClick={() => {
+                      handleAddToCart()
+                      close()
+                    }}
+                    disabled={!inStock || !variant}
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                    isLoading={isAdding}
+                  >
+                    {!variant ? "Select options first" : !inStock ? "Out of stock" : "Add to cart"}
+                  </Button>
                 </div>
               </Dialog.Panel>
-            </div>
+            </Transition.Child>
           </div>
         </Dialog>
       </Transition>

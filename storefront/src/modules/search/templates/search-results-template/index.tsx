@@ -1,5 +1,6 @@
 import { Heading, Text } from "@medusajs/ui"
 import Link from "next/link"
+import { GrClear } from "react-icons/gr";
 
 import RefinementList from "@modules/store/components/refinement-list"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
@@ -36,7 +37,7 @@ const SearchResultsTemplate = ({
           href="/store"
           className="txt-medium text-ui-fg-subtle hover:text-ui-fg-base"
         >
-          Clear
+          <GrClear className="text-xl" />
         </LocalizedClientLink>
       </div>
       <div className="flex flex-col small:flex-row small:items-start p-6">

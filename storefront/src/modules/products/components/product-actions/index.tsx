@@ -151,7 +151,7 @@ Quantity: ${quantity}`
       <Button
         onClick={handleConfirmOrder}
         variant="secondary"
-        className="w-full h-10 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white"
+        className="w-full h-10 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-black"
       >
         <FaWhatsapp size={18} />
         Place Order

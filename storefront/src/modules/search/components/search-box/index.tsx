@@ -1,4 +1,4 @@
-import { XMarkMini } from "@medusajs/icons"
+import { RiCloseLargeFill } from "react-icons/ri";
 import { FormEvent } from "react"
 import { useRouter } from "next/navigation"
 
@@ -62,8 +62,7 @@ const ControlledSearchBox = ({
               type="button"
               className="items-center justify-center text-ui-fg-on-color focus:outline-none gap-x-2 px-2 txt-compact-large flex"
             >
-              <XMarkMini />
-              Cancel
+              <RiCloseLargeFill className="text-xl" />
             </button>
           )}
         </div>
