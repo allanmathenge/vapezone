@@ -11,10 +11,10 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
       <div className="flex flex-wrap items-center">
         {price.price_type === "sale" && (
         <Text
-          className="line-through text-xs text-ui-fg-muted mr-3"
           data-testid="original-price"
         >
-          {price.original_price}
+          <span className="line-through text-xs font-thin text-ui-fg-muted mr-1">{price.original_price}</span>
+          <span className="bg-blue text-[12px] font-thin bg-slate-100 text-blue-700 p-[0.5px] rounded-full mr-3">-{price.percentage_diff}%</span>
         </Text>
       )}
       <Text

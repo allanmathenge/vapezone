@@ -38,8 +38,8 @@ export default async function ProductPreview({
           size="full"
           isFeatured={isFeatured}
         />
-        <div className="flex flex-col text-xs txt-compact-medium mt-2 justify-between">
-          <Text className="text-ui-fg-subtle text-nowrap overflow-hidden text-ellipsis" data-testid="product-title">
+        <div className="flex flex-wrap text-xs txt-compact-medium mt-2 justify-between">
+          <Text className="text-ui-fg-subtle text-nowrap font-thin overflow-hidden text-ellipsis" data-testid="product-title">
             {product.title}
           </Text>
           <div className="flex items-center gap-x-2">
