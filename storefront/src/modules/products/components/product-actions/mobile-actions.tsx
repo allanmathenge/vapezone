@@ -78,13 +78,13 @@ Quantity: ${quantity}`
     <>
       {/* Enhanced Bottom Action Bar */}
       <div
-        className={clx("lg:hidden inset-x-0 z-50 bottom-0 fixed transition-transform duration-300", {
+        className={clx("lg:hidden inset-x-0 z-20 bottom-0 fixed transition-transform duration-300", {
           "translate-y-0": show,
           "translate-y-full": !show,
         })}
       >
         <div className="bg-gradient-to-t from-white/95 via-white/95 to-white/90 backdrop-blur-xl border-t border-gray-100/50 shadow-2xl">
-          <div className="px-4 py-3">
+          <div className="px-4 py-1">
             {/* Product Summary */}
             <div className="flex items-center justify-between mb-3">
               <div className="flex-1 min-w-0">
@@ -147,7 +147,7 @@ Quantity: ${quantity}`
                     <span className="truncate">{variantText}</span>
                   </Button>
                 ) : (
-                  <div className="flex-1" />
+                  <div className="flex-1">No Variant</div>
                 )}
                 
                 <Button
@@ -173,7 +173,7 @@ Quantity: ${quantity}`
               <Button
                 onClick={handleWhatsAppClick}
                 disabled={isWhatsAppLoading || !variant}
-                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-600 text-black font-medium py-3 transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg"
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-600 text-black font-medium py-2 transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg"
               >
                 <FaWhatsapp className="mr-2" size={18} />
                 {isWhatsAppLoading ? (
@@ -216,7 +216,7 @@ Quantity: ${quantity}`
             >
               <Dialog.Panel className="w-full transform overflow-hidden rounded-t-2xl bg-white shadow-2xl">
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                <div className="flex items-center justify-between p-2 border-b border-gray-100">
                   <Dialog.Title as="h3" className="text-lg font-semibold text-gray-900">
                     Select Options
                   </Dialog.Title>
@@ -234,9 +234,7 @@ Quantity: ${quantity}`
                   <div className="flex flex-col gap-6">
                     {(product.options || []).map((option) => (
                       <div key={option.id} className="space-y-3">
-                        <Text className="font-medium text-gray-900">
-                          {option.title}
-                        </Text>
+                        
                         <OptionSelect
                           option={option}
                           current={options[option.title ?? ""]}
@@ -250,7 +248,7 @@ Quantity: ${quantity}`
                 </div>
 
                 {/* Footer */}
-                <div className="p-6 border-t border-gray-100 bg-gray-50/50">
+                <div className="p-2 border-t border-gray-100 bg-gray-50/50">
                   <Button
                     onClick={() => {
                       handleAddToCart()
