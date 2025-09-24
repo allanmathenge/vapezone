@@ -80,6 +80,14 @@ export default function ProductActions({
     return false
   }, [selectedVariant])
 
+  // Check if inventory quantity is 0
+  const isOutOfStock = useMemo(() => {
+    if (selectedVariant?.manage_inventory && (selectedVariant?.inventory_quantity || 0) === 0) {
+      return true
+    }
+    return false
+  }, [selectedVariant])
+
   const actionsRef = useRef<HTMLDivElement>(null)
   const inView = useIntersection(actionsRef, "0px")
 
@@ -122,7 +130,7 @@ Quantity: ${quantity}`
                   updateOption={setOptionValue}
                   title={option.title ?? ""}
                   data-testid="product-options"
-                  disabled={!!disabled || isAdding}
+                  disabled={!!disabled || isAdding || isOutOfStock}
                 />
               </div>
             ))}
@@ -135,7 +143,7 @@ Quantity: ${quantity}`
 
       <Button
         onClick={handleAddToCart}
-        disabled={!inStock || !selectedVariant || !!disabled || isAdding}
+        disabled={!inStock || !selectedVariant || !!disabled || isAdding || isOutOfStock}
         variant="primary"
         className="w-full h-10"
         isLoading={isAdding}
@@ -143,19 +151,19 @@ Quantity: ${quantity}`
       >
         {!selectedVariant
           ? "Select variant"
-          : !inStock
+          : !inStock || isOutOfStock
           ? "Out of stock"
           : "Add to cart"}
       </Button>
 
       <Button
         onClick={handleConfirmOrder}
+        disabled={!inStock || !selectedVariant || !!disabled || isAdding || isOutOfStock}
         variant="secondary"
-        disabled={!inStock || !selectedVariant || !!disabled || isAdding}
-        className="w-full h-10 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-black"
+        className="w-full h-10 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-black disabled:bg-gray-300 disabled:text-gray-500 disabled:hover:bg-gray-300"
       >
         <FaWhatsapp size={18} />
-        Place Order
+        {isOutOfStock ? "Out of stock" : "Place Order"}
       </Button>
 
       <MobileActions
@@ -164,10 +172,11 @@ Quantity: ${quantity}`
         options={options}
         updateOptions={setOptionValue}
         inStock={inStock}
+        isOutOfStock={isOutOfStock}
         handleAddToCart={handleAddToCart}
         isAdding={isAdding}
         show={!inView}
-        optionsDisabled={!!disabled || isAdding}
+        optionsDisabled={!!disabled || isAdding || isOutOfStock}
       />
     </div>
   )

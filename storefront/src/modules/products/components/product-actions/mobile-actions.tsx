@@ -15,6 +15,7 @@ type MobileActionsProps = {
   options: Record<string, string | undefined>
   updateOptions: (title: string, value: string) => void
   inStock?: boolean
+  isOutOfStock?: boolean
   handleAddToCart: () => void
   isAdding?: boolean
   show: boolean
@@ -27,6 +28,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   options,
   updateOptions,
   inStock,
+  isOutOfStock,
   handleAddToCart,
   isAdding,
   show,
@@ -114,7 +116,7 @@ Quantity: ${quantity}`
                       Price unavailable
                     </Text>
                   )}
-                  {!inStock && variant && (
+                  {!inStock || isOutOfStock && variant && (
                     <span className="px-2 py-1 bg-red-50 text-red-700 text-xs font-medium rounded-full">
                       Out of stock
                     </span>
@@ -140,6 +142,7 @@ Quantity: ${quantity}`
                 {hasVariants ? (
                   <Button
                     onClick={open}
+                    disabled={!inStock || !variant || optionsDisabled}
                     variant="secondary"
                     className="flex-1 min-w-0"
                     data-testid="mobile-actions-button"
@@ -152,14 +155,14 @@ Quantity: ${quantity}`
                 
                 <Button
                   onClick={handleAddToCart}
-                  disabled={!inStock || !variant}
+                  disabled={!inStock || !variant || optionsDisabled}
                   className="flex-1 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-black"
                   isLoading={isAdding}
                   data-testid="mobile-cart-button"
                 >
                   {!variant ? (
                     "Select variant"
-                  ) : !inStock ? (
+                  ) : !inStock || isOutOfStock ? (
                     "Out of stock"
                   ) : (
                     <>
@@ -172,7 +175,7 @@ Quantity: ${quantity}`
 
               <Button
                 onClick={handleWhatsAppClick}
-                disabled={isWhatsAppLoading || !variant}
+                disabled={isWhatsAppLoading || !variant || optionsDisabled}
                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-600 text-black font-medium py-2 transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg"
               >
                 <FaWhatsapp className="mr-2" size={18} />
@@ -234,7 +237,9 @@ Quantity: ${quantity}`
                   <div className="flex flex-col gap-6">
                     {(product.options || []).map((option) => (
                       <div key={option.id} className="space-y-3">
-                        
+                        <Text className="font-medium text-gray-900">
+                          {option.title}
+                        </Text>
                         <OptionSelect
                           option={option}
                           current={options[option.title ?? ""]}
