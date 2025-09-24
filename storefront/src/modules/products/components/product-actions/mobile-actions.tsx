@@ -8,6 +8,7 @@ import { getProductPrice } from "@lib/util/get-product-price"
 import OptionSelect from "./option-select"
 import { HttpTypes } from "@medusajs/types"
 import { FaWhatsapp, FaShoppingCart, FaChevronUp } from "react-icons/fa"
+import { MdCall } from "react-icons/md";
 
 type MobileActionsProps = {
   product: HttpTypes.StoreProduct
@@ -58,11 +59,10 @@ const MobileActions: React.FC<MobileActionsProps> = ({
       const productUrl = `${window.location.origin}/ke/products/${product.handle}`
       const message = `
 Link: ${productUrl}
-Hi, I'd like to place an order: *${product.title}*, ${
-        selectedPrice?.original_price
+Hi, I'd like to place an order: *${product.title}*, ${selectedPrice?.original_price
           ? `${selectedPrice.original_price.toLocaleString()}`
           : "Check site for latest price"
-      }
+        }
 Quantity: ${quantity}`
 
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
@@ -89,7 +89,7 @@ Quantity: ${quantity}`
           <div className="px-4 py-1">
             {/* Product Summary */}
             <div className="flex items-center justify-between mb-3">
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 flex flex-wrap justify-between items-center gap-1 w-full min-w-0">
                 <Text className="text-sm font-medium text-gray-900 truncate" as="p">
                   {product.title}
                 </Text>
@@ -97,12 +97,12 @@ Quantity: ${quantity}`
                   {selectedPrice ? (
                     <div className="flex items-center gap-1">
                       {selectedPrice.price_type === "sale" && (
-                        <Text className="line-through text-gray-500 text-xs" as="span">
+                        <Text className="line-through text-gray-500 font-thin text-xs" as="span">
                           {selectedPrice.original_price}
                         </Text>
                       )}
                       <Text
-                        className={clx("font-bold text-sm", {
+                        className={clx("font-semibold text-sm", {
                           "text-green-600": selectedPrice.price_type === "sale",
                           "text-gray-900": selectedPrice.price_type !== "sale",
                         })}
@@ -123,7 +123,7 @@ Quantity: ${quantity}`
                   )}
                 </div>
               </div>
-              
+
               {hasVariants && (
                 <Button
                   onClick={open}
@@ -150,13 +150,22 @@ Quantity: ${quantity}`
                     <span className="truncate">{variantText}</span>
                   </Button>
                 ) : (
-                  <div className="flex-1">No Variant</div>
+                  <div className="flex-1 flex gap-2">
+                    <Button
+                      onClick={() => window.open('tel:+254798769535')}
+                      variant="primary"
+                      className="flex-1 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
+                      data-testid="call-button"
+                    >
+                      <MdCall /> Call To Order
+                    </Button>
+                  </div>
                 )}
-                
+
                 <Button
                   onClick={handleAddToCart}
                   disabled={!inStock || !variant || optionsDisabled}
-                  className="flex-1 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-black"
+                  className="flex-1 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
                   isLoading={isAdding}
                   data-testid="mobile-cart-button"
                 >

@@ -14,6 +14,7 @@ import MobileActions from "./mobile-actions"
 import ProductPrice from "../product-price"
 import { addToCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
+import { MdCall } from "react-icons/md";
 
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
@@ -145,26 +146,37 @@ Quantity: ${quantity}`
         onClick={handleAddToCart}
         disabled={!inStock || !selectedVariant || !!disabled || isAdding || isOutOfStock}
         variant="primary"
-        className="w-full h-10"
+        className="min-w-0 w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
         isLoading={isAdding}
         data-testid="add-product-button"
       >
         {!selectedVariant
           ? "Select variant"
           : !inStock || isOutOfStock
-          ? "Out of stock"
-          : "Add to cart"}
+            ? "Out of stock"
+            : "Add to cart"}
       </Button>
 
-      <Button
-        onClick={handleConfirmOrder}
-        disabled={!inStock || !selectedVariant || !!disabled || isAdding || isOutOfStock}
-        variant="secondary"
-        className="w-full h-10 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-black disabled:bg-gray-300 disabled:text-gray-500 disabled:hover:bg-gray-300"
-      >
-        <FaWhatsapp size={18} />
-        {isOutOfStock ? "Out of stock" : "Place Order"}
-      </Button>
+      <div className="flex-1 flex gap-2">
+        <Button
+          onClick={() => window.open('tel:+254798769535')}
+          variant="primary"
+          className="flex-1 h-8 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
+          data-testid="call-button"
+        >
+          <MdCall /> Call To Order
+        </Button>
+        <Button
+          onClick={handleConfirmOrder}
+          disabled={!inStock || !selectedVariant || !!disabled || isAdding || isOutOfStock}
+          variant="secondary"
+          className="flex-1 h-8 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-300 disabled:text-gray-500 disabled:hover:bg-gray-300 text-white text-nowrap overflow-hidden"
+        >
+          <FaWhatsapp size={18} />
+          {isOutOfStock ? "Out of stock" : "Place Order"}
+        </Button>
+      </div>
+
 
       <MobileActions
         product={product}
