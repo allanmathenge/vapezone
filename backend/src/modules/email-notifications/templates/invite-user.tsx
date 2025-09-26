@@ -46,7 +46,7 @@ export const InviteUserEmail = ({
       </Section>
       <Section className="text-center">
         <Text className="text-black text-[14px] leading-[24px]">
-          You&apos;ve been invited to be an administrator on <strong>Medusa</strong>.
+          You&apos;ve been invited to be an administrator on <strong>Vapezone Kenya</strong>.
         </Text>
         <Section className="mt-4 mb-[32px]">
           <Button
