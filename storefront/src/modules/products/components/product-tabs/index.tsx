@@ -46,12 +46,12 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
     <div className="flex flex-col py-6 bg-white">
-      <div className="lg:max-w-[600px] mx-auto">
+      <div className="lg:max-w-[600px] mx-auto pb-4">
         <div
           className="rounded-2xl text-small-regular whitespace-pre-line"
           data-testid="product-description"
         >
-          <div className="prose prose-slate max-w-none">
+          <div className="p-2 prose prose-slate max-w-none">
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (
@@ -64,10 +64,10 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
                   <p {...props} className="text-slate-600 " />
                 ),
                 ul: ({ node, ...props }) => (
-                  <ul {...props} className="list-disc pl-5 text-slate-600" />
+                  <ul {...props} className="list-disc pl-5 text-slate-600 space-y-1" />
                 ),
                 li: ({ node, ...props }) => (
-                  <li {...props} className="" />
+                  <li {...props} className="my-1" />
                 ),
                 strong: ({ node, ...props }) => (
                   <strong {...props} className="font-semibold text-slate-700" />
