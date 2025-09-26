@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: 'https://www.vapezone.co.ke/ke',
+      url: 'https://www.vapezone.co.ke/',
       lastModified: new Date(),
       changeFrequency: 'yearly' as const,
       priority: 1,

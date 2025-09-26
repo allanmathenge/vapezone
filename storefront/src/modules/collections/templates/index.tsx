@@ -47,7 +47,7 @@ export default function CollectionTemplate({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.vapezone.co.ke/ke/",
+        item: "https://www.vapezone.co.ke/",
       },
       {
         "@type": "ListItem",

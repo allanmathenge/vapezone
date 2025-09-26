@@ -18,6 +18,18 @@ const orgSchema: WithContext<Organization> = {
   name: "Vapezone Kenya",
   url: "https://www.vapezone.co.ke/",
   logo: "https://www.vapezone.co.ke/logo.png",
+  description: "Premium vape products and accessories in Kenya. Best quality vapes, e-liquids at the best price & fast delivery.",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+254-798769535",
+    contactType: "customer service",
+    areaServed: "KE",
+    availableLanguage: ["en", "sw"]
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "KE"
+  },
   sameAs: [
     "https://twitter.com/vapezonekenya",
     "https://www.instagram.com/vapezonekenya/",
@@ -26,17 +38,19 @@ const orgSchema: WithContext<Organization> = {
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
+  const schemaString = JSON.stringify(orgSchema);
+  
   return (
     <html lang="en" data-mode="light">
       <head>
         <script
           key="org-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(orgSchema),
-          }}
+          dangerouslySetInnerHTML={{ __html: schemaString }}
         />
         <meta name="google-site-verification" content="rvso-U-jCpwFY1c7ut5up56n4_dc4oL_0zqtiO4Pyf8" />
+        <meta name="author" content="Vapezone Kenya" />
+        <link rel="canonical" href="https://www.vapezone.co.ke/" />
       </head>
       <body>
         <main className="relative">{props.children}</main>
@@ -44,25 +58,3 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     </html>
   );
 }
-
-
-// import { getBaseURL } from "@lib/util/env"
-// import { Metadata } from "next"
-// import "styles/globals.css"
-
-// export const metadata: Metadata = {
-//   metadataBase: new URL(getBaseURL()),
-//   twitter: {
-//     card: "summary_large_image"
-//   }
-// }
-
-// export default function RootLayout(props: { children: React.ReactNode }) {
-//   return (
-//     <html lang="en" data-mode="light">
-//       <body>
-//         <main className="relative">{props.children}</main>
-//       </body>
-//     </html>
-//   )
-// }
