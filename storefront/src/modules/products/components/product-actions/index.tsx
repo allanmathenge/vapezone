@@ -161,7 +161,7 @@ Quantity: ${quantity}`
         <Button
           onClick={() => window.open('tel:+254798769535')}
           variant="primary"
-          className="flex-1 h-8 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
+          className="flex-1 h-8 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow hover:shadow-sm text-white text-nowrap overflow-hidden"
           data-testid="call-button"
         >
           <MdCall /> Call To Order

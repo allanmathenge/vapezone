@@ -144,7 +144,7 @@ Quantity: ${quantity}`
                     onClick={open}
                     disabled={!inStock || !variant || optionsDisabled}
                     variant="secondary"
-                    className="flex-1 min-w-0"
+                    className="flex-1 h-8 min-w-0"
                     data-testid="mobile-actions-button"
                   >
                     <span className="truncate">{variantText}</span>
@@ -154,7 +154,7 @@ Quantity: ${quantity}`
                     <Button
                       onClick={() => window.open('tel:+254798769535')}
                       variant="primary"
-                      className="flex-1 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
+                      className="flex-1 h-8 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow hover:shadow-sm text-white text-nowrap overflow-hidden"
                       data-testid="call-button"
                     >
                       <MdCall /> Call To Order
@@ -165,7 +165,7 @@ Quantity: ${quantity}`
                 <Button
                   onClick={handleAddToCart}
                   disabled={!inStock || !variant || optionsDisabled}
-                  className="flex-1 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
+                  className="flex-1 h-8 min-w-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-white text-nowrap overflow-hidden"
                   isLoading={isAdding}
                   data-testid="mobile-cart-button"
                 >
@@ -176,7 +176,7 @@ Quantity: ${quantity}`
                   ) : (
                     <>
                       <FaShoppingCart className="mr-2" size={14} />
-                      Add to cart
+                      Add To Cart
                     </>
                   )}
                 </Button>
@@ -185,7 +185,7 @@ Quantity: ${quantity}`
               <Button
                 onClick={handleWhatsAppClick}
                 disabled={isWhatsAppLoading || !variant || optionsDisabled}
-                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-600 text-black font-medium py-2 transition-all duration-200 shadow-lg hover:shadow-xl rounded-lg"
+                className="w-full h-8 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-600 text-black font-medium py-2 transition-all duration-200 shadow hover:shadow-sm rounded-lg"
               >
                 <FaWhatsapp className="mr-2" size={18} />
                 {isWhatsAppLoading ? (
