@@ -19,7 +19,7 @@ const FilterRadioGroup = ({
   "data-testid": dataTestId,
 }: FilterRadioGroupProps) => {
   return (
-    <div className="flex flex-col gap-4 m-5">
+    <div className="flex flex-col gap-2">
       {/* Minimal Header */}
       <Text className="text-xs font-medium text-slate-500 uppercase tracking-wider">
         {title}
