@@ -148,18 +148,17 @@ export default async function ProductPage({ params }: Props) {
   const productSchema: WithContext<SchemaProduct> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `https://www.vapezone.co.ke/products/#${pricedProduct.id}`,
+    "@id": `https://www.vapezone.co.ke/ke/products/#${pricedProduct.id}`,
     
     // Basic Product Information
     name: pricedProduct.title,
     description: pricedProduct.subtitle || 
-      `Buy ${pricedProduct.title} from Vapezone Kenya. Premium quality vape products with fast delivery across Nairobi and all of Kenya.`,
+      `Buy ${pricedProduct.title} from Vapezone Kenya. Premium quality vape products with 30-50 minutes delivery across Nairobi, 2-3 days all of Kenya.`,
     image: productImages.length > 0 ? productImages : [defaultImage],
     sku: pricedProduct.variants?.[0]?.sku ?? pricedProduct.id,
     mpn: pricedProduct.id,
     gtin: pricedProduct.variants?.[0]?.ean || undefined,
     
-    // Brand Information
     brand: {
       "@type": "Brand",
       name: "Vapezone Kenya",

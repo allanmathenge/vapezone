@@ -5,7 +5,7 @@ import type { WithContext, Organization } from "schema-dts";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
-  title: "Vapezone Kenya | Number One Online Vape Shop in Kenya – Premium Vapes, Fast Delivery",
+  title: "Vapezone Kenya | Premium Vapes & Accessories, Fast Delivery",
   description: "Vapezone Kenya is your number One online vape shop. Explore premium vapes, e-liquids, pods & accessories at the best prices. Fast delivery in Nairobi & across Kenya.",
   twitter: {
     card: "summary_large_image",
@@ -18,7 +18,7 @@ const orgSchema: WithContext<Organization> = {
   name: "Vapezone Kenya",
   url: "https://www.vapezone.co.ke/",
   logo: "https://www.vapezone.co.ke/logo.png",
-  description: "Premium vape products and accessories in Kenya. Best quality vapes, e-liquids at the best price & fast delivery.",
+  description: "Premium vape products and accessories in Kenya. Best quality vapes & e-liquids at the best price & fast delivery.",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+254-798769535",

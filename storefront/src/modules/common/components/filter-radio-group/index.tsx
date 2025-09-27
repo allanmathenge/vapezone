@@ -1,4 +1,3 @@
-import { EllipseMiniSolid } from "@medusajs/icons"
 import { Label, RadioGroup, Text, clx } from "@medusajs/ui"
 
 type FilterRadioGroupProps = {
@@ -20,38 +19,55 @@ const FilterRadioGroup = ({
   "data-testid": dataTestId,
 }: FilterRadioGroupProps) => {
   return (
-    <div className="flex gap-x-3 flex-col gap-y-3">
-      <Text className="txt-compact-small-plus font-bold text-ui-fg-muted text-blue-600">{title}</Text>
-      <RadioGroup data-testid={dataTestId} onValueChange={handleChange}>
-        {items?.map((i) => (
-          <div
-            key={i.value}
-            className={clx("flex gap-x-2 text-2xl items-center text-blue-600", {
-              "ml-[-23px]": i.value === value,
-            })}
-          >
-            {i.value === value && <EllipseMiniSolid />}
-            <RadioGroup.Item
-              checked={i.value === value}
-              className="hidden peer text-2xl"
-              id={i.value}
-              value={i.value}
-            />
-            <Label
-              htmlFor={i.value}
+    <div className="flex flex-col gap-4 m-5">
+      {/* Minimal Header */}
+      <Text className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+        {title}
+      </Text>
+
+      {/* Clean Radio Group */}
+      <RadioGroup 
+        data-testid={dataTestId} 
+        onValueChange={handleChange}
+        className="space-y-1"
+      >
+        {items?.map((item) => {
+          const isSelected = item.value === value
+          
+          return (
+            <label
+              key={item.value}
+              htmlFor={item.value}
               className={clx(
-                "!txt-compact-small !transform-none text-ui-fg-subtle hover:cursor-pointer",
+                "flex items-center gap-3 p-2 rounded-md cursor-pointer transition-all duration-150",
                 {
-                  "text-ui-fg-base text-blue-600": i.value === value,
+                  "bg-slate-800 text-white": isSelected,
+                  "text-slate-600 hover:bg-slate-50 hover:text-slate-800": !isSelected,
                 }
               )}
-              data-testid="radio-label"
-              data-active={i.value === value}
             >
-              {i.label}
-            </Label>
-          </div>
-        ))}
+
+              {/* Hidden Radio Input */}
+              <RadioGroup.Item
+                checked={isSelected}
+                className="sr-only"
+                id={item.value}
+                value={item.value}
+              />
+
+              {/* Label */}
+              <span className={clx(
+                "text-sm font-medium transition-colors",
+                {
+                  "text-white": isSelected,
+                  "text-slate-600": !isSelected,
+                }
+              )}>
+                {item.label}
+              </span>
+            </label>
+          )
+        })}
       </RadioGroup>
     </div>
   )

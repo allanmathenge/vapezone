@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       category.description ??
       `Discover the best selection of ${title} vapes in Nairobi at Vapezone Kenya. Shop top brands, rich flavors and enjoy fast, reliable delivery across Kenya.`
 
-    const url = `https://www.vapezone.co.ke/ke/${params.category.join("/")}`
+    const url = `https://www.vapezone.co.ke/ke/categories/${params.category.join("/")}`
 
     return {
       title: `Shop ${title} – Best Vapes in Kenya | Vapezone Kenya`,
@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Helper function to build proper URLs
 const buildCategoryUrl = (categoryHandles: string[], baseUrl: string = "https://www.vapezone.co.ke/") => {
   const path = categoryHandles.join('/')
-  return `${baseUrl}/${path}`
+  return `${baseUrl}/ke/categories/${path}`
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {
@@ -171,7 +171,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: `${category.name} - Vapezone Kenya`,
-    description: category.description || `Shop ${category.name} vape products in Kenya`,
+    description: category.description || `Shop ${category.name} vape products in Kenya | Best Price & Fast Delivery`,
     url: buildCategoryUrl(params.category),
     mainEntity: {
       "@type": "ItemList",
