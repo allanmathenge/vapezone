@@ -82,7 +82,7 @@ export default function ProductActions({ product, region, disabled }: ProductAct
   const handleWhatsAppOrder = () => {
     if (!selectedVariant || !inStock) return
     
-    const message = `Product: ${product.title}`
+    const message = `Hi, I'm interested in ${product.title}`
     const url = `https://wa.me/254798769535?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }
