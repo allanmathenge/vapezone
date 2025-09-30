@@ -154,7 +154,7 @@ export default async function ProductPage({ params }: Props) {
     name: pricedProduct.title,
     description: pricedProduct.subtitle || 
       `Buy ${pricedProduct.title} from Vapezone Kenya. Premium quality vape products with 30-50 minutes delivery across Nairobi, 2-3 days all of Kenya.`,
-    image: productImages.length > 0 ? productImages : [defaultImage],
+    image: productImages.length > 0 ? productImages : [mainImage],
     sku: pricedProduct.variants?.[0]?.sku ?? pricedProduct.id,
     mpn: pricedProduct.id,
     gtin: pricedProduct.variants?.[0]?.ean || undefined,
