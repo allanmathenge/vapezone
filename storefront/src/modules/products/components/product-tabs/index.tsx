@@ -46,7 +46,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
     <div className="flex flex-col py-6 bg-white">
-      <div className="lg:max-w-[600px] mx-auto pb-4">
+      <div className="mx-auto pb-4">
         <div
           className="rounded-2xl text-small-regular whitespace-pre-line"
           data-testid="product-description"
