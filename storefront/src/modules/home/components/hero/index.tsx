@@ -25,10 +25,6 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center items-start text-left px-2 md:px-12 lg:px-24 xl:px-32">
         <div className="max-w-2xl space-y-8">
-          {/* Subtle Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-600/10 backdrop-blur-sm border border-blue-500/30 mb-4">
-            <span className="text-blue-300 text-sm font-medium tracking-wider">PREMIUM COLLECTION</span>
-          </div>
 
           {/* Main Heading */}
           <Heading className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight tracking-tight">

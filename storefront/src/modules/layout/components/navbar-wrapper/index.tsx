@@ -10,17 +10,28 @@ export default function NavbarWrapper({ children }: { children: React.ReactNode 
     const controlNavbar = () => {
       const currentScrollY = window.scrollY
 
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Scrolling down & past 100px - hide navbar
+      // Show navbar when at top of page
+      if (currentScrollY < 100) {
+        setIsVisible(true)
+        setLastScrollY(currentScrollY)
+        return
+      }
+
+      // Determine scroll direction
+      const scrollingDown = currentScrollY > lastScrollY
+
+      if (scrollingDown && isVisible) {
+        // Scrolling down and navbar is visible - hide it
         setIsVisible(false)
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show navbar
+      } else if (!scrollingDown && !isVisible) {
+        // Scrolling up and navbar is hidden - show it
         setIsVisible(true)
       }
 
       setLastScrollY(currentScrollY)
     }
 
+    // Throttle scroll events
     let ticking = false
     const throttledControlNavbar = () => {
       if (!ticking) {
@@ -37,7 +48,7 @@ export default function NavbarWrapper({ children }: { children: React.ReactNode 
     return () => {
       window.removeEventListener('scroll', throttledControlNavbar)
     }
-  }, [lastScrollY])
+  }, [lastScrollY, isVisible])
 
   return (
     <div 
