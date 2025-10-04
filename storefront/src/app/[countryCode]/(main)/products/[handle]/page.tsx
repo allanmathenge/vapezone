@@ -148,7 +148,7 @@ export default async function ProductPage({ params }: Props) {
   const productSchema: WithContext<SchemaProduct> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `https://www.vapezone.co.ke/ke/products/#${pricedProduct.id}`,
+    "@id": `https://www.vapezone.co.ke/ke/products/${pricedProduct.id}`,
     
     // Basic Product Information
     name: pricedProduct.title,
