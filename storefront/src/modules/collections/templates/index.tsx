@@ -59,12 +59,10 @@ export default function CollectionTemplate({
   }
 
   return (
-    <div className="flex flex-col small:flex-row small:items-start py-6 content-container">
+    <div className="flex flex-col gap-6 small:flex-row small:items-start my-16 content-container">
       <RefinementList sortBy={sort} />
       <div className="w-full">
-        <div className="mb-8 text-2xl-semi">
-          <h1>{collection.title}</h1>
-        </div>
+          <h1 className="text-2xl small:text-3xl my-4">{`${collection.title} - Price & Delivery Nairobi`}</h1>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

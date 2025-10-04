@@ -21,7 +21,7 @@ export default function ProductRail({
       <div className="flex justify-between mb-4">
         <Text className="txt-xlarge font-bold">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
-          View all
+          View
         </InteractiveLink>
       </div>
       <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-3 gap-y-3 small:gap-y-4">
