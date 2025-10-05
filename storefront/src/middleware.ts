@@ -88,6 +88,18 @@ async function getCountryCode(
  * Middleware to handle region selection and onboarding status.
  */
 export async function middleware(request: NextRequest) {
+  // 1. FIRST: Handle non-www to www redirect
+  const hostname = request.headers.get('host') || ''
+  const url = request.nextUrl.clone()
+  
+  // Check if the request is for the non-www version
+  if (hostname === 'vapezone.co.ke') {
+    // Redirect to www version while preserving the full path and query parameters
+    url.hostname = 'www.vapezone.co.ke'
+    return NextResponse.redirect(url, 301) // Use 301 for permanent redirect
+  }
+
+  // 2. THEN: Continue with existing region/cart logic
   const searchParams = request.nextUrl.searchParams
   const isOnboarding = searchParams.get("onboarding") === "true"
   const cartId = searchParams.get("cart_id")
