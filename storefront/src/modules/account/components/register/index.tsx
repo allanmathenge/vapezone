@@ -22,7 +22,7 @@ const Register = ({ setCurrentView }: Props) => {
       data-testid="register-page"
     >
       <h1 className="text-large-semi uppercase mb-6">
-        Become a Vapezone Member
+        Become a Vapezone Kenya Member
       </h1>
       <p className="text-center text-base-regular text-ui-fg-base mb-4">
         Create your Vapezone Member profile, and get access to an enhanced
@@ -70,17 +70,17 @@ const Register = ({ setCurrentView }: Props) => {
         </div>
         <ErrorMessage error={message} data-testid="register-error" />
         <span className="text-center text-ui-fg-base text-small-regular mt-6">
-          By creating an account, you agree to Vapezone&apos;s{" "}
+          By creating an account, you agree to Vapezone Kenya&apos;s{" "}
           <LocalizedClientLink
             href="/content/privacy-policy"
-            className="underline"
+            className="underline text-blue-800"
           >
             Privacy Policy
           </LocalizedClientLink>{" "}
           and{" "}
           <LocalizedClientLink
             href="/content/terms-of-use"
-            className="underline"
+            className="underline text-blue-800"
           >
             Terms of Use
           </LocalizedClientLink>
@@ -94,7 +94,7 @@ const Register = ({ setCurrentView }: Props) => {
         Already a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
-          className="underline"
+          className="underline text-blue-800"
         >
           Sign in
         </button>

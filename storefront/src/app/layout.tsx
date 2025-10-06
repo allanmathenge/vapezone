@@ -56,7 +56,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <link rel="canonical" href="https://www.vapezone.co.ke/" />
       </head>
       <body>
-        <main className="relative">{props.children}</main>
+        <main className="relative mt-8">{props.children}</main>
       </body>
     </html>
   );
