@@ -135,7 +135,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         dangerouslySetInnerHTML={schemaData}
       />
       
-      <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <main className="min-h-screen bg-gradient-to-br mt-16 from-gray-50 via-white to-gray-100">
         {/* Navigation */}
         <nav className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-0 py-3">
@@ -230,7 +230,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           )}
 
           {/* Content */}
-          <div className="prose prose-lg md:prose-xl max-w-none" itemProp="articleBody">
+          <div className="prose prose-lg md:prose-xl text-sm md:text-xl text-gray-800 font-light max-w-none leading-relaxed" itemProp="articleBody">
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (
@@ -247,7 +247,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 ),
                 p: ({ node, ...props }) => (
                   <p
-                    className="text-gray-700 font-normal leading-relaxed mb-7 text-xs sm:text-sm"
+                    className="text-gray-700 font-normal leading-relaxed mb-7"
                     {...props}
                   />
                 ),
@@ -265,7 +265,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 ),
                 ul: ({ node, ...props }) => (
                   <ul
-                    className="my-1 space-y-1 list-disc list-inside marker:text-indigo-500"
+                    className="my-1 space-y-1 list-disc list-inside marker:text-indigo-500 font-thin"
                     {...props}
                   />
                 ),
@@ -277,7 +277,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 ),
                 li: ({ node, ...props }) => (
                   <li
-                    className="text-gray-700 text-xs sm:text-sm pl-1"
+                    className="text-gray-700 pl-1 font-thin"
                     {...props}
                   />
                 ),
