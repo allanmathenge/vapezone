@@ -20,7 +20,7 @@ const StoreTemplate = ({
 
   return (
     <div
-      className="flex flex-col gap-6 lg:flex-row lg:items-start small:my-16 content-container"
+      className="flex flex-col gap-6 lg:flex-row lg:items-start my-5 small:my-16 content-container"
       data-testid="category-container"
     >
       {/* Sidebar Refinements */}
