@@ -22,53 +22,12 @@ export default function CollectionTemplate({
 }: Props) {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
-  
-  const itemListSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: collection.title,
-    url: url,
-    numberOfItems: collection.products?.length || 0,
-    itemListElement: (collection.products || [])
-      .slice(0, 12)
-      .map((product, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: product.title,
-        url: `${url?.replace(/\/$/, "")}/products/${product.handle}`,
-      })),
-  }
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.vapezone.co.ke/",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: collection.title,
-        item: url,
-      },
-    ],
-  }
 
   return (
-    <div className="flex flex-col gap-6 small:flex-row small:items-start my-16 content-container">
+    <div className="flex flex-col small:flex-row small:items-start py-16 content-container">
       <RefinementList sortBy={sort} />
       <div className="w-full">
-          <h1 className="text-2xl small:text-3xl my-4">{`${collection.title} - Price & Delivery Nairobi`}</h1>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([itemListSchema, breadcrumbSchema]),
-          }}
-        />
+        <h1 className="text-2xl small:text-3xl my-4">{`${collection.title} - Price & Delivery Nairobi`}</h1>
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}

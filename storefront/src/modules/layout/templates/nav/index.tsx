@@ -40,7 +40,7 @@ export default async function Nav() {
                   height={30}
                   className="rounded-full"
                 />
-                <span className="ml-2 text-xl font-semibold text-slate-800 hidden sm:block">Vapezone Kenya</span>
+                <span className="ml-2 text-sm small:text-xl font-semibold text-slate-800 sm:block text-nowrap overflow-hidden">Vapezone Kenya</span>
               </LocalizedClientLink>
             </div>
 
@@ -96,7 +96,7 @@ export default async function Nav() {
             </div>
 
             {/* Right section - Search, account and cart */}
-            <div className="flex items-center justify-end flex-1 sm:flex-none space-x-4 sm:space-x-6">
+            <div className="flex items-center justify-end flex-1 sm:flex-none space-x-2 sm:space-x-6">
               {/* Enhanced Search - visible on desktop */}
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                 <div className="hidden md:flex relative">

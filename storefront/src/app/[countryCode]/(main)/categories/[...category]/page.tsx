@@ -77,12 +77,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-// Helper function to build proper URLs
-const buildCategoryUrl = (categoryHandles: string[], baseUrl: string = "https://www.vapezone.co.ke/") => {
-  const path = categoryHandles.join('/')
-  return `${baseUrl}/ke/categories/${path}`
-}
-
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { sortBy, page } = searchParams
   const { product_categories } = await getCategoryByHandle(params.category)
@@ -92,101 +86,154 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const category = product_categories[product_categories.length - 1]
   const baseUrl = "https://www.vapezone.co.ke"
 
-  // Build breadcrumb schema
-  const breadcrumbItems = [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: `${baseUrl}/`,
-    }
-  ]
-
-  // Add parent categories to breadcrumb
-  if (product_categories.length > 1) {
-    product_categories.forEach((cat, index) => {
-      if (index < product_categories.length - 1) {
-        const categoryPath = product_categories.slice(0, index + 1).map(c => c.handle)
-        breadcrumbItems.push({
-          "@type": "ListItem",
-          position: index + 2,
-          name: cat.name,
-          item: buildCategoryUrl(categoryPath),
-        })
-      }
-    })
+  const buildCategoryUrl = (categoryHandles: string[]) => {
+    const path = categoryHandles.join('/')
+    return `${baseUrl}/ke/categories/${path}`
   }
 
-  // Add current category
-  breadcrumbItems.push({
-    "@type": "ListItem",
-    position: breadcrumbItems.length + 1,
-    name: category.name,
-    item: buildCategoryUrl(params.category),
-  })
+  const currentCategoryUrl = buildCategoryUrl(params.category)
+  const products = category.products || []
+
+  const formatPrice = (price: any): string => {
+    if (!price) return "0.00"
+    
+    if (typeof price === 'string') {
+      return parseFloat(price.replace(/,/g, '')).toFixed(2)
+    } else if (typeof price === 'number') {
+      return price.toFixed(2)
+    }
+    
+    return "0.00"
+  }
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: breadcrumbItems,
+    "name": "Category Navigation",
+    "description": "Browse our vape product categories",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${baseUrl}/`
+      },
+      // Add parent categories dynamically
+      ...product_categories.slice(0, -1).map((cat, index) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": cat.name,
+        "item": buildCategoryUrl(product_categories.slice(0, index + 1).map(c => c.handle))
+      })),
+      // Current category
+      {
+        "@type": "ListItem",
+        "position": product_categories.length + 1,
+        "name": category.name,
+        "item": currentCategoryUrl
+      }
+    ]
   }
 
-  // Build ItemList schema for products in this category
-  const products = category.products || []
+  // Enhanced ItemList schema with better product data
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `${category.name} - Vapezone Kenya`,
-    description: category.description || `Browse our selection of ${category.name} vape products`,
-    url: buildCategoryUrl(params.category),
-    numberOfItems: products.length,
-    itemListElement: products.slice(0, 20).map((product, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Product",
-        name: product.title,
-        url: `${baseUrl}/ke/products/${product.handle}`,
-        image: product.thumbnail ? 
-          (product.thumbnail.startsWith("http") ? product.thumbnail : `${baseUrl}${product.thumbnail}`) 
-          : `${baseUrl}/default-product.webp`,
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "KES",
-          price: product.variants?.[0]?.calculated_price?.calculated_amount || 0,
-          availability: (product.variants?.[0]?.inventory_quantity ?? 0) > 0 
-            ? "https://schema.org/InStock" 
-            : "https://schema.org/OutOfStock",
-        },
-        brand: {
-          "@type": "Brand",
-          name: "Vapezone Kenya"
+    "name": `Best ${category.name} Vapes in Kenya`,
+    "description": category.description || `Shop premium ${category.name} vape products at Vapezone Kenya. Fast delivery across Nairobi and all of Kenya.`,
+    "url": currentCategoryUrl,
+    "numberOfItems": products.length,
+    "mainEntityOfPage": currentCategoryUrl,
+    "itemListElement": products.slice(0, 20).map((product, index) => {
+      const productUrl = `${baseUrl}/ke/products/${product.handle}`
+      const productImage = product.thumbnail ? 
+        (product.thumbnail.startsWith("http") ? product.thumbnail : `${baseUrl}${product.thumbnail}`) 
+        : `${baseUrl}/default-product.webp`
+      
+      const rawPrice = product.variants?.[0]?.calculated_price?.calculated_amount
+      const formattedPrice = formatPrice(rawPrice)
+      const isInStock = (product.variants?.[0]?.inventory_quantity ?? 0) > 0
+      
+      return {
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": productUrl,
+        "item": {
+          "@type": "Product",
+          "name": product.title,
+          "description": product.subtitle || `${product.title} - Premium vape product available in Kenya`,
+          "url": productUrl,
+          "image": productImage,
+          "sku": product.variants?.[0]?.sku || product.id,
+          "category": category.name,
+          ...(product.collection?.title && {
+            "brand": {
+              "@type": "Brand",
+              "name": product.collection.title
+            }
+          }),
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "KES",
+            "price": formattedPrice,
+            "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+              .toISOString()
+              .split("T")[0],
+            "availability": isInStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "seller": {
+              "@type": "Organization",
+              "name": "Vapezone Kenya",
+              "url": baseUrl
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "0",
+                "currency": "KES"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "KE"
+              }
+            }
+          }
         }
       }
-    })),
+    })
   }
 
-  // Optional: Collection schema for the category itself
+  // CollectionPage schema for the category itself (more focused)
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${category.name} - Vapezone Kenya`,
-    description: category.description || `Shop ${category.name} vape products in Kenya | Best Price & Fast Delivery`,
-    url: buildCategoryUrl(params.category),
-    mainEntity: {
+    "name": `${category.name} Vape Products`,
+    "description": category.description || `Complete collection of ${category.name} vape devices and accessories at Vapezone Kenya`,
+    "url": currentCategoryUrl,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Vapezone Kenya",
+      "url": baseUrl
+    },
+    "mainEntity": {
       "@type": "ItemList",
-      numberOfItems: products.length,
-      itemListElement: products.slice(0, 10).map((product, index) => ({
+      "name": `Featured ${category.name} Products`,
+      "numberOfItems": Math.min(products.length, 10),
+      "itemListElement": products.slice(0, 10).map((product, index) => ({
         "@type": "ListItem",
-        position: index + 1,
-        url: `${baseUrl}/ke/products/${product.handle}`
+        "position": index + 1,
+        "name": product.title,
+        "url": `${baseUrl}/ke/products/${product.handle}`,
+        "image": product.thumbnail ? 
+          (product.thumbnail.startsWith("http") ? product.thumbnail : `${baseUrl}${product.thumbnail}`) 
+          : `${baseUrl}/default-product.webp`
       }))
     }
   }
 
   return (
     <>
-      {/* Breadcrumb Schema */}
       <Script
         id="breadcrumb-schema"
         type="application/ld+json"
@@ -194,7 +241,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
-      {/* Product List Schema */}
       <Script
         id="itemlist-schema"
         type="application/ld+json"
@@ -202,7 +248,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       
-      {/* Collection Schema (Optional) */}
       <Script
         id="collection-schema"
         type="application/ld+json"

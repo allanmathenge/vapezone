@@ -6,8 +6,6 @@ import ProductTemplate from "@modules/products/templates"
 import { getRegion, listRegions } from "@lib/data/regions"
 import { getProductByHandle, getProductsList } from "@lib/data/products"
 
-import { Product as SchemaProduct, WithContext, AggregateRating, Review, Offer } from "schema-dts"
-
 type Props = {
   params: { countryCode: string; handle: string }
 }
@@ -60,13 +58,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
-  // Get product images for OG and metadata
   const productImages = product.images?.map(img => 
     img.url.startsWith("http") ? img.url : `https://www.vapezone.co.ke${img.url}`
   ) || []
 
   return {
-    title: `${product.title} | Vapezone Kenya - Premium Vape Products & Fast Delivery`,
+    title: `${product.title}`,
     description: product.subtitle || `Buy ${product.title} at Vapezone Kenya. Best prices, fast delivery across Kenya.`,
     alternates: {
       canonical: canonicalUrl,
@@ -109,173 +106,113 @@ export default async function ProductPage({ params }: Props) {
     notFound()
   }
 
-  // Process product images
   const productImages = pricedProduct.images?.map(img => 
     img.url.startsWith("http") ? img.url : `https://www.vapezone.co.ke${img.url}`
   ) || []
 
-  // Fallback image
-  const defaultImage = "https://www.vapezone.co.ke/default-product.webp"
-  const mainImage = productImages.length > 0 ? productImages[0] : defaultImage
+  const firstVariant = pricedProduct.variants?.[0]
 
-  const calculateAverageRating = () => {
+  const getFormattedPrice = (): string => {
+    const priceData = firstVariant?.calculated_price;
     
-    const mockRating = {
-      value: 4.5,
-      count: 24
+    if (!priceData) {
+      return "0.00";
     }
-    return mockRating
+
+    // Handle different possible price structures
+    const rawPrice = priceData.calculated_amount || 
+                    (priceData as any).amount || 
+                    priceData;
+
+    if (typeof rawPrice === 'string') {
+      return parseFloat(rawPrice.replace(/,/g, '')).toFixed(2);
+    } else if (typeof rawPrice === 'number') {
+      return rawPrice.toFixed(2);
+    }
+    
+    return "0.00";
   }
 
-  const ratingData = calculateAverageRating()
+  const formattedPrice = getFormattedPrice();
 
-  const mockReviews = [
-    {
-      author: "John M.",
-      rating: 5,
-      text: "Excellent product! Fast delivery in Nairobi.",
-      date: "2024-01-15"
-    },
-    {
-      author: "Sarah K.",
-      rating: 4,
-      text: "Good quality, would recommend to others in Kenya.",
-      date: "2024-01-10"
-    }
-  ]
+  const isInStock = (firstVariant?.inventory_quantity ?? 0) > 0;
 
-  // Generate product schema with enhanced data
-  const productSchema: WithContext<SchemaProduct> = {
+  const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `https://www.vapezone.co.ke/ke/products/${pricedProduct.id}`,
     
-    // Basic Product Information
-    name: pricedProduct.title,
-    description: pricedProduct.subtitle || 
-      `Buy ${pricedProduct.title} from Vapezone Kenya. Premium quality vape products with 30-50 minutes delivery across Nairobi, 2-3 days all of Kenya.`,
-    image: productImages.length > 0 ? productImages : [mainImage],
-    sku: pricedProduct.variants?.[0]?.sku ?? pricedProduct.id,
-    mpn: pricedProduct.id,
-    gtin: pricedProduct.variants?.[0]?.ean || undefined,
+    "name": pricedProduct.title,
+    "description": pricedProduct.subtitle || `Buy ${pricedProduct.title} - Premium vape products with fast delivery across Kenya. 30-50 minutes delivery in Nairobi, 2-3 days nationwide.`,
+    "image": productImages.length > 0 ? productImages : ["https://www.vapezone.co.ke/default-product.webp"],
     
-    brand: {
-      "@type": "Brand",
-      name: "Vapezone Kenya",
-    },
-
-    // Category Information
-    category: pricedProduct.collection?.title || "Vape Products",
-    
-    offers: {
+    "offers": {
       "@type": "Offer",
-      url: `https://www.vapezone.co.ke/ke/products/${pricedProduct.handle}`,
-      priceCurrency: region.currency_code.toUpperCase(),
-      price: pricedProduct.variants?.[0]?.calculated_price?.calculated_amount || 0,
-      
-      // Price validity
-      priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+      "url": `https://www.vapezone.co.ke/ke/products/${pricedProduct.handle}`,
+      "priceCurrency": "KES",
+      "price": formattedPrice,
+      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1))
         .toISOString()
         .split("T")[0],
       
-      // Availability
-      availability: (pricedProduct.variants?.[0]?.inventory_quantity ?? 0) > 0
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
+      "availability": isInStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       
-      // Condition
-      itemCondition: "https://schema.org/NewCondition",
-      
-      // Shipping Information
-      shippingDetails: {
+      "shippingDetails": {
         "@type": "OfferShippingDetails",
-        shippingRate: {
+        "shippingRate": {
           "@type": "MonetaryAmount",
-          value: "0",
-          currency: "KES"
+          "value": "0",
+          "currency": "KES"
         },
-        shippingDestination: {
+        "shippingDestination": {
           "@type": "DefinedRegion",
-          addressCountry: "KE"
+          "addressCountry": "KE"
         },
-        deliveryTime: {
+        "deliveryTime": {
           "@type": "ShippingDeliveryTime",
-          handlingTime: {
+          "handlingTime": {
             "@type": "QuantitativeValue",
-            minValue: 0,
-            maxValue: 1,
-            unitCode: "DAY"
+            "minValue": 0,
+            "maxValue": 1
           },
-          transitTime: {
+          "transitTime": {
             "@type": "QuantitativeValue",
-            minValue: 1,
-            maxValue: 3,
-            unitCode: "DAY"
+            "minValue": 1,
+            "maxValue": 3
           }
         }
       },
       
-      // Return Policy
-      hasMerchantReturnPolicy: {
-        "@type": "MerchantReturnPolicy",
-        applicableCountry: "KE",
-        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
-        merchantReturnDays: 7,
-        returnMethod: "https://schema.org/ReturnByMail",
-        returnFees: "https://schema.org/FreeReturn"
-      },
-      
-      // Seller Information
-      seller: {
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
         "@type": "Organization",
-        name: "Vapezone Kenya",
-        url: "https://www.vapezone.co.ke/",
-        telephone: "+254-798769535"
+        "name": "Vapezone Kenya",
+        "url": "https://www.vapezone.co.ke/",
+        "telephone": "+254798769535",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "KE"
+        }
       }
-    }
-  }
-
-  // Add Aggregate Rating if available
-  if (ratingData && ratingData.count > 0) {
-    const aggregateRating: AggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: ratingData.value.toString(),
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: ratingData.count
-    }
-    productSchema.aggregateRating = aggregateRating
-  }
-
-  // Add Reviews if available
-  if (mockReviews.length > 0) {
-    const reviews: Review[] = mockReviews.map((review, index) => ({
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: review.author
-      },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.rating.toString(),
-        bestRating: "5",
-        worstRating: "1"
-      },
-      reviewBody: review.text,
-      datePublished: review.date
-    }))
-    productSchema.review = reviews
+    },
+    
+    "sku": firstVariant?.sku || pricedProduct.id,
+    "mpn": pricedProduct.id,
+    "brand": {
+      "@type": "Brand",
+      "name": pricedProduct.collection?.title || "Premium Vape"
+    },
+    
+    "category": pricedProduct.collection?.title || "Vape Products"
   }
 
   return (
     <>
       <Script
-        id="product-schema"
+        id="product-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(productSchema),
         }}
-        strategy="afterInteractive"
       />
       
       <ProductTemplate
