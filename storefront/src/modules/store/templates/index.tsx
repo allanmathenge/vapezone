@@ -20,11 +20,11 @@ const StoreTemplate = ({
 
   return (
     <div
-      className="flex flex-col gap-6 lg:flex-row lg:items-start my-5 small:my-16 content-container"
+      className="flex flex-col gap-6 lg:flex-row lg:items-start small:my-16 content-container"
       data-testid="category-container"
     >
       {/* Sidebar Refinements */}
-      <div className="lg:w-80 lg:mb-0">
+      <div className="lg:w-80 lg:mb-0 my-8">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 sticky">
           <h2 className="text-lg font-semibold text-slate-800 mb-6 pb-3 border-b border-gray-100 flex items-center">
             <svg className="w-5 h-5 text-slate-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
