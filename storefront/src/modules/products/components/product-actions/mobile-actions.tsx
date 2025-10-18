@@ -59,7 +59,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
     setIsWhatsAppLoading(true)
     setTimeout(() => {
       const productUrl = `${window.location.origin}/ke/products/${product.handle}`
-      const message = `Product: ${product.title}, ${selectedPrice?.calculated_price || "Check price"}`
+      const message = `Hi, I'm interested in: ${product.title}, ${selectedPrice?.calculated_price || "Check price"}`
       const url = `https://wa.me/254798769535?text=${encodeURIComponent(message)}`
       window.open(url, "_blank")
       setIsWhatsAppLoading(false)
