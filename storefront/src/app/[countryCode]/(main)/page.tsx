@@ -89,7 +89,7 @@ export default async function Home({
     <>
       <StructuredData />
       <Hero />
-      <div className="pt-3">
+      <div>
         <div itemScope itemType="https://schema.org/Store">
           <meta itemProp="name" content="Vapezone Kenya" />
           <meta itemProp="description" content="Premium vape shop in Nairobi, Kenya" />
@@ -98,7 +98,7 @@ export default async function Home({
             <meta itemProp="addressCountry" content="KE" />
           </div>
           
-          <h1 className="text-center font-light text-xl sm:text-2xl tracking-wide mb-4">
+          <h1 className="text-center font-light text-xl sm:text-2xl tracking-wide my-4">
             Featured Products
           </h1>
           <ul className="flex flex-col gap-x-6">

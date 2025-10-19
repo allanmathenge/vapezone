@@ -118,7 +118,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         {/* Additional meta tags can be added here if needed */}
       </head>
       <body>
-        <main id="main-content" className="relative mt-8" role="main">
+        <main id="main-content" className="relative" role="main">
           {props.children}
         </main>
       </body>

@@ -27,7 +27,7 @@ export default function CollectionTemplate({
     <div className="flex flex-col small:flex-row small:items-start py-16 content-container">
       <RefinementList sortBy={sort} />
       <div className="w-full">
-        <h1 className="text-2xl small:text-3xl my-4">{`${collection.title} - Price & Delivery Nairobi`}</h1>
+        <h1 className="text-2xl small:text-3xl my-4">{`${collection.title}`}</h1>
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
