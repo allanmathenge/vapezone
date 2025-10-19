@@ -52,7 +52,7 @@ export default function CategoryTemplate({
                   /
                 </span>
               ))}
-            <h1 className="text-xl sm:text-2xl text-slate-600" data-testid="category-page-title">{`${category.name} - Price & Delivery Nairobi`}</h1>
+            <h1 className="text-xl sm:text-2xl text-slate-600" data-testid="category-page-title">{`${category.name}`}</h1>
           </div>
 
           {category.category_children && (
