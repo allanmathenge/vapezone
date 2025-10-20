@@ -4,8 +4,8 @@ import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
-import { FaUser, FaChevronDown } from "react-icons/fa"
-import { IoSearch, IoClose } from "react-icons/io5"
+import { FaUser, FaChevronDown, FaShoppingCart } from "react-icons/fa"
+import { IoSearch} from "react-icons/io5"
 import { getCollectionsList } from "@lib/data/collections"
 import Image from "next/image"
 import NavbarWrapper from "@modules/layout/components/navbar-wrapper"
@@ -23,10 +23,10 @@ export default async function Nav() {
       <div className="bg-white/95 backdrop-blur-md shadow-sm hover:shadow-md">
         <header className="relative h-14 mx-auto">
           <nav className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full h-full">
-            
+
             {/* Left section - Logo and mobile menu */}
-            <div className="flex items-center flex-1 sm:flex-none">
-              <div className="mr-2 sm:mr-4">
+            <div className="flex items-center sm:flex-none">
+              <div className="mr-1 sm:mr-4">
                 <SideMenu regions={regions} />
               </div>
               <LocalizedClientLink
@@ -36,11 +36,13 @@ export default async function Nav() {
                 <Image
                   src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
                   alt="Logo"
-                  width={30}
-                  height={30}
+                  width={20}
+                  height={20}
                   className="rounded-full"
                 />
-                <span className="ml-2 text-sm small:text-xl font-semibold text-slate-800 sm:block text-nowrap overflow-hidden">Vapezone Kenya</span>
+                <span className="text-sm sm:text-xl font-bold tracking-tight bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+                  Vapezone Kenya
+                </span>
               </LocalizedClientLink>
             </div>
 
@@ -55,14 +57,14 @@ export default async function Nav() {
                   All Products
                   <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-3/4"></span>
                 </LocalizedClientLink>
-                
+
                 {/* Collections dropdown for larger screens */}
                 <div className="relative group">
                   <button className="px-4 py-2 flex items-center text-slate-700 hover:text-blue-600 transition-colors font-medium">
                     Collections
                     <FaChevronDown className="ml-1 h-3 w-3 transition-transform group-hover:rotate-180" />
                   </button>
-                  
+
                   <div className="absolute top-full left-0 w-96 bg-white/95 shadow-sm rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-8 group-hover:translate-y-0 z-30">
                     <div className="grid grid-cols-2 gap-2 p-4">
                       {collections.map((collection) => (
@@ -78,7 +80,7 @@ export default async function Nav() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Display top 4 collections individually for easy access */}
                 {collections.slice(0, 4).map((collection) => (
                   <div key={collection.id} className="hidden xl:block">
@@ -96,8 +98,8 @@ export default async function Nav() {
             </div>
 
             {/* Right section - Search, account and cart */}
-            <div className="flex items-center justify-end flex-1 sm:flex-none space-x-2 sm:space-x-6">
-              {/* Enhanced Search - visible on desktop */}
+            <div className="flex items-center justify-end flex-1 sm:flex-none space-x-1 sm:space-x-6">
+
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                 <div className="hidden md:flex relative">
                   <LocalizedClientLink
@@ -116,8 +118,7 @@ export default async function Nav() {
                   </LocalizedClientLink>
                 </div>
               )}
-              
-              {/* Enhanced Mobile search icon - larger and more accessible */}
+
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                 <LocalizedClientLink
                   className="md:hidden text-slate-600 hover:text-blue-600 transition-colors p-2 rounded-full hover:bg-slate-100 flex items-center justify-center"
@@ -130,18 +131,18 @@ export default async function Nav() {
                   </div>
                 </LocalizedClientLink>
               )}
-              
+
               {/* Account */}
               <LocalizedClientLink
-                className="text-slate-600 hover:text-blue-600 transition-colors p-2 rounded-full hover:bg-slate-100"
+                className="text-slate-600 hover:text-blue-600 transition-colors rounded-full hover:bg-slate-100"
                 href="/account"
                 data-testid="nav-account-link"
               >
-                <FaUser className="h-4 w-4" />
+                <FaUser className="h-4 w-4 text-blue-600" />
               </LocalizedClientLink>
-              
+
               {/* Cart */}
-              <div className="flex items-center">
+              <div className="flex items-center p-2">
                 <Suspense
                   fallback={
                     <LocalizedClientLink
@@ -150,10 +151,8 @@ export default async function Nav() {
                       data-testid="nav-cart-link"
                     >
                       <div className="relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                        </svg>
-                        <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                        <FaShoppingCart className="h-4 w-4 text-blue-600" />
+                        <span className="absolute -top-3 -right-3 bg-blue-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
                       </div>
                     </LocalizedClientLink>
                   }

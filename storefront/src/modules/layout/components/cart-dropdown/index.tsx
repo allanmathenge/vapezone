@@ -12,7 +12,7 @@ import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "@modules/products/components/thumbnail"
-import { ShoppingCart } from "@medusajs/icons"
+import { FaShoppingCart } from "react-icons/fa"
 
 const CartDropdown = ({
   cart: cartState,
@@ -79,12 +79,12 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <Popover.Button className="h-full">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base flex items-center justify-center h-full"
+            className="hover:text-ui-fg-base flex items-center justify-center h-full pt-1"
             href="/cart"
             data-testid="nav-cart-link"
           >
-            <ShoppingCart className="text-xl " />
-            <span className="-mt-3 w-3 h-3 rounded-full flex items-center justify-center">{`${totalItems}`}</span>
+            <FaShoppingCart className="text-blue-600" />
+            <span className="-mt-4 w-3 h-3 rounded-full flex text-blue-800 items-center justify-center">{`${totalItems}`}</span>
           </LocalizedClientLink>
         </Popover.Button>
         <Transition

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { Popover, Transition } from "@headlessui/react"
-import { BarsThree } from "@medusajs/icons"
+import { IoIosMenu } from "react-icons/io";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { useToggleState } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -10,7 +10,6 @@ import { HttpTypes } from "@medusajs/types"
 import { getCollectionsList } from "@lib/data/collections"
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
-  const toggleState = useToggleState()
   const [collections, setCollections] = useState<{ id: string; title: string, handle: string }[]>([])
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                   data-testid="nav-menu-button"
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
                 >
-                  <BarsThree />
+                  <IoIosMenu className="text-2xl text-blue-600" />
                 </Popover.Button>
               </div>
 

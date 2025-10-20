@@ -29,7 +29,7 @@ const Hero = () => {
             <div className="mb-2">
               Kenya&apos;s Premier
             </div>
-            <div className="premium-typewriter">
+            <div className="">
               Vape Destination
             </div>
           </Heading>
