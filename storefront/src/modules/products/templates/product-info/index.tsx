@@ -3,18 +3,24 @@ import { Heading, Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { useMemo } from "react"
 
+const countryCodeMap = {
+  'cn': 'China',
+  'us': 'United States',
+  'gb': 'United Kingdom',
+  'fr': 'France',
+  'de': 'Germany',
+  'jp': 'Japan',
+  'br': 'Brazil',
+};
+
+function getCountryName(countryCode: string | null | undefined): string {
+  if (!countryCode) return "-"
+  return countryCodeMap[countryCode as keyof typeof countryCodeMap] || countryCode
+}
+
 type ProductInfoProps = {
   product: HttpTypes.StoreProduct
   selectedVariant?: HttpTypes.StoreProductVariant
-}
-
-const optionsAsKeymap = (variantOptions: any) => {
-  return variantOptions?.reduce((acc: Record<string, string | undefined>, varopt: any) => {
-    if (varopt.option && varopt.value !== null && varopt.value !== undefined) {
-      acc[varopt.option.title] = varopt.value
-    }
-    return acc
-  }, {})
 }
 
 const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
@@ -40,28 +46,22 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
     )
   }, [selectedVariant, product.variants])
 
-  const selectedOptions = useMemo(() => {
-    if (!selectedVariant) return null
-    return optionsAsKeymap(selectedVariant.options)
-  }, [selectedVariant])
-
-  // Stock status display configuration
   const stockStatus = useMemo(() => {
     if (!selectedVariant) {
       return {
         text: inStock ? 'Available' : 'Out of Stock',
-        color: inStock ? 'text-green-600' : 'text-red-600',
-        bgColor: inStock ? 'bg-green-100' : 'bg-red-100',
-        dotColor: inStock ? 'bg-green-500' : 'bg-red-500'
+        color: inStock ? 'text-blue-600' : 'text-red-600',
+        bgColor: inStock ? 'bg-blue-100' : 'bg-red-100',
+        dotColor: inStock ? 'bg-blue-500' : 'bg-red-500'
       }
     }
 
     if (!selectedVariant.manage_inventory) {
       return {
         text: 'In Stock',
-        color: 'text-green-600',
-        bgColor: 'bg-green-100',
-        dotColor: 'bg-green-500'
+        color: 'text-blue-600',
+        bgColor: 'bg-blue-100',
+        dotColor: 'bg-blue-500'
       }
     }
 
@@ -77,9 +77,9 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
     if ((selectedVariant.inventory_quantity || 0) > 0) {
       return {
         text: 'In Stock',
-        color: 'text-green-600',
-        bgColor: 'bg-green-100',
-        dotColor: 'bg-green-500'
+        color: 'text-blue-600',
+        bgColor: 'bg-blue-100',
+        dotColor: 'bg-blue-500'
       }
     }
 
@@ -93,7 +93,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
 
   return (
     <div id="product-info" className="bg-ui-bg-subtle rounded-xl p-6 shadow-sm border border-ui-border-base">
-      <div className="flex flex-col space-y-6">
+      <div className="flex flex-col space-y-5">
         {/* Collection */}
         {product.collection && (
           <div className="flex flex-col space-y-1">
@@ -112,19 +112,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
           <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Product</Text>
           <Heading
             level="h1"
-            className="text-ui-fg-base text-xl font-thin"
-            data-testid="product-title"
-          >
-            {product.title}
-          </Heading>
-        </div>
-
-        {/* Product Brand */}
-        <div className="flex flex-col space-y-1">
-          <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Brand</Text>
-          <Heading
-            level="h1"
-            className="text-ui-fg-base text-xl font-thin"
+            className="text-ui-fg-base font-thin"
             data-testid="product-title"
           >
             {product.title}
@@ -148,21 +136,6 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
           </div>
         </div>
 
-        {/* Selected Variant Options */}
-        {selectedOptions && Object.keys(selectedOptions).length > 0 && (
-          <div className="flex flex-col space-y-2">
-            <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Selected Options</Text>
-            <div className="space-y-2">
-              {Object.entries(selectedOptions).map(([optionTitle, optionValue]) => (
-                <div key={optionTitle} className="flex justify-between items-center bg-ui-bg-component rounded-lg px-3 py-2">
-                  <Text className="text-ui-fg-muted text-sm font-medium">{optionTitle}</Text>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* All Variants */}
         {product.variants && product.variants.length > 0 && (
           <div className="flex flex-col space-y-2">
             <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">
@@ -181,7 +154,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                     className={`
                       relative rounded-lg px-3 py-2 text-sm transition-all duration-150
                       ${isSelected 
-                        ? 'bg-ui-bg-component-hover border-2 border-ui-border-interactive' 
+                        ? 'bg-ui-bg-component-hover border border-ui-border-interactive' 
                         : 'bg-ui-bg-component hover:bg-ui-bg-component-hover border border-ui-border-base'
                       }
                       ${!variantInStock ? 'opacity-60' : ''}
@@ -215,21 +188,17 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
           </div>
         )}
 
-        {/* Additional Inventory Info */}
-        {selectedVariant && (
-          <div className="pt-4 border-t border-ui-border-base">
-            <div className="grid grid-cols-2 gap-4 text-sm text-ui-fg-muted">
-              <div>
-                <Text className="font-medium mb-1">Inventory</Text>
-                <div>{selectedVariant.manage_inventory ? 'Managed' : 'Not managed'}</div>
-              </div>
-              <div>
-                <Text className="font-medium mb-1">Backorders</Text>
-                <div>{selectedVariant.allow_backorder ? 'Allowed' : 'Not allowed'}</div>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Country Of Origin */}
+        <div className="flex flex-col space-y-1">
+          <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Country Of Origin</Text>
+          <Heading
+            level="h1"
+            className="text-xs text-ui-fg-muted"
+            data-testid="product-origin-country"
+          >
+            {getCountryName(product.origin_country)}
+          </Heading>
+        </div>
       </div>
     </div>
   )
