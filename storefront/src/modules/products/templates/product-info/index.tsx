@@ -18,7 +18,6 @@ const optionsAsKeymap = (variantOptions: any) => {
 }
 
 const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
-  // Calculate stock availability
   const inStock = useMemo(() => {
     if (selectedVariant) {
       if (!selectedVariant.manage_inventory) {
@@ -41,15 +40,6 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
     )
   }, [selectedVariant, product.variants])
 
-  // Check if specifically out of stock (inventory = 0)
-  const isOutOfStock = useMemo(() => {
-    if (selectedVariant?.manage_inventory && (selectedVariant?.inventory_quantity || 0) === 0) {
-      return true
-    }
-    return false
-  }, [selectedVariant])
-
-  // Get selected variant options for display
   const selectedOptions = useMemo(() => {
     if (!selectedVariant) return null
     return optionsAsKeymap(selectedVariant.options)
@@ -122,7 +112,19 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
           <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Product</Text>
           <Heading
             level="h1"
-            className="text-ui-fg-base text-xl font-semibold"
+            className="text-ui-fg-base text-xl font-thin"
+            data-testid="product-title"
+          >
+            {product.title}
+          </Heading>
+        </div>
+
+        {/* Product Brand */}
+        <div className="flex flex-col space-y-1">
+          <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider">Brand</Text>
+          <Heading
+            level="h1"
+            className="text-ui-fg-base text-xl font-thin"
             data-testid="product-title"
           >
             {product.title}

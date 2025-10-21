@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
   title: {
     default: "Vapezone Kenya | Premium Vapes & Accessories, Fast Delivery",
-    template: "%s | Vapezone Kenya"
+    template: "Vapezone Kenya"
   },
   description: "Vapezone Kenya is your number One online vape shop. Explore premium vapes, e-liquids, pods & accessories at the best prices. Fast delivery in Nairobi & across Kenya.",
   keywords: "vapes Kenya, e-liquids Nairobi, vape shop Kenya, disposable vapes, vaping accessories, e-cigarettes Kenya, vape pods, vape mods, vapes Nairobi, Vapezone, vape price Kenya, vapes",
@@ -115,7 +115,6 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           dangerouslySetInnerHTML={{ __html: schemaString }}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Additional meta tags can be added here if needed */}
       </head>
       <body>
         <main id="main-content" className="relative" role="main">
