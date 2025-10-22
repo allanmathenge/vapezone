@@ -149,24 +149,3 @@ const ShippingInfoTab = () => {
 }
 
 export default ProductTabs
-
-{/* <div className="flex flex-col gap-y-5">
-          <div className="flex flex-col">
-            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
-              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-              Weight
-            </span>
-            <p className="text-slate-600 pl-3.5">{product.weight ? `${product.weight} g` : "-"}</p>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
-              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-              Dimensions
-            </span>
-            <p className="text-slate-600 pl-3.5">
-              {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
-                : "-"}
-            </p>
-          </div>
-        </div> */}

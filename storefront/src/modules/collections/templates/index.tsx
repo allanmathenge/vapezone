@@ -47,7 +47,7 @@ export default function CollectionTemplate({
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://www.vapezone.co.ke/ke"
+            "item": "https://www.vapezone.co.ke/"
           },
           {
             "@type": "ListItem",
@@ -70,7 +70,7 @@ export default function CollectionTemplate({
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Vapezone Kenya",
-      "url": "https://www.vapezone.co.ke/ke",
+      "url": "https://www.vapezone.co.ke/",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {

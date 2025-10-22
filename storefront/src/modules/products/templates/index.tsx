@@ -52,7 +52,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
       "@type": "Product",
       "productId": product.id,
       "name": product.title,
-      "description": product.description || product.title,
+      "description": product.subtitle || product.description,
       "image": product.images?.map(img => img.url) || [],
       "sku": primaryVariant?.sku,
       "mpn": primaryVariant?.sku,
@@ -83,7 +83,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.vapezone.co.ke/ke"
+          "item": "https://www.vapezone.co.ke/"
         },
         {
           "@type": "ListItem",
