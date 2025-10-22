@@ -74,7 +74,7 @@ export default async function Footer() {
                   <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </div>
                 <p className="hidden sm:flex text-gray-600 text-sm mb-4">
-                  Premium vaping products and accessories for enthusiasts and beginners alike.
+                  Premium vaping products and accessories. Call/Text/Whatsapp us: 0798769535.
                 </p>
                 <div className="flex flex-col space-y-2 mt-2">
                   <div className="flex flex-col sm:flex-row gap-2">

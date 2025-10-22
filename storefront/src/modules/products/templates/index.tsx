@@ -1,5 +1,5 @@
 import React, { Suspense } from "react"
-import Head from "next/head" // Make sure to import Head
+import Head from "next/head"
 
 import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
@@ -28,8 +28,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   }
 
   const generateStructuredData = () => {
-
     const primaryVariant = product.variants?.[0]
+    const productUrl = `https://www.vapezone.co.ke/ke/products/${product.handle}`
     
     const getPrice = () => {
       if (!primaryVariant?.calculated_price?.calculated_amount) return "0.00"
@@ -43,8 +43,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
     }
 
     const getAvailability = () => {
-      const inventory = primaryVariant?.inventory_quantity || 0
-      return inventory > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+      const isAvailable = (primaryVariant?.inventory_quantity || 0) > 0
+      return isAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
     }
 
     const productSchema = {
@@ -62,19 +62,36 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
       },
       "offers": {
         "@type": "Offer",
-        "url": typeof window !== 'undefined' 
-          ? window.location.href 
-          : `https://www.vapezone.co.ke/ke/products/${product.handle}`,
+        "url": productUrl,
         "priceCurrency": getCurrency(),
         "price": getPrice(),
+        "priceValidUntil": "2025-12-31",
         "availability": getAvailability(),
         "itemCondition": "https://schema.org/NewCondition",
         "seller": {
           "@type": "Organization",
           "name": "Vapezone Kenya"
-        }
+        },
+        "unitCode": "KGM",
+        "unitText": "kilogram"
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "name": "Vapezone Kenya Return Policy",
+        "description": "7-day return policy for unused items in original packaging",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 7,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn",
+        "applicableCountry": "KE"
+      },
+      "category": product.collection?.title || "Vaping Products",
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "Vapezone Kenya"
       }
     }
+
     const breadcrumbSchema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -101,9 +118,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           "@type": "ListItem",
           "position": product.collection ? 4 : 3,
           "name": product.title,
-          "item": typeof window !== 'undefined' 
-            ? window.location.href 
-            : `https://www.vapezone.co.ke/ke/products/${product.handle}`
+          "item": productUrl
         }
       ]
     }
@@ -116,6 +131,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <Head>
+        <title>{product.title} | Vapezone Kenya</title>
+        <meta 
+          name="description" 
+          content={product.description || product.subtitle || `Buy ${product.title} from Vapezone Kenya`} 
+        />
         {structuredData.map((data, index) => (
           <script
             key={index}
