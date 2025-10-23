@@ -99,7 +99,7 @@ export default async function Home({
           </div>
           
           <h1 className="text-center font-light text-xl sm:text-2xl tracking-wide my-4">
-            Featured Products
+            TRENDING
           </h1>
           <ul className="flex flex-col gap-x-6">
             <FeaturedProducts collections={collections} region={region} />

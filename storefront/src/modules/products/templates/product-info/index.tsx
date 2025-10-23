@@ -11,6 +11,10 @@ const countryCodeMap = {
   'de': 'Germany',
   'jp': 'Japan',
   'br': 'Brazil',
+  'ae': 'United Arab Emirates',
+  'my': 'Malaysia',
+  'kr': 'South Korea',
+  'kp': 'North Korea',
 };
 
 function getCountryName(countryCode: string | null | undefined): string {

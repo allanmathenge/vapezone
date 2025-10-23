@@ -12,9 +12,9 @@ const CheckoutSummary = ({ cart }: { cart: any }) => {
         <Divider className="my-6 small:hidden" />
         <Heading
           level="h2"
-          className="flex flex-row text-3xl-regular items-baseline"
+          className="flex flex-row text-2xl-regular items-baseline"
         >
-          In your Cart
+          Your Cart: Lipa Na M-pesa. Till No: 3763670
         </Heading>
         <Divider className="my-6" />
         <CartTotals totals={cart} />

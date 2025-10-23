@@ -78,6 +78,7 @@ export default async function Footer() {
                 </p>
                 <div className="flex flex-col space-y-2 mt-2">
                   <div className="flex flex-col sm:flex-row gap-2">
+                    <span className="text-sm font-medium text-gray-900">Call/Text/Whatsapp: 0798769535</span>
                     <span className="text-sm font-medium text-gray-900">M-Pesa • Buy Goods</span>
                     <span className="text-sm font-medium text-gray-900">Till No: 3763670</span>
                   </div>

@@ -163,7 +163,7 @@ const ShippingAddress = ({
           data-testid="shipping-country-select"
         />
         <Input
-          label="State / Province"
+          label="County"
           name="shipping_address.province"
           autoComplete="address-level1"
           value={formData["shipping_address.province"]}

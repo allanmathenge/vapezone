@@ -253,7 +253,7 @@ const Payment = ({
                   <Text>
                     {isStripeFunc(selectedPaymentMethod) && cardBrand
                       ? cardBrand
-                      : "Another step will appear"}
+                      : "Your payment will be approved"}
                   </Text>
                 </div>
               </div>

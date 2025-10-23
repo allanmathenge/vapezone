@@ -97,7 +97,7 @@ const BillingAddress = ({ cart }: { cart: HttpTypes.StoreCart | null }) => {
           data-testid="billing-country-select"
         />
         <Input
-          label="State / Province"
+          label="County"
           name="billing_address.province"
           autoComplete="address-level1"
           value={formData["billing_address.province"]}
