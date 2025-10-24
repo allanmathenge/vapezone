@@ -1,5 +1,6 @@
 import { Text } from "@medusajs/ui"
 import { FaFacebook, FaInstagram, FaEnvelope, FaXTwitter } from "react-icons/fa6";
+import { FaTiktok } from "react-icons/fa";
 
 const MedusaCTA = () => {
   return (
@@ -22,6 +23,11 @@ const MedusaCTA = () => {
         <li className="list-none">
           <a href="mailto:vapezonekenya@gmail.com" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
             <FaEnvelope className="hover:text-red-500" />
+          </a>
+        </li>
+        <li className="list-none">
+          <a href="tiktok.com/@vapezonekenya" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
+            <FaTiktok className="hover:text-red-500" />
           </a>
         </li>
     </div>
