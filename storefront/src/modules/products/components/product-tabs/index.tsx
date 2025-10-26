@@ -64,10 +64,10 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
                   <p {...props} className="text-slate-600 " />
                 ),
                 ul: ({ node, ...props }) => (
-                  <ul {...props} className="list-disc pl-5 text-slate-600 space-y-1" />
+                  <ul {...props} className="list-disc pl-5 text-slate-600" />
                 ),
                 li: ({ node, ...props }) => (
-                  <li {...props} className="my-1" />
+                  <li {...props} className="" />
                 ),
                 strong: ({ node, ...props }) => (
                   <strong {...props} className="font-semibold text-slate-700" />
@@ -105,7 +105,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 const ShippingInfoTab = () => {
   return (
     <div className="py-6 px-6 bg-white">
-      <div className="grid grid-cols-1 gap-y-8">
+      <div className="grid grid-cols-1 gap-y-8 text-small-regular">
         <div className="flex items-start gap-x-4 p-4 rounded-xl bg-blue-50/50 hover:bg-blue-50 transition-colors duration-200">
           <div className="p-2.5 bg-blue-100 rounded-lg flex-shrink-0">
             <FastDelivery className="text-blue-600 w-5 h-5" />
@@ -120,7 +120,7 @@ const ShippingInfoTab = () => {
         </div>
         <div className="flex items-start gap-x-4 p-4 rounded-xl bg-green-50/50 hover:bg-green-50 transition-colors duration-200">
           <div className="p-2.5 bg-green-100 rounded-lg flex-shrink-0">
-            <Refresh className="text-green-600 w-5 h-5" />
+            <Refresh className="text-blue-600 w-5 h-5" />
           </div>
           <div>
             <span className="font-semibold text-slate-800 block mb-2">Simple exchanges</span>
@@ -132,7 +132,7 @@ const ShippingInfoTab = () => {
         </div>
         <div className="flex items-start gap-x-4 p-4 rounded-xl bg-amber-50/50 hover:bg-amber-50 transition-colors duration-200">
           <div className="p-2.5 bg-amber-100 rounded-lg flex-shrink-0">
-            <Back className="text-amber-600 w-5 h-5" />
+            <Back className="text-blue-600 w-5 h-5" />
           </div>
           <div>
             <span className="font-semibold text-slate-800 block mb-2">Easy returns</span>

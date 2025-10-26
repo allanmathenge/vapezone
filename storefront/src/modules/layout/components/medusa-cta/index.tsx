@@ -26,7 +26,7 @@ const MedusaCTA = () => {
           </a>
         </li>
         <li className="list-none">
-          <a href="tiktok.com/@vapezonekenya" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
+          <a href="https://tiktok.com/@vapezonekenya" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
             <FaTiktok className="hover:text-red-500" />
           </a>
         </li>
