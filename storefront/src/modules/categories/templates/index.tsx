@@ -177,13 +177,13 @@ export default function CategoryTemplate({
                     h2: ({ node, ...props }) => (
                       <h2
                         {...props}
-                        className="text-blue-600 font-bold text-xl"
+                        className="text-slate-600 font-bold text-xl"
                       />
                     ),
                     h3: ({ node, ...props }) => (
                       <h3
                         {...props}
-                        className="text-blue-500 font-semibold text-lg"
+                        className="text-slate-500 font-semibold text-lg"
                       />
                     ),
                     p: ({ node, ...props }) => (
@@ -195,7 +195,7 @@ export default function CategoryTemplate({
                     a: ({ node, ...props }) => (
                       <a
                         {...props}
-                        className="underline text-blue-600 hover:text-blue-800"
+                        className="underline text-slate-600 hover:text-slate-800"
                       />
                     ),
                   }}
