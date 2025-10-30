@@ -66,4 +66,6 @@ Remember: Extremely low prices are often a red flag for counterfeit goods. If a 
 The Kenyan vaping market is vibrant and expanding. You can safely and easily buy quality products from established online stores or physical shops in major cities.
 By choosing a reputable seller, you’re not just buying a product; you’re investing in a safer, more enjoyable experience and getting the support you need to make the switch successfully.
 
-Ready to explore? Check out our carefully curated selection of [Beginner Kits and E-Liquids](https://www.vapezone.co.ke/ke/collections/pod-devices)—all 100% authentic, with clear pricing and reliable delivery across Kenya.
+Ready to explore? Check out our carefully curated selection of [Beginner Kits and E-Liquids](https://www.vapezone.co.ke/ke/collections/pod-devices)—all 100% authentic, with clear pricing and reliable delivery across Kenya. 
+
+While you could be interested in drinks, explore your favourite taste and brand of top spirits, premium wines and tequila at [Drinks Zone](https://drinkszone.co.ke/)

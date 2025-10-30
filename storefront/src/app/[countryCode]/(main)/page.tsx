@@ -98,8 +98,8 @@ export default async function Home({
             <meta itemProp="addressCountry" content="KE" />
           </div>
           
-          <h1 className="text-center font-light text-xl sm:text-2xl tracking-wide my-4">
-            TRENDING
+          <h1 className="text-center font-semibold text-xl sm:text-2xl tracking-wide mt-4">
+            Featured Products
           </h1>
           <ul className="flex flex-col gap-x-6">
             <FeaturedProducts collections={collections} region={region} />
