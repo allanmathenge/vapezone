@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const url = `https://www.vapezone.co.ke/ke/categories/${params.category.join("/")}`
 
     return {
-      title: `Shop ${title} – Best Vapes in Kenya`,
+      title: `Shop ${title} - Affordable Prices & Delivery Nairobi`,
       description,
       alternates: {
         canonical: url,

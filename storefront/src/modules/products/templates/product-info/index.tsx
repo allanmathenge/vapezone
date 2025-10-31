@@ -103,8 +103,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
 
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-ui-border-base">
-      <div className="space-y-6">
-        {/* Collection */}
+      <div className="small:space-y-6 space-y-3">
         {product.collection && (
           <InfoSection title="Collection">
             <LocalizedClientLink
@@ -174,7 +173,6 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                         </span>
                       )}
                     </div>
-                    
                     <div className="mt-2 space-y-1">
                       {variant.manage_inventory && variantInStock && !variant.allow_backorder && (
                         <div className="text-xs text-ui-fg-muted">
