@@ -103,7 +103,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
 
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-ui-border-base">
-      <div className="small:space-y-6 space-y-3">
+      <div className="small:space-y-6 space-y-3 text-slate-600">
         {product.collection && (
           <InfoSection title="Collection">
             <LocalizedClientLink
@@ -118,7 +118,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
         <InfoSection title="Product">
           <Heading
             level="h1"
-            className="text-ui-fg-base font-light text-xl leading-tight"
+            className="text-ui-fg-base font-light text-lg leading-tight"
             data-testid="product-title"
           >
             {product.title}
@@ -155,7 +155,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                     key={variant.id} 
                     className={`
                       relative rounded-lg px-4 py-3 text-sm transition-all duration-200 cursor-pointer
-                      border-2
+                      border-2 flex flex-col
                       ${isSelected 
                         ? 'bg-blue-50 border-blue-500 shadow-sm' 
                         : 'bg-ui-bg-component hover:bg-ui-bg-component-hover border-ui-border-base hover:border-ui-border-interactive'

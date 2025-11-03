@@ -20,7 +20,7 @@ export default async function Nav() {
 
   return (
     <NavbarWrapper>
-      <div className="bg-white/95 backdrop-blur-md shadow-sm hover:shadow-md">
+      <div className="bg-white/95 backdrop-blur-md shadow-sm hover:shadow">
         <header className="relative h-14 mx-auto">
           <nav className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full h-full">
 
@@ -31,7 +31,7 @@ export default async function Nav() {
               </div>
               <LocalizedClientLink
                 href="/"
-                className="flex items-center transition-transform hover:scale-105"
+                className="flex items-center"
               >
                 <Image
                   src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
@@ -40,7 +40,7 @@ export default async function Nav() {
                   height={20}
                   className="rounded-full"
                 />
-                <span className="text-sm sm:text-xl font-bold tracking-tight bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+                <span className="text-sm sm:text-lg font-bold tracking-tight bg-gradient-to-r text-nowrap overflow-hidden from-slate-500 to-slate-700 bg-clip-text text-transparent">
                   Vapezone Kenya
                 </span>
               </LocalizedClientLink>
@@ -110,9 +110,9 @@ export default async function Nav() {
                   >
                     {/* Larger search icon with improved visibility */}
                     <div className="absolute left-3 flex items-center justify-center h-5 w-5 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors">
-                      <IoSearch className="h-3.5 w-3.5 text-blue-600" />
+                      <IoSearch className="h-3.5 w-3.5 text-slate-600" />
                     </div>
-                    <span className="flex w-48 flex-1 items-center pl-11 pr-4 py-2 rounded-full bg-slate-100 text-sm cursor-text overflow-hidden transition-all hover:w-52">
+                    <span className="flex w-48 flex-1 items-center pl-11 pr-4 py-2 rounded-full bg-slate-100 text-sm overflow-hidden">
                       Search products...
                     </span>
                   </LocalizedClientLink>
@@ -121,24 +121,24 @@ export default async function Nav() {
 
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                 <LocalizedClientLink
-                  className="md:hidden text-slate-600 hover:text-blue-600 transition-colors p-2 rounded-full hover:bg-slate-100 flex items-center justify-center"
+                  className="md:hidden text-slate-600 hover:text-slate-600 transition-colors p-2 rounded-full hover:bg-slate-100 flex items-center justify-center"
                   href="/search"
                   scroll={false}
                   data-testid="nav-search-link"
                 >
                   <div className="relative flex items-center justify-center h-7 w-7 bg-blue-100 rounded-full">
-                    <IoSearch className="h-4 w-4 text-blue-600" />
+                    <IoSearch className="h-4 w-4 text-slate-600" />
                   </div>
                 </LocalizedClientLink>
               )}
 
               {/* Account */}
               <LocalizedClientLink
-                className="text-slate-600 hover:text-blue-600 transition-colors rounded-full hover:bg-slate-100"
+                className="text-slate-600 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100"
                 href="/account"
                 data-testid="nav-account-link"
               >
-                <FaUser className="h-4 w-4 text-blue-600" />
+                <FaUser className="h-4 w-4 text-slate-600" />
               </LocalizedClientLink>
 
               {/* Cart */}
@@ -146,13 +146,13 @@ export default async function Nav() {
                 <Suspense
                   fallback={
                     <LocalizedClientLink
-                      className="text-slate-600 hover:text-blue-600 transition-colors flex items-center p-2 rounded-full hover:bg-slate-100"
+                      className="text-slate-600 hover:text-slate-600 transition-colors flex items-center p-2 rounded-full hover:bg-slate-100"
                       href="/cart"
                       data-testid="nav-cart-link"
                     >
                       <div className="relative">
-                        <FaShoppingCart className="h-4 w-4 text-blue-600" />
-                        <span className="absolute -top-3 -right-3 bg-blue-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                        <FaShoppingCart className="h-4 w-4 text-slate-600" />
+                        <span className="absolute -top-3 -right-3 bg-slate-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
                       </div>
                     </LocalizedClientLink>
                   }
