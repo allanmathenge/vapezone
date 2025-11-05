@@ -8,7 +8,7 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
 
   return (
     <>
-      <div className="flex flex-wrap ml-3 items-center">
+      <div className="flex flex-wrap gap-x-1 items-center">
         {price.price_type === "sale" && (
         <Text
           data-testid="original-price"

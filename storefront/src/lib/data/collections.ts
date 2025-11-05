@@ -28,7 +28,7 @@ export const getCollectionByHandle = cache(async function (
 
 export const getCollectionsWithProducts = cache(
   async (countryCode: string): Promise<HttpTypes.StoreCollection[] | null> => {
-    const { collections } = await getCollectionsList(0, 3) //initially the collections were limited to 3
+    const { collections } = await getCollectionsList() // was 0, 3 initially
 
     if (!collections) {
       return null
@@ -57,6 +57,6 @@ export const getCollectionsWithProducts = cache(
       }
     })
 
-    return collections as unknown as HttpTypes.StoreCollection[]
+    return collections.reverse() as unknown as HttpTypes.StoreCollection[]
   }
 )
