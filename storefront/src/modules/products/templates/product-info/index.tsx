@@ -3,25 +3,6 @@ import { Heading, Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { useMemo } from "react"
 
-const countryCodeMap = {
-  'cn': 'China',
-  'us': 'United States',
-  'gb': 'United Kingdom',
-  'fr': 'France',
-  'de': 'Germany',
-  'jp': 'Japan',
-  'br': 'Brazil',
-  'ae': 'United Arab Emirates',
-  'my': 'Malaysia',
-  'kr': 'South Korea',
-  'kp': 'North Korea',
-};
-
-function getCountryName(countryCode: string | null | undefined): string {
-  if (!countryCode) return "-"
-  return countryCodeMap[countryCode as keyof typeof countryCodeMap] || countryCode
-}
-
 type ProductInfoProps = {
   product: HttpTypes.StoreProduct
   selectedVariant?: HttpTypes.StoreProductVariant
@@ -216,9 +197,9 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
         </div>
 
         {/* Country Of Origin */}
-        <InfoSection title="Country of Origin">
+        <InfoSection title="Type">
           <Text className="text-ui-fg-base font-medium text-sm">
-            {getCountryName(product.origin_country)}
+            {product.type ? product.type.value : "-"}
           </Text>
         </InfoSection>
       </div>

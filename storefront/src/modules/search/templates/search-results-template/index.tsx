@@ -26,7 +26,7 @@ const SearchResultsTemplate = ({
 
   return (
     <>
-      <div className="flex justify-between border-b w-full py-6 px-8 small:px-14 items-center">
+      <div className="flex justify-between border-b w-full mt-12 py-6 px-8 small:px-14 items-center">
         <div className="flex flex-col items-start">
           <Text className="text-ui-fg-muted">Search Results for:</Text>
           <Heading>

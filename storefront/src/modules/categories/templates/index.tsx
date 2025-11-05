@@ -127,7 +127,7 @@ export default function CategoryTemplate({
         <RefinementList sortBy={sort} data-testid="sort-by-container" />
 
         <div className="w-full">
-          <div className="flex flex-row mb-4 text-2xl-semi gap-4">
+          <div className="flex bg-blue-100 flex-row pb-4 text-2xl-semi gap-4">
             {parents &&
               parents.map((parent) => (
                 <span key={parent.id} className="text-ui-fg-subtle">
@@ -136,12 +136,12 @@ export default function CategoryTemplate({
                     href={`/categories/${parent.handle}`}
                     data-testid="sort-by-link"
                   >
-                    {parent.name}
+                    {parent.parent_category?.name}
                   </LocalizedClientLink>
                   /
                 </span>
               ))}
-            <h1 className="text-xl sm:text-2xl text-slate-600" data-testid="category-page-title">{`${category.name} - Affordable Prices | Fast Delivery`}</h1>
+            <h1 className="text-xl sm:text-2xl text-slate-600" data-testid="category-page-title">{`${category.name}`}</h1>
           </div>
 
           {category.category_children && (

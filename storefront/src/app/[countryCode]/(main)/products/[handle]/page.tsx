@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${product.title}`,
-    description: product.subtitle || `Buy ${product.title} at Vapezone Kenya. Best prices, fast delivery across Kenya.`,
+    description: product.subtitle || product.description,
     alternates: {
       canonical: canonicalUrl,
     },

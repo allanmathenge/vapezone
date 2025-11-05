@@ -16,8 +16,8 @@ export default async function Footer() {
           <div className="flex flex-col gap-y-16">
             {product_categories?.length > 0 && (
               <section className="">
-                <div className="flex flex-col items-center mb-12">
-                  <h2 className="text-2xl font-light text-slate-800 mb-3 tracking-wide">Explore Our Categories</h2>
+                <div className="flex flex-col items-center mb-6">
+                  <h2 className="text-2xl font-light text-slate-800 mb-3 tracking-wide">Brands</h2>
                   <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </div>
                 {product_categories?.length > 0 && (
@@ -37,7 +37,7 @@ export default async function Footer() {
                             >
                               <LocalizedClientLink
                                 href={`/categories/${c.handle}`}
-                                className="text-base font-normal tracking-wide text-gray-800 mb-3 group-hover:text-blue-700 transition-colors duration-200 flex items-center"
+                                className="text-base font-medium tracking-wide text-gray-800 group-hover:text-blue-700 transition-colors duration-200 flex items-center"
                                 data-testid="category-link"
                               >
                                 <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-200"></span>
@@ -49,7 +49,7 @@ export default async function Footer() {
                                     <li key={child.id}>
                                       <LocalizedClientLink
                                         href={`/categories/${child.handle}`}
-                                        className="text-sm font-thin text-gray-600 hover:text-blue-900 transition-colors duration-200 block"
+                                        className="text-sm text-ui-fg-subtle text-nowrap overflow-hidden text-ellipsis text-gray-600 hover:text-blue-900 transition-colors duration-200 block"
                                         data-testid="category-link"
                                       >
                                         {child.name}
@@ -73,14 +73,14 @@ export default async function Footer() {
                   <h3 className="text-lg font-light text-slate-800 tracking-wide text-nowrap overflow-hidden">Vapezone Kenya</h3>
                   <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </div>
-                <p className="hidden sm:flex text-gray-600 text-sm mb-4">
-                  Premium vaping products and accessories. Call/Text/Whatsapp us: 0798769535.
-                </p>
+                
                 <div className="flex flex-col space-y-2 mt-2">
-                  <div className="flex flex-col sm:flex-row gap-2">
-                    <span className="text-sm font-medium text-gray-900">Call/Text/Whatsapp: 0798769535</span>
-                    <span className="text-sm font-medium text-gray-900">M-Pesa • Buy Goods</span>
-                    <span className="text-sm font-medium text-gray-900">Till No: 3763670</span>
+                  <div className="flex flex-col text-blue-900">
+                    <span className="text-sm font-medium">Call • Text • Whatsapp: 0798769535</span>
+                    <div className="flex-col sm:flex-row gap-1">
+                      <span className="text-sm font-medium">M-Pesa • Buy Goods • </span>
+                      <span className="text-sm font-medium">Till No: 3763670</span>
+                    </div>
                   </div>
                   <span className="text-xs text-gray-500 mt-1">Secure mobile payments powered by Safaricom</span>
                 </div>
@@ -94,7 +94,7 @@ export default async function Footer() {
                     <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                   </div>
                   <ul className="">
-                    {collections.slice(0, 6).map((c) => (
+                    {collections.map((c) => (
                       <li key={c.id}>
                         <LocalizedClientLink
                           href={`/collections/${c.handle}`}
@@ -112,7 +112,7 @@ export default async function Footer() {
               {product_categories?.length > 0 && (
                 <div className="flex flex-col">
                   <div className="flex flex-col mb-3">
-                    <h3 className="text-lg font-light text-slate-800 tracking-wide">Categories</h3>
+                    <h3 className="text-lg font-light text-slate-800 tracking-wide">Brands</h3>
                     <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                   </div>
                   <ul className="">

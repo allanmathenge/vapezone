@@ -89,13 +89,6 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             </span>
             <p className="text-slate-600 pl-3.5">{product.material ? product.material : "-"}</p>
           </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
-              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-              Type
-            </span>
-            <p className="text-slate-600 pl-3.5">{product.type ? product.type.value : "-"}</p>
-          </div>
         </div>
       </div>
     </div>
