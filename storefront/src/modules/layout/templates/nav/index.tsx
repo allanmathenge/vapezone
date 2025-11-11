@@ -22,7 +22,7 @@ export default async function Nav() {
     <NavbarWrapper>
       <div className="bg-white/95 backdrop-blur-md shadow-sm hover:shadow">
         <header className="relative h-14 mx-auto">
-          <nav className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full h-full">
+          <nav className="max-w-screen-2xl mx-auto px-1 sm:px-3 lg:px-4 flex items-center justify-between w-full h-full">
 
             {/* Left section - Logo and mobile menu */}
             <div className="flex items-center sm:flex-none">
@@ -40,9 +40,17 @@ export default async function Nav() {
                   height={20}
                   className="rounded-full"
                 />
-                <span className="text-sm sm:text-lg font-bold tracking-tight bg-gradient-to-r text-nowrap overflow-hidden from-slate-500 to-slate-700 bg-clip-text text-transparent">
-                  Vapezone Kenya
-                </span>
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                href="/"
+                className="flex items-center"
+              >
+                <Image
+                  src="https://res.cloudinary.com/dfndhiz82/image/upload/v1762839455/image_e17lpr.png"
+                  alt="Logo"
+                  width={100}
+                  height={20}
+                />
               </LocalizedClientLink>
             </div>
 
@@ -121,7 +129,7 @@ export default async function Nav() {
 
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                 <LocalizedClientLink
-                  className="md:hidden text-slate-600 hover:text-slate-600 transition-colors p-2 rounded-full hover:bg-slate-100 flex items-center justify-center"
+                  className="md:hidden text-slate-600 hover:text-slate-600 transition-colors p-1 rounded-full hover:bg-slate-100 flex items-center justify-center"
                   href="/search"
                   scroll={false}
                   data-testid="nav-search-link"
@@ -142,11 +150,11 @@ export default async function Nav() {
               </LocalizedClientLink>
 
               {/* Cart */}
-              <div className="flex items-center p-2">
+              <div className="flex items-center pl-1">
                 <Suspense
                   fallback={
                     <LocalizedClientLink
-                      className="text-slate-600 hover:text-slate-600 transition-colors flex items-center p-2 rounded-full hover:bg-slate-100"
+                      className="text-slate-600 hover:text-slate-600 transition-colors flex items-center pl-1 rounded-full hover:bg-slate-100"
                       href="/cart"
                       data-testid="nav-cart-link"
                     >

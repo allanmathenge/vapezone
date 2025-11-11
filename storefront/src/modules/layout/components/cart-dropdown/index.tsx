@@ -84,7 +84,7 @@ const CartDropdown = ({
             data-testid="nav-cart-link"
           >
             <FaShoppingCart className="text-slate-600" />
-            <span className="-mt-4 w-3 h-3 rounded-full flex text-blue-800 items-center justify-center">{`${totalItems}`}</span>
+            <span className="-mt-4 w-3 h-3 rounded-full flex text-blue-600 items-center justify-center">{`${totalItems}`}</span>
           </LocalizedClientLink>
         </Popover.Button>
         <Transition

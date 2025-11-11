@@ -6,9 +6,8 @@ import PlaceholderImage from "@modules/common/icons/placeholder-image"
 
 type ThumbnailProps = {
   thumbnail?: string | null
-  // TODO: Fix image typings
   images?: any[] | null
-  size?: "small" | "medium" | "large" | "full" | "square"
+  size?: "small" | "medium" | "large" | "full" | "square" | "desktop"
   isFeatured?: boolean
   className?: string
   "data-testid"?: string
@@ -31,12 +30,14 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         className,
         {
           "aspect-[11/14]": isFeatured,
-          "aspect-[9/16]": !isFeatured && size !== "square",
+          "aspect-[9/16]": !isFeatured && size !== "square" && size !== "desktop",
           "aspect-[1/1]": size === "square",
+          "aspect-[5/3]": size === "desktop", // SIGNIFICANTLY SHORTER - much wider than tall
           "w-[180px]": size === "small",
-          "w-[290px]": size === "medium",
+          "w-[290px]": size === "medium", 
           "w-[440px]": size === "large",
-          "w-full": size === "full",
+          "w-full": size === "full" || size === "desktop",
+          "max-w-[450px]": size === "desktop",
         }
       )}
       data-testid={dataTestid}
@@ -53,16 +54,22 @@ const ImageOrPlaceholder = ({
   return image ? (
     <Image
       src={image}
-      alt="Thumbnail"
+      alt="Product image"
       className="absolute inset-0 object-cover object-center"
       draggable={false}
-      quality={50}
-      sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
+      quality={80}
+      sizes={`
+        (max-width: 640px) 280px,
+        (max-width: 768px) 360px, 
+        (max-width: 1024px) 480px,
+        (min-width: 1025px) 450px
+      `}
       fill
+      priority={size === "desktop" || size === "large"}
     />
   ) : (
-    <div className="w-full h-full absolute inset-0 flex items-center justify-center">
-      <PlaceholderImage size={size === "small" ? 16 : 24} />
+    <div className="w-full h-full absolute inset-0 flex items-center justify-center bg-ui-bg-subtle-hover">
+      <PlaceholderImage size={size === "small" ? 16 : size === "desktop" ? 24 : 20} />
     </div>
   )
 }
