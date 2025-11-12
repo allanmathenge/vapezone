@@ -145,7 +145,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                     `}
                   >
                     <div className="flex justify-between items-start">
-                      <span className={`font-medium ${isSelected ? 'text-blue-900' : 'text-ui-fg-base'}`}>
+                      <span className={`font-thin ${isSelected ? 'text-blue-900' : 'text-ui-fg-base'}`}>
                         {variant.title}
                       </span>
                       {!variantInStock && (
@@ -161,7 +161,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                         </div>
                       )}
                       {variant.allow_backorder && (
-                        <div className="text-xs text-blue-600 font-medium">
+                        <div className="text-xs text-blue-600 font-thin">
                           ✓ Backorder available
                         </div>
                       )}

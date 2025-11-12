@@ -36,7 +36,6 @@ export default function ProductRail({
     if (!aInStock && bInStock) return 1
     return 0
   })
-  console.log(sortedProducts.slice(0,2), "Sorted Products")
 
 
   return (
