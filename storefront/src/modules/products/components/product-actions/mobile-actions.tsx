@@ -116,7 +116,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   onClick={open}
                   disabled={optionsDisabled}
                   variant="secondary"
-                  className="flex-1 h-10"
+                  className="flex-1"
                 >
                   {variantText}
                 </Button>
@@ -192,7 +192,6 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 <div className="max-h-[60vh] overflow-y-auto p-4">
                   {(product.options || []).map((option) => (
                     <div key={option.id} className="mb-4">
-                      <Text className="font-medium mb-2">{option.title}</Text>
                       <OptionSelect
                         option={option}
                         current={options[option.title ?? ""]}

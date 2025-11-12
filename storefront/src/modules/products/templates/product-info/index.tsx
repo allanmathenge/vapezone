@@ -135,26 +135,26 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                   <div 
                     key={variant.id} 
                     className={`
-                      relative rounded-lg px-4 py-3 text-sm transition-all duration-200 cursor-pointer
-                      border-2 flex flex-col
+                      relative rounded-lg px-4 py-1 text-sm transition-all duration-200
+                      border-2 hidden small:flex flex-col space-y-1
                       ${isSelected 
                         ? 'bg-blue-50 border-blue-500 shadow-sm' 
-                        : 'bg-ui-bg-component hover:bg-ui-bg-component-hover border-ui-border-base hover:border-ui-border-interactive'
+                        : 'border-ui-border-base hover:border-ui-border-interactive'
                       }
                       ${!variantInStock ? 'opacity-50 grayscale' : ''}
                     `}
                   >
-                    <div className="flex justify-between items-start">
-                      <span className={`font-thin ${isSelected ? 'text-blue-900' : 'text-ui-fg-base'}`}>
+                    <div className="flex justify-between items-center">
+                      <span className={`font-thin  ${isSelected ? 'text-blue-800' : 'text-ui-fg-base'}`}>
                         {variant.title}
                       </span>
                       {!variantInStock && (
-                        <span className="text-xs text-rose-600 font-medium px-2 py-1 bg-rose-50 rounded-full">
+                        <span className="text-xs text-rose-600 font-thin px-2 rounded-full">
                           Out of stock
                         </span>
                       )}
                     </div>
-                    <div className="mt-2 space-y-1">
+                    <div className="">
                       {variant.manage_inventory && variantInStock && !variant.allow_backorder && (
                         <div className="text-xs text-ui-fg-muted">
                           {variant.inventory_quantity} units available
