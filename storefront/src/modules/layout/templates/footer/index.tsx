@@ -27,6 +27,7 @@ export default async function Footer() {
                       data-testid="footer-categories"
                     >
                       {product_categories
+                        .reverse()
                         .filter((c) => !c.parent_category)
                         .map((c) => {
                           const children = c.category_children || []
