@@ -6,7 +6,7 @@ import type { WithContext, Organization, SearchAction } from "schema-dts";
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
   title: {
-    default: "Vapezone Kenya | Premium Vapes & Accessories, Fast Delivery",
+    default: "Vapezone Kenya | Buy Vapes & Vape Accessories Online In Kenya With Fast Delivery",
     template: "%s | Vapezone Kenya"
   },
   description: "Vapezone Kenya is your number One online vape shop. Explore premium vapes, e-liquids, pods & accessories at the best prices. Fast delivery in Nairobi & across Kenya.",
@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     locale: 'en_KE',
     url: 'https://www.vapezone.co.ke/',
     siteName: 'Vapezone Kenya',
-    title: 'Vapezone Kenya | Premium Vapes & Accessories, Fast Delivery',
+    title: 'Vapezone Kenya | Buy Premium Vapes & Accessories In Kenya, Fast Delivery',
     description: 'Vapezone Kenya is your number One online vape shop. Explore premium vapes, e-liquids, pods & accessories at the best prices.',
     images: [
       {
         url: 'https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg',
         width: 1200,
         height: 630,
-        alt: 'Vapezone Kenya - Premium Vape Shop',
+        alt: 'Vapezone Kenya - Premium Vape Shop In Kenya',
       },
     ],
   },

@@ -6,14 +6,14 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Premium Vapes, E-Liquids & Accessories Nairobi",
+  title: "Buy Vapes, E-Liquids & Accessories Online In Nairobi",
   description: "Kenya's premier vape shop in Nairobi. Buy premium vaping devices, flavored e-liquids, pods, coils & accessories. Fast delivery, expert advice, affordable prices. Shop top vape brands with reliable service for vaping enthusiasts.",
   keywords: "vapes nairobi, e-liquids kenya, vaping accessories, vape shop nairobi, disposable vapes, vape devices kenya",
   alternates: {
     canonical: "https://www.vapezone.co.ke/",
   },
   openGraph: {
-    title: "Vapezone Kenya | Premium Vapes & E-Liquids in Nairobi",
+    title: "Vapezone Kenya | Buy Vapes & E-Liquids in Nairobi",
     description: "Your ultimate vaping destination in Kenya - Premium devices, rich e-liquids & expert service",
     url: "https://www.vapezone.co.ke/",
     siteName: "Vapezone Kenya",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: "https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg",
         width: 1200,
         height: 630,
-        alt: "Vapezone Kenya - Premium Vaping Products",
+        alt: "Vapezone Kenya - Buy Vaping Products Online In Kenya",
       },
     ],
     locale: "en_KE",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vapezone Kenya | Premium Vapes & E-Liquids",
+    title: "Vapezone Kenya | Buy Vapes, E-Liquids & Vape Accessories",
     description: "Kenya's premier vape shop for devices, e-liquids & accessories",
     images: ["https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg"],
   },
@@ -53,7 +53,7 @@ function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'VapeStore',
     name: 'Vapezone Kenya',
-    description: 'Premium vape shop in Nairobi, Kenya',
+    description: 'Premium Online vape shop in Nairobi, Kenya',
     url: 'https://www.vapezone.co.ke/',
     telephone: '+254-0798-769535',
     address: {
@@ -92,7 +92,7 @@ export default async function Home({
       <div>
         <div itemScope itemType="https://schema.org/Store">
           <meta itemProp="name" content="Vapezone Kenya" />
-          <meta itemProp="description" content="Premium vape shop in Nairobi, Kenya" />
+          <meta itemProp="description" content="Online Vape Shop In Nairobi, Kenya" />
           <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
             <meta itemProp="addressLocality" content="Nairobi" />
             <meta itemProp="addressCountry" content="KE" />

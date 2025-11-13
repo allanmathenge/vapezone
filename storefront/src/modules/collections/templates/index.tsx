@@ -85,9 +85,6 @@ export default function CollectionTemplate({
   }
 
   const structuredData = generateStructuredData()
-
-  console.log(collection, "Collection <<<----------------")
-
   return (
     <>
       <Head>
