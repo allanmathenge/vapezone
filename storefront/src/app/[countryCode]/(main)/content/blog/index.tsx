@@ -12,10 +12,6 @@ interface BlogListProps {
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   const categories = [
     "All",
-    "Beginner Guides",
-    "Device Reviews",
-    "E-Liquid & Flavors",
-    "Troubleshooting",
     "Industry News",
   ]
 

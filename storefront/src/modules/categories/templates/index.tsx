@@ -50,8 +50,8 @@ export default function CategoryTemplate({
           "@type": "ListItem",
           "position": parents.length + 2,
           "name": category.name,
-          "item": typeof window !== 'undefined' 
-            ? window.location.href 
+          "item": typeof window !== 'undefined'
+            ? window.location.href
             : `https://www.vapezone.co.ke/ke/categories/${category.handle}`
         }
       ]
@@ -62,11 +62,11 @@ export default function CategoryTemplate({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "name": category.name,
-      "description": category.description 
+      "description": category.description
         ? category.description.replace(/<[^>]*>/g, '').substring(0, 160)
         : `${category.name} - Vape Products at Vapezone Kenya`,
-      "url": typeof window !== 'undefined' 
-        ? window.location.href 
+      "url": typeof window !== 'undefined'
+        ? window.location.href
         : `https://www.vapezone.co.ke/ke/categories/${category.handle}`,
       "breadcrumb": breadcrumbSchema,
       "mainEntity": {
@@ -82,11 +82,11 @@ export default function CategoryTemplate({
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": category.name,
-      "description": category.description 
+      "description": category.description
         ? category.description.replace(/<[^>]*>/g, '').substring(0, 160)
         : `${category.name} - Vape Products at Vapezone Kenya`,
-      "url": typeof window !== 'undefined' 
-        ? window.location.href 
+      "url": typeof window !== 'undefined'
+        ? window.location.href
         : `https://www.vapezone.co.ke/ke/categories/${category.handle}`,
       "breadcrumb": breadcrumbSchema,
       "mainEntity": {
@@ -168,34 +168,52 @@ export default function CategoryTemplate({
           </Suspense>
           {category.description && (
             <div
-              className="text-medium text-ui-fg-subtle text-small-regular rounded my-5 shadow p-3 whitespace-pre-line"
+              className="bg-white rounded-xl border border-gray-100 p-6 my-6 shadow-sm"
               data-testid="category-description"
             >
-              <div className="prose prose-blue max-w-none">
+              <div className="prose text-ui-fg-subtle prose-gray max-w-none">
                 <ReactMarkdown
                   components={{
                     h2: ({ node, ...props }) => (
                       <h2
                         {...props}
-                        className="text-slate-600 font-bold text-xl"
+                        className="text-gray-800 font-semibold mb-4 mt-6"
                       />
                     ),
                     h3: ({ node, ...props }) => (
                       <h3
                         {...props}
-                        className="text-slate-500 font-semibold text-lg"
+                        className="text-gray-700 font-semibold mb-3 mt-5"
                       />
                     ),
                     p: ({ node, ...props }) => (
                       <p
                         {...props}
-                        className="text-gray-700 leading-relaxed"
+                        className="text-gray-600 leading-relaxed mb-4"
+                      />
+                    ),
+                    ul: ({ node, ...props }) => (
+                      <ul
+                        {...props}
+                        className="text-gray-600 space-y-2 mb-4 list-inside"
+                      />
+                    ),
+                    ol: ({ node, ...props }) => (
+                      <ol
+                        {...props}
+                        className="text-gray-600 space-y-2 mb-4 list-decimal list-inside"
+                      />
+                    ),
+                    li: ({ node, ...props }) => (
+                      <li
+                        {...props}
+                        className="text-gray-600 space-y-2 mb-4 list-decimal list-inside leading-relaxed"
                       />
                     ),
                     a: ({ node, ...props }) => (
                       <a
                         {...props}
-                        className="underline text-slate-600 hover:text-slate-800"
+                        className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
                       />
                     ),
                   }}
