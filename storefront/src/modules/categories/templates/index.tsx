@@ -170,7 +170,7 @@ export default function CategoryTemplate({
               className="bg-white rounded-xl border border-gray-100 p-6 my-6 shadow-sm"
               data-testid="category-description"
             >
-              <div className="prose text-ui-fg-subtle prose-gray max-w-none">
+              <div className="prose text-ui-fg-subtle txt-compact-medium prose-gray max-w-none">
                 <ReactMarkdown
                   components={{
                     h2: ({ node, ...props }) => (
@@ -194,19 +194,19 @@ export default function CategoryTemplate({
                     ul: ({ node, ...props }) => (
                       <ul
                         {...props}
-                        className="text-gray-600 space-y-2 mb-4 list-inside"
+                        className="text-gray-600 space-y-2 mb-4 list-disc list-inside"
                       />
                     ),
                     ol: ({ node, ...props }) => (
                       <ol
                         {...props}
-                        className="text-gray-600 space-y-2 mb-4 list-decimal list-inside"
+                        className="text-gray-600 space-y-2 mb-4 list-disc list-inside"
                       />
                     ),
                     li: ({ node, ...props }) => (
                       <li
                         {...props}
-                        className="text-gray-600 space-y-2 mb-4 list-decimal list-inside leading-relaxed"
+                        className="text-gray-600 space-y-2 mb-4 list-disc list-inside leading-relaxed"
                       />
                     ),
                     a: ({ node, ...props }) => (

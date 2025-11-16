@@ -89,7 +89,7 @@ export default async function Home({
     <>
       <StructuredData />
       <Hero />
-      <div>
+      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50 to-white">
         <div itemScope itemType="https://schema.org/Store">
           <meta itemProp="name" content="Vapezone Kenya" />
           <meta itemProp="description" content="Online Vape Shop In Nairobi, Kenya" />
@@ -98,7 +98,7 @@ export default async function Home({
             <meta itemProp="addressCountry" content="KE" />
           </div>
           
-          <h1 className="text-center font-semibold text-xl sm:text-2xl tracking-wide mt-4">
+          <h1 className="text-center font-semibold text-xl sm:text-2xl tracking-wide pt-4">
             Featured Products
           </h1>
           <ul className="flex flex-col gap-x-6">

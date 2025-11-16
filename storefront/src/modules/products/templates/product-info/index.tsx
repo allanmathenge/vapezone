@@ -75,7 +75,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
 
   const InfoSection = ({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) => (
     <div className={`flex flex-col space-y-2 ${className}`}>
-      <Text className="text-ui-fg-muted text-xs font-medium uppercase tracking-wider mb-1">
+      <Text className="text-ui-fg-muted font-medium uppercase tracking-wider mb-1">
         {title}
       </Text>
       {children}
@@ -83,13 +83,13 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
   )
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-ui-border-base">
+    <div className="bg-white text-small-regular rounded-xl p-6 shadow-sm border border-ui-border-base">
       <div className="small:space-y-6 space-y-3 text-slate-600">
         {product.collection && (
           <InfoSection title="Collection">
             <LocalizedClientLink
               href={`/collections/${product.collection.handle}`}
-              className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover font-medium text-sm transition-colors duration-200 hover:underline"
+              className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover font-medium transition-colors duration-200 hover:underline"
             >
               {product.collection.title}
             </LocalizedClientLink>
@@ -99,7 +99,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
         <InfoSection title="Product">
           <Heading
             level="h1"
-            className="text-ui-fg-base font-light text-lg leading-tight"
+            className="leading-tight"
             data-testid="product-title"
           >
             {product.title}
@@ -124,7 +124,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
 
         {product.variants && product.variants.length > 0 && (
           <InfoSection title={selectedVariant ? "Available Variants" : "Variants"}>
-            <div className="grid grid-cols-1 gap-2">
+            <div className="hidden small:grid grid-cols-1 gap-2">
               {product.variants.map((variant) => {
                 const isSelected = selectedVariant?.id === variant.id
                 const variantInStock = !variant.manage_inventory || 
@@ -136,7 +136,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                     key={variant.id} 
                     className={`
                       relative rounded-lg px-4 py-1 text-sm transition-all duration-200
-                      border-2 hidden small:flex flex-col space-y-1
+                      border-2 flex flex-col space-y-1
                       ${isSelected 
                         ? 'bg-blue-50 border-blue-500 shadow-sm' 
                         : 'border-ui-border-base hover:border-ui-border-interactive'
@@ -149,19 +149,19 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                         {variant.title}
                       </span>
                       {!variantInStock && (
-                        <span className="text-xs text-rose-600 font-thin px-2 rounded-full">
+                        <span className="text-rose-600 font-thin px-2 rounded-full">
                           Out of stock
                         </span>
                       )}
                     </div>
                     <div className="">
                       {variant.manage_inventory && variantInStock && !variant.allow_backorder && (
-                        <div className="text-xs text-ui-fg-muted">
+                        <div className="text-ui-fg-muted">
                           {variant.inventory_quantity} units available
                         </div>
                       )}
                       {variant.allow_backorder && (
-                        <div className="text-xs text-blue-600 font-thin">
+                        <div className="text-blue-600 font-thin">
                           ✓ Backorder available
                         </div>
                       )}
@@ -176,19 +176,27 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                 )
               })}
             </div>
+            
+            {/* Mobile variant summary */}
+            <div className="small:hidden">
+              <Text className="text-ui-fg-base">
+                {product.variants.length} variant{product.variants.length !== 1 ? 's' : ''}
+                {selectedVariant && ` • Selected: ${selectedVariant.title}`}
+              </Text>
+            </div>
           </InfoSection>
         )}
 
         {/* Product Details */}
         <div className="grid grid-cols-2 gap-4">
           <InfoSection title="Weight">
-            <Text className="text-ui-fg-base font-medium text-sm">
+            <Text className="text-ui-fg-base font-medium">
               {product.weight ? `${product.weight}g` : "-"}
             </Text>
           </InfoSection>
 
           <InfoSection title="Dimensions">
-            <Text className="text-ui-fg-base font-medium text-sm">
+            <Text className="text-ui-fg-base font-medium">
               {product.length && product.width && product.height
                 ? `${product.length} × ${product.width} × ${product.height} mm`
                 : "-"}
@@ -198,7 +206,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
 
         {/* Country Of Origin */}
         <InfoSection title="Type">
-          <Text className="text-ui-fg-base font-medium text-sm">
+          <Text className="text-ui-fg-base font-medium">
             {product.type ? product.type.value : "-"}
           </Text>
         </InfoSection>
