@@ -157,7 +157,6 @@ export default function CategoryTemplate({
               </ul>
             </div>
           )}
-
           <Suspense fallback={<SkeletonProductGrid />}>
             <PaginatedProducts
               sortBy={sort}
