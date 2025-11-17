@@ -281,44 +281,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     {...props}
                   />
                 ),
-                code: ({ node, className, ...props }) => {
-                  const isInline = !className?.includes('language-');
-                  return isInline ? (
-                    <code
-                      className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-base font-mono border border-gray-200"
-                      {...props}
-                    />
-                  ) : (
-                    <div className="relative my-8 overflow-hidden rounded-lg">
-                      <div className="absolute top-0 left-0 right-0 bg-gray-900 text-gray-100 py-2 px-4 text-sm flex justify-between items-center">
-                        <span>{className?.replace('language-', '') || 'code'}</span>
-                        <button className="text-xs text-gray-400 hover:text-gray-200">
-                          Copy
-                        </button>
-                      </div>
-                      <code
-                        className="block bg-gray-900 text-gray-100 p-5 pt-14 overflow-x-auto text-base font-mono"
-                        {...props}
-                      />
-                    </div>
-                  );
-                },
-                img: ({ node, ...props }) => {
-                  const { alt, src } = props;
-                  return (
-                    <div className="my-8 overflow-hidden rounded-lg shadow-md">
-                      <div className="relative w-full h-64 md:h-96">
-                        <Image
-                          src={src || ''}
-                          alt={alt || 'Blog image'}
-                          fill
-                          className="object-cover transition-transform duration-500 hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                        />
-                      </div>
-                    </div>
-                  );
-                },
               }}
             >
               {post.content}

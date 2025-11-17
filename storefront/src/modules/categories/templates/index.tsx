@@ -127,7 +127,7 @@ export default function CategoryTemplate({
         <RefinementList sortBy={sort} data-testid="sort-by-container" />
 
         <div className="w-full">
-          <div className="flex bg-blue-100 flex-row pb-4 text-2xl-semi gap-4">
+          <div className="flex bg-slate-100 flex-row pb-2 text-2xl-semi gap-4">
             {parents &&
               parents.map((parent) => (
                 <span key={parent.id} className="text-ui-fg-subtle">
@@ -145,7 +145,7 @@ export default function CategoryTemplate({
           </div>
 
           {category.category_children && (
-            <div className="mb-8 text-base-large">
+            <div className="mb-8 text-base-large bg-slate-100">
               <ul className="grid grid-cols-1 gap-2">
                 {category.category_children.map((c) => (
                   <li key={c.id}>
@@ -167,10 +167,10 @@ export default function CategoryTemplate({
           </Suspense>
           {category.description && (
             <div
-              className="bg-white rounded-xl border border-gray-100 p-6 my-6 shadow-sm"
+              className="bg-white rounded-xl border border-gray-100 my-6 shadow-sm"
               data-testid="category-description"
             >
-              <div className="prose text-ui-fg-subtle txt-compact-medium prose-gray max-w-none">
+              <div className="prose px-2 sm:px-6 text-ui-fg-subtle txt-compact-medium prose-gray max-w-none">
                 <ReactMarkdown
                   components={{
                     h2: ({ node, ...props }) => (
@@ -197,12 +197,7 @@ export default function CategoryTemplate({
                         className="text-gray-600 space-y-2 mb-4 list-disc list-inside"
                       />
                     ),
-                    ol: ({ node, ...props }) => (
-                      <ol
-                        {...props}
-                        className="text-gray-600 space-y-2 mb-4 list-disc list-inside"
-                      />
-                    ),
+                    
                     li: ({ node, ...props }) => (
                       <li
                         {...props}
