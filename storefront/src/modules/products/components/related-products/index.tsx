@@ -64,9 +64,6 @@ export default async function RelatedProducts({
         <h2 className="text-3xl font-light text-slate-800 mb-4">
           You Might Also Like
         </h2>
-        <p className="text-slate-500 max-w-lg text-lg">
-          Discover these carefully curated items that complement your selection perfectly.
-        </p>
       </div>
 
       <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-3 gap-y-4">

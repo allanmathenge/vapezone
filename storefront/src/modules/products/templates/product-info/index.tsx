@@ -15,7 +15,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
       if (selectedVariant.allow_backorder) return true
       return (selectedVariant.inventory_quantity || 0) > 0
     }
-    
+
     return product.variants?.some(variant =>
       !variant.manage_inventory ||
       variant.allow_backorder ||
@@ -95,7 +95,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
             </LocalizedClientLink>
           </InfoSection>
         )}
-        
+
         <InfoSection title="Product">
           <Heading
             level="h1"
@@ -127,18 +127,18 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
             <div className="hidden small:grid grid-cols-1 gap-2">
               {product.variants.map((variant) => {
                 const isSelected = selectedVariant?.id === variant.id
-                const variantInStock = !variant.manage_inventory || 
-                  variant.allow_backorder || 
+                const variantInStock = !variant.manage_inventory ||
+                  variant.allow_backorder ||
                   (variant.inventory_quantity || 0) > 0
-                
+
                 return (
-                  <div 
-                    key={variant.id} 
+                  <div
+                    key={variant.id}
                     className={`
                       relative rounded-lg px-4 py-1 text-sm transition-all duration-200
                       border-2 flex flex-col space-y-1
-                      ${isSelected 
-                        ? 'bg-blue-50 border-blue-500 shadow-sm' 
+                      ${isSelected
+                        ? 'bg-blue-50 border-blue-500 shadow-sm'
                         : 'border-ui-border-base hover:border-ui-border-interactive'
                       }
                       ${!variantInStock ? 'opacity-50 grayscale' : ''}
@@ -176,7 +176,7 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
                 )
               })}
             </div>
-            
+
             {/* Mobile variant summary */}
             <div className="small:hidden">
               <Text className="text-ui-fg-base">
@@ -205,11 +205,18 @@ const ProductInfo = ({ product, selectedVariant }: ProductInfoProps) => {
         </div>
 
         {/* Country Of Origin */}
-        <InfoSection title="Type">
-          <Text className="text-ui-fg-base font-medium">
-            {product.type ? product.type.value : "-"}
-          </Text>
-        </InfoSection>
+        <div className="grid grid-cols-2 gap-4">
+          <InfoSection title="Type">
+            <Text className="text-ui-fg-base font-medium">
+              {product.type ? product.type.value : "-"}
+            </Text>
+          </InfoSection>
+          <InfoSection title="Country Of Origin">
+            <Text className="text-ui-fg-base font-medium">
+              {product.origin_country ? product.origin_country : "-"}
+            </Text>
+          </InfoSection>
+        </div>
       </div>
     </div>
   )
