@@ -51,8 +51,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://www.vapezone.co.ke/${params.countryCode}/collections/${collection.handle}`
 
   return {
-    title: `Explore ${collection.title} Online In Kenya, `,
-    description: `Shop the ${collection.title} online at Vapezone Kenya – top brands, great flavors, fast delivery in Kenya.`,
+    title: `Explore ${collection.title} Vapes Online In Kenya `,
+    description: `Shop ${collection.title} Vapes Online At Vapezone Kenya – top brands, great flavors, fast delivery in Kenya.`,
     alternates: {
       canonical: canonicalUrl
     },

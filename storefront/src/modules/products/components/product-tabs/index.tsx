@@ -6,7 +6,7 @@ import Refresh from "@modules/common/icons/refresh"
 
 import Accordion from "./accordion"
 import { HttpTypes } from "@medusajs/types"
-import ReactMarkdown from "react-markdown"
+
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
@@ -45,49 +45,38 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <div className="flex flex-col py-6 bg-white">
-      <div className="mx-auto pb-4">
-        <div
-          className="rounded-2xl text-small-regular whitespace-pre-line"
-          data-testid="product-description"
-        >
-          <div className="p-2 prose prose-slate max-w-none">
-            <ReactMarkdown
-              components={{
-                h2: ({ node, ...props }) => (
-                  <h2 {...props} className="text-slate-800 font-semibold text-xl" />
-                ),
-                h3: ({ node, ...props }) => (
-                  <h3 {...props} className="text-slate-700 font-medium text-lg" />
-                ),
-                p: ({ node, ...props }) => (
-                  <p {...props} className="text-slate-600 " />
-                ),
-                ul: ({ node, ...props }) => (
-                  <ul {...props} className="list-disc pl-5 text-slate-600" />
-                ),
-                li: ({ node, ...props }) => (
-                  <li {...props} className="" />
-                ),
-                strong: ({ node, ...props }) => (
-                  <strong {...props} className="font-semibold text-slate-700" />
-                ),
-              }}
-            >
-              {product.description || "No description available."}
-            </ReactMarkdown>
-          </div>
-        </div>
+    <div className="flex flex-col bg-white">
+      <div className="mx-auto">
       </div>
-
-      <div className="grid grid-cols-1 gap-6 pt-4 border-t border-slate-100">
-        <div className="flex flex-col gap-y-5 text-small-regular">
-          <div className="flex flex-col">
-            <span className="font-semibold text-slate-700 mb-1.5 flex items-center">
-              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-              Material
-            </span>
-            <p className="text-slate-600 pl-3.5">{product.material ? product.material : "-"}</p>
+      <div className="text-small-regular">
+        <div className="grid grid-cols-2 gap-x-8">
+          <div className="flex flex-col gap-y-4">
+            <div>
+              <span className="font-semibold">Material</span>
+              <p>{product.material ? product.material : "-"}</p>
+            </div>
+            <div>
+              <span className="font-semibold">Country of origin</span>
+              <p>{product.origin_country ? product.origin_country : "-"}</p>
+            </div>
+            <div>
+              <span className="font-semibold">Type</span>
+              <p>{product.type ? product.type.value : "-"}</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-y-4">
+            <div>
+              <span className="font-semibold">Weight</span>
+              <p>{product.weight ? `${product.weight} g` : "-"}</p>
+            </div>
+            <div>
+              <span className="font-semibold">Dimensions</span>
+              <p>
+                {product.length && product.width && product.height
+                  ? `${product.length}L x ${product.width}W x ${product.height}H`
+                  : "-"}
+              </p>
+            </div>
           </div>
         </div>
       </div>

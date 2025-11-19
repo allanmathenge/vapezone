@@ -41,7 +41,6 @@ const MobileActions: React.FC<MobileActionsProps> = ({
 }) => {
   const { state, open, close } = useToggleState()
   const [isWhatsAppLoading, setIsWhatsAppLoading] = useState(false)
-  const [quantity] = useState(1)
 
   const price = getProductPrice({
     product: product,
@@ -55,7 +54,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
 
   const handleWhatsAppClick = () => {
     if (!variant || !inStock || isOutOfStock) return
-    
+
     setIsWhatsAppLoading(true)
     setTimeout(() => {
       const productUrl = `${window.location.origin}/ke/products/${product.handle}`
@@ -93,13 +92,27 @@ const MobileActions: React.FC<MobileActionsProps> = ({
             {/* Product Info */}
             <div className="flex flex-wrap items-center justify-between mb-3">
               <div className="flex-1 min-w-0">
-                <Text className="text-sm font-thin text-gray-900 truncate">
+                <Text className="text-sm font-medium text-gray-900 truncate">
                   {product.title}
                 </Text>
                 {selectedPrice && (
-                  <Text className="font-thin text-gray-900">
-                    {selectedPrice.calculated_price}
-                  </Text>
+                  <div className="flex items-end gap-x-2 text-ui-fg-base">
+                    {selectedPrice.price_type === "sale" && (
+                      <p>
+                        <span className="line-through text-small-regular">
+                          {selectedPrice.original_price}
+                        </span>
+                      </p>
+                    )}
+                    <span
+                      className={clx({
+                        "text-ui-fg-interactive":
+                          selectedPrice.price_type === "sale",
+                      })}
+                    >
+                      {selectedPrice.calculated_price}
+                    </span>
+                  </div>
                 )}
               </div>
               {hasVariants && (

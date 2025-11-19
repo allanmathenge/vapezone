@@ -106,7 +106,7 @@ export default async function Nav() {
             </div>
 
             {/* Right section - Search, account and cart */}
-            <div className="flex items-center justify-end flex-1 sm:flex-none space-x-1 sm:space-x-6">
+            <div className="flex items-center gap-x-6 h-full basis-0 justify-end">
 
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                 <div className="hidden md:flex relative">
