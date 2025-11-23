@@ -93,7 +93,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                               <div className="flex items-center justify-between w-full">
                                 <LocalizedClientLink
                                   href={`/categories/${category.handle}`}
-                                  className="leading-10 hover:text-ui-fg-disabled flex-1 py-2"
+                                  className="leading-10 hover:text-ui-fg-disabled flex-1 py-1"
                                   onClick={close}
                                   data-testid={`${category.name
                                     .toLowerCase()
