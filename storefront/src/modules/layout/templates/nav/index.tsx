@@ -49,8 +49,6 @@ export default async function Nav() {
                 />
               </LocalizedClientLink>
             </div>
-
-            {/* Center section - Navigation links with all collections */}
             <div className="hidden lg:flex items-center justify-center flex-1">
               <div className="flex items-center space-x-1">
                 <LocalizedClientLink
@@ -73,8 +71,8 @@ export default async function Nav() {
                               key={c.id}
                               className="relative group"
                             >
-                              
-                              <button
+                              <LocalizedClientLink
+                                href={`/categories/${c.handle}`}
                                 className="text-slate-700 flex items-center hover:text-blue-600 transition-colors font-medium relative group"
                                 data-testid="nav-link"
                                 tabIndex="0"
@@ -91,15 +89,20 @@ export default async function Nav() {
                                   </svg>
                                 )}
                                 <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-3/4 group-focus-within:w-3/4"></span>
-                              </button>
+                              </LocalizedClientLink>
+
+                              {/* Invisible gap bridge */}
+                              {children.length > 0 && (
+                                <div className="absolute top-full left-0 w-full h-4 bg-transparent" />
+                              )}
 
                               {children.length > 0 && (
                                 <div
                                   className="fixed top-full left-0 w-screen bg-white/95 border-b border-gray-200 shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50"
+                                  style={{ top: 'calc(100%)' }} // Adjust this value as needed
                                 >
                                   <div className="container mx-auto px-4 py-6">
                                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                      
                                       {children.map((child) => (
                                         <div key={child.id}>
                                           <LocalizedClientLink

@@ -59,13 +59,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const url = `https://www.vapezone.co.ke/ke/categories/${params.category.join("/")}`
 
     return {
-      title: `${title}`,
+      title: `Order ${title} Online In Nairobi`,
       description,
       alternates: {
         canonical: url,
       },
       openGraph: {
-        title: `${title}`,
+        title: `Buy ${title} In Kenya`,
         description,
         url,
         siteName: 'Vapezone Kenya',

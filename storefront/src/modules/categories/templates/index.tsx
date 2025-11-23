@@ -57,27 +57,6 @@ export default function CategoryTemplate({
       ]
     }
 
-    // CollectionPage schema for the category
-    const collectionPageSchema = {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": category.name,
-      "description": category.description
-        ? category.description.replace(/<[^>]*>/g, '').substring(0, 160)
-        : `${category.name} - Vape Products at Vapezone Kenya`,
-      "url": typeof window !== 'undefined'
-        ? window.location.href
-        : `https://www.vapezone.co.ke/ke/categories/${category.handle}`,
-      "breadcrumb": breadcrumbSchema,
-      "mainEntity": {
-        "@type": "ItemList",
-        "name": `Products in ${category.name}`,
-        "description": `Browse our collection of ${category.name} products`,
-        "numberOfItems": category.products?.length || 0,
-        "itemListOrder": "https://schema.org/ItemListOrderAscending"
-      }
-    }
-
     const webPageSchema = {
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -121,7 +100,7 @@ export default function CategoryTemplate({
       </Head>
 
       <div
-        className="flex flex-col mt-12 small:flex-row small:items-start py-8 content-container"
+        className="flex rounded-rounded flex-col mt-12 small:flex-row small:items-start py-8 content-container"
         data-testid="category-container"
       >
         <RefinementList sortBy={sort} data-testid="sort-by-container" />
@@ -130,7 +109,7 @@ export default function CategoryTemplate({
           <div className="flex bg-blue-100 flex-row pb-2 text-2xl-semi gap-4">
             {parents &&
               parents.map((parent) => (
-                <span key={parent.id} className="text-ui-fg-subtle">
+                <span key={parent.id} className="text-ui-fg-subtle hover:bg-slate-50">
                   <LocalizedClientLink
                     className="mr-4 hover:text-black"
                     href={`/categories/${parent.handle}`}
@@ -141,14 +120,19 @@ export default function CategoryTemplate({
                   /
                 </span>
               ))}
-            <h1 className="text-xl sm:text-2xl text-slate-600" data-testid="category-page-title">{`${category.name}`}</h1>
+            <h1
+              className="text-sm sm:text-2xl text-center bg-gradient-to-r font-bold from-blue-500 via-blue-600 to-blue-400 text-white border-b border-slate-400 w-full py-2"
+              data-testid="category-page-title"
+            >
+              {`Buy ${category.name} Online In Kenya`}
+            </h1>
           </div>
 
           {category.category_children && (
             <div className="mb-8 text-base-large">
-              <ul className="grid grid-cols-1 gap-2">
+              <ul className="grid grid-cols-1 small:grid-cols-2 bg-slate-100 gap-2 px-2 py-2">
                 {category.category_children.map((c) => (
-                  <li key={c.id}>
+                  <li key={c.id} className="hover:bg-white py-2 mx-2">
                     <InteractiveLink href={`/categories/${c.handle}`}>
                       {c.name}
                     </InteractiveLink>
@@ -167,10 +151,10 @@ export default function CategoryTemplate({
           </Suspense>
           {category.description && (
             <div
-              className="bg-white rounded-xl border border-gray-100 my-6 shadow-sm"
+              className="bg-white rounded-xl border text-small-regular small:txt-compact-medium border-gray-100 my-6 shadow-sm"
               data-testid="category-description"
             >
-              <div className="prose px-2 sm:px-6 text-ui-fg-subtle txt-compact-medium prose-gray max-w-none">
+              <div className="prose px-2 sm:px-6 text-ui-fg-subtle prose-gray max-w-none">
                 <ReactMarkdown
                   components={{
                     h2: ({ node, ...props }) => (
@@ -197,7 +181,7 @@ export default function CategoryTemplate({
                         className="text-gray-600 space-y-2 mb-4 list-disc list-inside"
                       />
                     ),
-                    
+
                     li: ({ node, ...props }) => (
                       <li
                         {...props}

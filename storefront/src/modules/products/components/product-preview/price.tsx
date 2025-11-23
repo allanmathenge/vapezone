@@ -8,12 +8,12 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
 
   return (
     <>
-      <div className="flex flex-wrap gap-x-1 items-center">
+      <div className="flex flex-wrap gap-x-1 text-small-regular small:txt-compact-medium items-center">
         {price.price_type === "sale" && (
         <Text
           data-testid="original-price"
         >
-          <span className="line-through text-xs font-thin text-ui-fg-muted mr-1">{price.original_price}</span>
+          <span className="line-through font-thin text-ui-fg-muted mr-1">{price.original_price}</span>
         </Text>
       )}
       <Text

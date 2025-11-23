@@ -14,56 +14,6 @@ export default async function Footer() {
       <div className="content-container flex flex-col w-full">
         <div className="w-full py-12">
           <div className="flex flex-col gap-y-16">
-            {/* {product_categories?.length > 0 && (
-              <section className="">
-                
-                {product_categories?.length > 0 && (
-                  <section className="w-full">
-                    <div
-                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
-                      data-testid="footer-categories"
-                    >
-                      {product_categories
-                        .filter((c) => !c.parent_category)
-                        .map((c) => {
-                          const children = c.category_children || []
-                          return (
-                            <div
-                              key={c.id}
-                              className="flex flex-col bg-white rounded-sm p-5 border border-gray-100 hover:shadow-sm transition-all duration-200 group"
-                            >
-                              <LocalizedClientLink
-                                href={`/categories/${c.handle}`}
-                                className="text-base font-medium tracking-wide text-gray-800 group-hover:text-blue-700 transition-colors duration-200 flex items-center"
-                                data-testid="category-link"
-                              >
-                                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-200"></span>
-                                {c.name}
-                              </LocalizedClientLink>
-                              {children.length > 0 && (
-                                <ul className="space-y-1 pl-5">
-                                  {children.map((child) => (
-                                    <li key={child.id}>
-                                      <LocalizedClientLink
-                                        href={`/categories/${child.handle}`}
-                                        className="text-sm text-ui-fg-subtle text-nowrap overflow-hidden text-ellipsis text-gray-600 hover:text-blue-900 transition-colors duration-200 block"
-                                        data-testid="category-link"
-                                      >
-                                        {child.name}
-                                      </LocalizedClientLink>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          )
-                        })}
-                    </div>
-                  </section>
-                )}
-              </section>
-            )} */}
-
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:px-6 ">
               <div className="flex flex-col">
                 <div className="flex flex-col mb-3">
@@ -75,8 +25,7 @@ export default async function Footer() {
                   <div className="flex flex-col text-blue-900">
                     <span className="text-sm font-medium">Call • Text • Whatsapp: 0798769535</span>
                     <div className="flex-col sm:flex-row gap-1">
-                      <span className="text-sm font-medium">M-Pesa • Buy Goods • </span>
-                      <span className="text-sm font-medium">Till No: 3763670</span>
+                      <span className="text-sm font-medium">Lipa Na Mpesa, Till: 3763670</span>
                     </div>
                   </div>
                   <span className="text-xs text-gray-500 mt-1">Secure mobile payments powered by Safaricom</span>
@@ -109,7 +58,7 @@ export default async function Footer() {
               {product_categories?.length > 0 && (
                 <div className="flex flex-col">
                   <div className="flex flex-col mb-3">
-                    <h3 className="text-lg font-light text-slate-800 tracking-wide">Brands</h3>
+                    <h3 className="text-lg font-light text-slate-800 tracking-wide">Categories</h3>
                     <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                   </div>
                   <ul className="">
