@@ -6,7 +6,7 @@ import type { WithContext, Organization, SearchAction } from "schema-dts";
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
   title: {
-    default: "Vapezone Kenya | Buy Vapes & Vape Accessories Online In Kenya With Fast Delivery",
+    default: "Buy Vapes & Drinks Online In Kenya With Fast Delivery",
     template: "%s | Vapezone Kenya"
   },
   description: "Vapezone Kenya is your number One online vape shop. Explore premium vapes, e-liquids, pods & accessories at the best prices. Fast delivery in Nairobi & across Kenya.",

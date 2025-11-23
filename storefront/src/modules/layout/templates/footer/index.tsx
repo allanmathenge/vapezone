@@ -14,12 +14,9 @@ export default async function Footer() {
       <div className="content-container flex flex-col w-full">
         <div className="w-full py-12">
           <div className="flex flex-col gap-y-16">
-            {product_categories?.length > 0 && (
+            {/* {product_categories?.length > 0 && (
               <section className="">
-                <div className="flex flex-col items-center mb-6">
-                  <h2 className="text-2xl font-light text-slate-800 mb-3 tracking-wide">Brands</h2>
-                  <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                </div>
+                
                 {product_categories?.length > 0 && (
                   <section className="w-full">
                     <div
@@ -27,7 +24,6 @@ export default async function Footer() {
                       data-testid="footer-categories"
                     >
                       {product_categories
-                        .reverse()
                         .filter((c) => !c.parent_category)
                         .map((c) => {
                           const children = c.category_children || []
@@ -66,7 +62,7 @@ export default async function Footer() {
                   </section>
                 )}
               </section>
-            )}
+            )} */}
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:px-6 ">
               <div className="flex flex-col">

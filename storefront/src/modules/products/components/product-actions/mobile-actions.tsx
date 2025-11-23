@@ -53,17 +53,21 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   }, [price])
 
   const handleWhatsAppClick = () => {
-    if (!variant || !inStock || isOutOfStock) return
+  if (!variant || !inStock || isOutOfStock) return
 
-    setIsWhatsAppLoading(true)
-    setTimeout(() => {
-      const productUrl = `${window.location.origin}/ke/products/${product.handle}`
-      const message = `Hi, I'm interested in: ${product.title}, ${selectedPrice?.calculated_price || "Check price"}`
-      const url = `https://wa.me/254798769535?text=${encodeURIComponent(message)}`
-      window.open(url, "_blank")
-      setIsWhatsAppLoading(false)
-    }, 300)
-  }
+  setIsWhatsAppLoading(true)
+  setTimeout(() => {    
+    const variantName = Object.values(options)
+      .filter(Boolean)
+      .join(" / ")
+    
+    const message = `Hi, I'm interested in: ${product.title}${variantName ? ` - ${variantName}` : ''}, ${selectedPrice?.calculated_price}`
+    
+    const url = `https://wa.me/254798769535?text=${encodeURIComponent(message)}`
+    window.open(url, "_blank")
+    setIsWhatsAppLoading(false)
+  }, 300)
+}
 
   const hasVariants = (product.variants?.length ?? 0) > 1
   const variantText = variant ? Object.values(options).join(" / ") : "Select Options"

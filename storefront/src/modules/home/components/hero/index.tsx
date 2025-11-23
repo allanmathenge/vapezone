@@ -47,10 +47,6 @@ const Hero = () => {
               <div className="w-2 h-2 animate-pulse bg-green-500 rounded-full"></div>
               <span className="text-gray-900">100% Authentic</span>
             </div>
-            <div className="flex items-center gap-2 bg-gray-100 backdrop-blur-sm px-3 py-2 rounded-full border border-gray-200">
-              <div className="w-2 h-2 animate-pulse bg-green-500 rounded-full"></div>
-              <span className="text-gray-900">Secure Checkout</span>
-            </div>
           </div>
         </div>
       </div>

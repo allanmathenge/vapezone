@@ -127,7 +127,7 @@ export default function CategoryTemplate({
         <RefinementList sortBy={sort} data-testid="sort-by-container" />
 
         <div className="w-full">
-          <div className="flex bg-slate-100 flex-row pb-2 text-2xl-semi gap-4">
+          <div className="flex bg-blue-100 flex-row pb-2 text-2xl-semi gap-4">
             {parents &&
               parents.map((parent) => (
                 <span key={parent.id} className="text-ui-fg-subtle">
@@ -145,8 +145,8 @@ export default function CategoryTemplate({
           </div>
 
           {category.category_children && (
-            <div className="mb-8 text-base-large bg-slate-100">
-              <ul className="grid grid-cols-1 gap-2">
+            <div className="mb-8 text-base-large">
+              <ul className="flex gap-2">
                 {category.category_children.map((c) => (
                   <li key={c.id}>
                     <InteractiveLink href={`/categories/${c.handle}`}>

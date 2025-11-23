@@ -4,24 +4,20 @@ import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
-import { FaUser, FaChevronDown, FaShoppingCart } from "react-icons/fa"
-import { IoSearch} from "react-icons/io5"
-import { getCollectionsList } from "@lib/data/collections"
+import { FaUser, FaShoppingCart } from "react-icons/fa"
+import { IoSearch } from "react-icons/io5"
 import Image from "next/image"
 import NavbarWrapper from "@modules/layout/components/navbar-wrapper"
+import { getCategoriesList } from "@lib/data/categories"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
-  const { collections } = await getCollectionsList()
-
-  if (!collections) {
-    return []
-  }
+  const { product_categories } = await getCategoriesList()
 
   return (
     <NavbarWrapper>
       <div className="bg-white/95 backdrop-blur-md shadow-sm hover:shadow">
-        <header className="relative h-14 mx-auto">
+        <header className="relative h-16 mx-auto">
           <nav className="max-w-screen-2xl mx-auto px-1 sm:px-3 lg:px-4 flex items-center justify-between w-full h-full">
 
             {/* Left section - Logo and mobile menu */}
@@ -59,49 +55,73 @@ export default async function Nav() {
               <div className="flex items-center space-x-1">
                 <LocalizedClientLink
                   href="/store"
-                  className="px-4 py-2 text-slate-700 hover:text-blue-600 transition-colors font-medium relative group"
+                  className="px-4 text-slate-700 hover:text-blue-600 transition-colors font-medium relative group"
                   data-testid="nav-link"
                 >
-                  All Products
+                  Store
                   <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-3/4"></span>
                 </LocalizedClientLink>
+                <div className="relative">
+                  {product_categories?.length > 0 && (
+                    <section className="flex space-x-4">
+                      {product_categories
+                        .filter((c) => !c.parent_category)
+                        .map((c) => {
+                          const children = c.category_children || []
+                          return (
+                            <div
+                              key={c.id}
+                              className="relative group"
+                            >
+                              
+                              <button
+                                className="text-slate-700 flex items-center hover:text-blue-600 transition-colors font-medium relative group"
+                                data-testid="nav-link"
+                                tabIndex="0"
+                              >
+                                {c.name}
+                                {children.length > 0 && (
+                                  <svg
+                                    className="w-4 h-4 ml-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                  </svg>
+                                )}
+                                <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-3/4 group-focus-within:w-3/4"></span>
+                              </button>
 
-                {/* Collections dropdown for larger screens */}
-                <div className="relative group">
-                  <button className="px-4 py-2 flex items-center text-slate-700 hover:text-blue-600 transition-colors font-medium">
-                    Collections
-                    <FaChevronDown className="ml-1 h-3 w-3 transition-transform group-hover:rotate-180" />
-                  </button>
-
-                  <div className="absolute top-full left-0 w-96 bg-white/95 shadow-sm rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-8 group-hover:translate-y-0 z-30">
-                    <div className="grid grid-cols-2 gap-2 p-4">
-                      {collections.map((collection) => (
-                        <LocalizedClientLink
-                          key={collection.id}
-                          className="px-3 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-md transition-colors"
-                          href={`/collections/${collection.handle}`}
-                          data-testid="nav-link"
-                        >
-                          {collection.title}
-                        </LocalizedClientLink>
-                      ))}
-                    </div>
-                  </div>
+                              {children.length > 0 && (
+                                <div
+                                  className="fixed top-full left-0 w-screen bg-white/95 border-b border-gray-200 shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50"
+                                >
+                                  <div className="container mx-auto px-4 py-6">
+                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                      
+                                      {children.map((child) => (
+                                        <div key={child.id}>
+                                          <LocalizedClientLink
+                                            href={`/categories/${child.handle}`}
+                                            className="block py-2 px-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded transition-colors duration-150 focus:outline-none focus:bg-gray-50"
+                                            data-testid="category-link"
+                                            tabIndex="0"
+                                          >
+                                            {child.name}
+                                          </LocalizedClientLink>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )
+                        })}
+                    </section>
+                  )}
                 </div>
-
-                {/* Display top 4 collections individually for easy access */}
-                {collections.slice(0, 4).map((collection) => (
-                  <div key={collection.id} className="hidden xl:block">
-                    <LocalizedClientLink
-                      className="px-4 py-2 text-slate-700 hover:text-blue-600 transition-colors font-medium relative group"
-                      href={`/collections/${collection.handle}`}
-                      data-testid="nav-link"
-                    >
-                      {collection.title}
-                      <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-3/4"></span>
-                    </LocalizedClientLink>
-                  </div>
-                ))}
               </div>
             </div>
 

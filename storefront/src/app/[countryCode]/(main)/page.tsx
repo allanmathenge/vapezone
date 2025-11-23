@@ -6,14 +6,14 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Buy Vapes, E-Liquids & Accessories Online In Nairobi",
+  title: "Buy Vapes & Drinks Online In Nairobi",
   description: "Kenya's premier vape shop in Nairobi. Buy premium vaping devices, flavored e-liquids, pods, coils & accessories. Fast delivery, expert advice, affordable prices. Shop top vape brands with reliable service for vaping enthusiasts.",
   keywords: "vapes nairobi, e-liquids kenya, vaping accessories, vape shop nairobi, disposable vapes, vape devices kenya",
   alternates: {
     canonical: "https://www.vapezone.co.ke/",
   },
   openGraph: {
-    title: "Vapezone Kenya | Buy Vapes & E-Liquids in Nairobi",
+    title: "Buy Vapes & Drinks in Nairobi",
     description: "Your ultimate vaping destination in Kenya - Premium devices, rich e-liquids & expert service",
     url: "https://www.vapezone.co.ke/",
     siteName: "Vapezone Kenya",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vapezone Kenya | Buy Vapes, E-Liquids & Vape Accessories",
+    title: "Buy Vapes & Drinks Online In Nairobi",
     description: "Kenya's premier vape shop for devices, e-liquids & accessories",
     images: ["https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg"],
   },

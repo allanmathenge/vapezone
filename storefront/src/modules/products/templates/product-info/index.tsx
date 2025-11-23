@@ -27,7 +27,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           {product.title}
         </Heading>
 
-        <div className="p-2 prose prose-slate text-ui-fg-subtle txt-compact-medium prose-gray max-w-none">
+        <div className="p-2 prose prose-slate text-small-regular text-ui-fg-subtle txt-compact-medium prose-gray max-w-none">
             <ReactMarkdown
               components={{
                 h2: ({ node, ...props }) => (

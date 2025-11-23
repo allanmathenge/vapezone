@@ -2,27 +2,42 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { Popover, Transition } from "@headlessui/react"
-import { IoIosMenu } from "react-icons/io";
+import { IoIosMenu, IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { RiCloseLargeFill } from "react-icons/ri";
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
-import { getCollectionsList } from "@lib/data/collections"
+import { getCategoriesList } from "@lib/data/categories"
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
-  const [collections, setCollections] = useState<{ id: string; title: string, handle: string }[]>([])
+  const [categories, setCategories] = useState<HttpTypes.StoreProductCategory[]>([])
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
 
   useEffect(() => {
-    const fetchCollections = async () => {
+    const fetchCategories = async () => {
       try {
-        const { collections } = await getCollectionsList()
-        setCollections(collections)
+        const { product_categories } = await getCategoriesList()
+        setCategories(product_categories || [])
       } catch (error) {
-        console.error("Failed to fetch collections:", error)
+        console.error("Failed to fetch categories:", error)
       }
     }
 
-    fetchCollections()
+    fetchCategories()
   }, [])
+
+  const toggleCategory = (categoryId: string) => {
+    setExpandedCategories(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(categoryId)) {
+        newSet.delete(categoryId)
+      } else {
+        newSet.add(categoryId)
+      }
+      return newSet
+    })
+  }
+
+  const topLevelCategories = categories.filter((c) => !c.parent_category)
 
   return (
     <div className="h-full">
@@ -49,39 +64,84 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                 leaveFrom="opacity-100 backdrop-blur-2xl"
                 leaveTo="opacity-0"
               >
-                <Popover.Panel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 top-0 inset-x-0 text-2xl text-ui-fg-on-color m-2 backdrop-blur-3xl">
-                  <div className="flex flex-col h-full bg-black/90 backdrop-blur-lg rounded-rounded p-6">
+                <Popover.Panel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 top-0 inset-x-0 text-ui-fg-on-color m-2 backdrop-blur-3xl">
+                  <div className="flex flex-col h-full bg-black/90 backdrop-blur-lg rounded-rounded p-6 overflow-y-auto">
                     <div className="flex justify-end" id="xmark">
                       <button data-testid="close-menu-button" onClick={close}>
                         <RiCloseLargeFill className="text-2xl"/>
                       </button>
                     </div>
 
-                    <ul className="flex flex-col gap-6 items-start justify-start">
-                      <li key="store-link">
+                    <ul className="flex flex-col gap-1 items-start justify-start">
+                      <li key="store-link" className="w-full">
                         <LocalizedClientLink
                           href="/store"
-                          className="leading-10 hover:text-ui-fg-disabled"
+                          className="leading-10 hover:text-ui-fg-disabled block w-full py-2"
                           onClick={close}
                           data-testid="store-link"
                         >
                           Store
                         </LocalizedClientLink>
                       </li>
-                      {collections.map((collection) => (
-                        <li key={collection.id}>
-                          <LocalizedClientLink
-                            href={`/collections/${collection.handle}`}
-                            className="leading-10 hover:text-ui-fg-disabled"
-                            onClick={close}
-                            data-testid={`${collection.title
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}-link`}
-                          >
-                            {collection.title}
-                          </LocalizedClientLink>
-                        </li>
-                      ))}
+                      {topLevelCategories.map((category) => {
+                        const children = category.category_children || []
+                        const isExpanded = expandedCategories.has(category.id)
+                        
+                        return (
+                          <li key={category.id} className="w-full">
+                            <div className="flex flex-col w-full">
+                              <div className="flex items-center justify-between w-full">
+                                <LocalizedClientLink
+                                  href={`/categories/${category.handle}`}
+                                  className="leading-10 hover:text-ui-fg-disabled flex-1 py-2"
+                                  onClick={close}
+                                  data-testid={`${category.name
+                                    .toLowerCase()
+                                    .replace(/\s+/g, "-")}-link`}
+                                >
+                                  {category.name}
+                                </LocalizedClientLink>
+                                {children.length > 0 && (
+                                  <button
+                                    onClick={(e) => {
+                                      e.preventDefault()
+                                      e.stopPropagation()
+                                      toggleCategory(category.id)
+                                    }}
+                                    className="p-1 hover:bg-gray-700 rounded transition-colors"
+                                  >
+                                    {isExpanded ? (
+                                      <IoIosArrowDown className="text-lg" />
+                                    ) : (
+                                      <IoIosArrowForward className="text-lg" />
+                                    )}
+                                  </button>
+                                )}
+                              </div>
+                              
+                              {/* Child categories with expand/collapse */}
+                              {children.length > 0 && isExpanded && (
+                                <ul className="flex flex-col gap-1 ml-4 mt-1 pl-4">
+                                  {children.reverse().map((child) => (
+                                    <li key={child.id}>
+                                      <LocalizedClientLink
+                                        href={`/categories/${child.handle}`}
+                                        className="leading-8 hover:text-ui-fg-disabled block py-1"
+                                        onClick={close}
+                                        data-testid={`${child.name
+                                          .toLowerCase()
+                                          .replace(/\s+/g, "-")}-link`}
+                                      >
+                                        {child.name}
+                                      </LocalizedClientLink>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          </li>
+                        )
+                      })}
                     </ul>
                   </div>
                 </Popover.Panel>
@@ -95,7 +155,6 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
 }
 
 export default SideMenu
-
 
     {/* <div className="flex flex-col gap-y-3">
           <div
