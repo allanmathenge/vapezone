@@ -105,42 +105,64 @@ export default function CategoryTemplate({
       >
         <RefinementList sortBy={sort} data-testid="sort-by-container" />
 
-        <div className="w-full">
-          <div className="flex bg-blue-100 flex-row pb-2 text-2xl-semi gap-4">
-            {parents &&
-              parents.map((parent) => (
-                <span key={parent.id} className="text-ui-fg-subtle hover:bg-slate-50">
+        <div className="w-full space-y-6 mt-2">
+          {parents && parents.length > 0 && (
+            <nav className="flex items-center space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
+              {parents.map((parent, index) => (
+                <div key={parent.id} className="flex items-center space-x-2">
                   <LocalizedClientLink
-                    className="mr-4 hover:text-black"
+                    className="hover:text-blue-600 transition-colors duration-200 px-2 py-1 rounded-md hover:bg-blue-50"
                     href={`/categories/${parent.handle}`}
-                    data-testid="sort-by-link"
+                    data-testid="breadcrumb-link"
                   >
                     {parent.parent_category?.name}
                   </LocalizedClientLink>
-                  /
-                </span>
+                  {index < parents.length - 1 && (
+                    <span className="text-gray-400">/</span>
+                  )}
+                </div>
               ))}
-            <h1
-              className="text-sm sm:text-2xl text-center bg-gradient-to-r font-bold from-blue-500 via-blue-600 to-blue-400 text-white border-b border-slate-400 w-full py-2"
-              data-testid="category-page-title"
-            >
-              {`Buy ${category.name} Online In Kenya`}
-            </h1>
-          </div>
-
-          {category.category_children && (
-            <div className="mb-8 text-base-large">
-              <ul className="grid grid-cols-1 small:grid-cols-2 bg-slate-100 gap-2 px-2 py-2">
-                {category.category_children.map((c) => (
-                  <li key={c.id} className="hover:bg-white py-2 mx-2">
-                    <InteractiveLink href={`/categories/${c.handle}`}>
-                      {c.name}
-                    </InteractiveLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </nav>
           )}
+
+          {/* Category Header */}
+          <header className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-500 rounded-sm shadow-sm">
+            <div className="px-6 py-4">
+              <h1
+                className="text-2xl sm:text-3xl font-bold text-white text-center"
+                data-testid="category-page-title"
+              >
+                {category.name}
+              </h1>
+            </div>
+          </header>
+
+          {/* Subcategories Grid */}
+          {category.category_children && category.category_children.length > 0 && (
+            <section className="bg-white rounded-lg shadow-sm border border-gray-200">
+              <div className="px-6 py-4 border-b border-gray-100">
+                <h2 className="text-lg font-semibold text-gray-900">Subcategories</h2>
+              </div>
+              <div className="p-6">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {category.category_children.map((c) => (
+                    <li key={c.id}>
+                      <div className="flex items-center p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 group">
+                        <InteractiveLink href={`/categories/${c.handle}`}>
+                          <div className="flex items-center">
+                            <span className="text-gray-900 group-hover:text-blue-700 font-medium transition-colors duration-200">
+                              {c.name}
+                            </span>
+                          </div>
+                        </InteractiveLink>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          )}
+
           <Suspense fallback={<SkeletonProductGrid />}>
             <PaginatedProducts
               sortBy={sort}

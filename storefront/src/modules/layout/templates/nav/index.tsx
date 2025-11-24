@@ -61,7 +61,7 @@ export default async function Nav() {
                 </LocalizedClientLink>
                 <div className="relative">
                   {product_categories?.length > 0 && (
-                    <section className="flex space-x-4">
+                    <section className="flex space-x-5">
                       {product_categories
                         .filter((c) => !c.parent_category)
                         .map((c) => {
@@ -73,14 +73,14 @@ export default async function Nav() {
                             >
                               <LocalizedClientLink
                                 href={`/categories/${c.handle}`}
-                                className="text-slate-700 flex items-center hover:text-blue-600 transition-colors font-medium relative group"
+                                className="text-slate-800 flex items-center hover:text-blue-700 transition-all duration-300 font-semibold relative group"
                                 data-testid="nav-link"
                                 tabIndex="0"
                               >
                                 {c.name}
                                 {children.length > 0 && (
                                   <svg
-                                    className="w-4 h-4 ml-1"
+                                    className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -88,30 +88,30 @@ export default async function Nav() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                   </svg>
                                 )}
-                                <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-3/4 group-focus-within:w-3/4"></span>
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
                               </LocalizedClientLink>
 
-                              {/* Invisible gap bridge */}
                               {children.length > 0 && (
-                                <div className="absolute top-full left-0 w-full h-4 bg-transparent" />
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-32 h-3 bg-transparent" />
                               )}
 
                               {children.length > 0 && (
                                 <div
-                                  className="fixed top-full left-0 w-screen bg-white/95 border-b border-gray-200 shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50"
-                                  style={{ top: 'calc(100%)' }} // Adjust this value as needed
+                                  className="fixed top-full left-0 w-screen bg-white backdrop-blur-3xl border-b border-gray-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0"
+                                  style={{ top: 'calc(100%)' }}
                                 >
-                                  <div className="container mx-auto px-4 py-6">
-                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                  <div className="container mx-auto px-6 py-8">
+                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                       {children.map((child) => (
-                                        <div key={child.id}>
+                                        <div key={child.id} className="group/item">
                                           <LocalizedClientLink
                                             href={`/categories/${child.handle}`}
-                                            className="block py-2 px-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded transition-colors duration-150 focus:outline-none focus:bg-gray-50"
+                                            className="block py-3 px-4 text-gray-700 hover:text-gray-900 hover:bg-blue-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:bg-blue-50 border-transparent hover:border-blue-500 group-hover/item:shadow-sm active:bg-blue-100" /* Added active state */
                                             data-testid="category-link"
                                             tabIndex="0"
+                                            
                                           >
-                                            {child.name}
+                                            <span className="font-medium">{child.name}</span>
                                           </LocalizedClientLink>
                                         </div>
                                       ))}
@@ -127,8 +127,6 @@ export default async function Nav() {
                 </div>
               </div>
             </div>
-
-            {/* Right section - Search, account and cart */}
             <div className="flex items-center gap-x-6 h-full basis-0 justify-end">
 
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
@@ -139,7 +137,7 @@ export default async function Nav() {
                     scroll={false}
                     data-testid="nav-search-link"
                   >
-                    {/* Larger search icon with improved visibility */}
+                    
                     <div className="absolute left-3 flex items-center justify-center h-5 w-5 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors">
                       <IoSearch className="h-3.5 w-3.5 text-slate-600" />
                     </div>

@@ -7,8 +7,8 @@ import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
   title: "Buy Vapes & Drinks Online In Nairobi",
-  description: "Kenya's premier vape shop in Nairobi. Buy premium vaping devices, flavored e-liquids, pods, coils & accessories. Fast delivery, expert advice, affordable prices. Shop top vape brands with reliable service for vaping enthusiasts.",
-  keywords: "vapes nairobi, e-liquids kenya, vaping accessories, vape shop nairobi, disposable vapes, vape devices kenya",
+  description: "Kenya's Premier Vape & Drinks Shop In Nairobi. Buy premium vaping devices, Whisky, wines, pods, coils & accessories. Fast delivery & affordable prices. Shop top vape brands with reliable service for vaping enthusiasts.",
+  keywords: "vapes nairobi, buy drinks, buy wine online, vaping accessories, online vape shop Nairobi, disposable vapes, vape devices kenya",
   alternates: {
     canonical: "https://www.vapezone.co.ke/",
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: "https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg",
         width: 1200,
         height: 630,
-        alt: "Vapezone Kenya - Buy Vaping Products Online In Kenya",
+        alt: "Vapezone Kenya - Buy Vaping Products and drinks Online In Kenya",
       },
     ],
     locale: "en_KE",

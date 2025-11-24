@@ -11,14 +11,18 @@ import { getCategoriesList } from "@lib/data/categories"
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
   const [categories, setCategories] = useState<HttpTypes.StoreProductCategory[]>([])
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        setIsLoading(true)
         const { product_categories } = await getCategoriesList()
         setCategories(product_categories || [])
       } catch (error) {
         console.error("Failed to fetch categories:", error)
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -38,6 +42,32 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
   }
 
   const topLevelCategories = categories.filter((c) => !c.parent_category)
+
+  const CategorySkeleton = () => (
+    <div className="flex flex-col w-full gap-2">
+      <div className="h-10 bg-gray-700 rounded animate-pulse"></div>
+      
+      {Array.from({ length: 5 }).map((_, index) => (
+        <div key={index} className="flex flex-col w-full gap-1">
+          <div className="flex items-center justify-between w-full">
+            <div className="h-6 bg-gray-700 rounded flex-1 animate-pulse"></div>
+            <div className="w-6 h-6 bg-gray-700 rounded ml-2 animate-pulse"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+
+  // Skeleton for child categories
+  const ChildCategorySkeleton = () => (
+    <ul className="flex flex-col gap-1 ml-4 mt-1 pl-4">
+      {Array.from({ length: 3 }).map((_, index) => (
+        <li key={index}>
+          <div className="h-6 bg-gray-700 rounded animate-pulse"></div>
+        </li>
+      ))}
+    </ul>
+  )
 
   return (
     <div className="h-full">
@@ -73,75 +103,81 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                     </div>
 
                     <ul className="flex flex-col gap-1 items-start justify-start">
-                      <li key="store-link" className="w-full">
-                        <LocalizedClientLink
-                          href="/store"
-                          className="leading-10 hover:text-ui-fg-disabled block w-full py-2"
-                          onClick={close}
-                          data-testid="store-link"
-                        >
-                          Store
-                        </LocalizedClientLink>
-                      </li>
-                      {topLevelCategories.map((category) => {
-                        const children = category.category_children || []
-                        const isExpanded = expandedCategories.has(category.id)
-                        
-                        return (
-                          <li key={category.id} className="w-full">
-                            <div className="flex flex-col w-full">
-                              <div className="flex items-center justify-between w-full">
-                                <LocalizedClientLink
-                                  href={`/categories/${category.handle}`}
-                                  className="leading-10 hover:text-ui-fg-disabled flex-1 py-1"
-                                  onClick={close}
-                                  data-testid={`${category.name
-                                    .toLowerCase()
-                                    .replace(/\s+/g, "-")}-link`}
-                                >
-                                  {category.name}
-                                </LocalizedClientLink>
-                                {children.length > 0 && (
-                                  <button
-                                    onClick={(e) => {
-                                      e.preventDefault()
-                                      e.stopPropagation()
-                                      toggleCategory(category.id)
-                                    }}
-                                    className="p-1 hover:bg-gray-700 rounded transition-colors"
-                                  >
-                                    {isExpanded ? (
-                                      <IoIosArrowDown className="text-lg" />
-                                    ) : (
-                                      <IoIosArrowForward className="text-lg" />
-                                    )}
-                                  </button>
-                                )}
-                              </div>
-                              
-                              {/* Child categories with expand/collapse */}
-                              {children.length > 0 && isExpanded && (
-                                <ul className="flex flex-col gap-1 ml-4 mt-1 pl-4">
-                                  {children.reverse().map((child) => (
-                                    <li key={child.id}>
-                                      <LocalizedClientLink
-                                        href={`/categories/${child.handle}`}
-                                        className="leading-8 hover:text-ui-fg-disabled block py-1"
-                                        onClick={close}
-                                        data-testid={`${child.name
-                                          .toLowerCase()
-                                          .replace(/\s+/g, "-")}-link`}
-                                      >
-                                        {child.name}
-                                      </LocalizedClientLink>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
+                      {isLoading ? (
+                        <CategorySkeleton />
+                      ) : (
+                        <>
+                          <li key="store-link" className="w-full">
+                            <LocalizedClientLink
+                              href="/store"
+                              className="leading-10 hover:text-ui-fg-disabled block w-full py-2"
+                              onClick={close}
+                              data-testid="store-link"
+                            >
+                              Store
+                            </LocalizedClientLink>
                           </li>
-                        )
-                      })}
+                          {topLevelCategories.map((category) => {
+                            const children = category.category_children || []
+                            const isExpanded = expandedCategories.has(category.id)
+                            
+                            return (
+                              <li key={category.id} className="w-full">
+                                <div className="flex flex-col w-full">
+                                  <div className="flex items-center justify-between w-full">
+                                    <LocalizedClientLink
+                                      href={`/categories/${category.handle}`}
+                                      className="leading-10 hover:text-ui-fg-disabled flex-1 py-1"
+                                      onClick={close}
+                                      data-testid={`${category.name
+                                        .toLowerCase()
+                                        .replace(/\s+/g, "-")}-link`}
+                                    >
+                                      {category.name}
+                                    </LocalizedClientLink>
+                                    {children.length > 0 && (
+                                      <button
+                                        onClick={(e) => {
+                                          e.preventDefault()
+                                          e.stopPropagation()
+                                          toggleCategory(category.id)
+                                        }}
+                                        className="p-1 hover:bg-gray-700 rounded transition-colors"
+                                      >
+                                        {isExpanded ? (
+                                          <IoIosArrowDown className="text-lg" />
+                                        ) : (
+                                          <IoIosArrowForward className="text-lg" />
+                                        )}
+                                      </button>
+                                    )}
+                                  </div>
+                                  
+                                  {/* Child categories with expand/collapse */}
+                                  {children.length > 0 && isExpanded && (
+                                    <ul className="flex flex-col gap-1 ml-4 mt-1 pl-4">
+                                      {children.reverse().map((child) => (
+                                        <li key={child.id}>
+                                          <LocalizedClientLink
+                                            href={`/categories/${child.handle}`}
+                                            className="leading-8 hover:text-ui-fg-disabled block py-1"
+                                            onClick={close}
+                                            data-testid={`${child.name
+                                              .toLowerCase()
+                                              .replace(/\s+/g, "-")}-link`}
+                                          >
+                                            {child.name}
+                                          </LocalizedClientLink>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
+                              </li>
+                            )
+                          })}
+                        </>
+                      )}
                     </ul>
                   </div>
                 </Popover.Panel>

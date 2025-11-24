@@ -57,7 +57,7 @@ export default async function RelatedProducts({
 
   return (
     <div className="product-page-constraint">
-      <div className="flex flex-col items-center text-center mb-16">
+      <div className="flex flex-col items-center text-center mb-8">
         <span className="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">
           Complementary Selection
         </span>
