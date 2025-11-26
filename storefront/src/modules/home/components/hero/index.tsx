@@ -30,13 +30,9 @@ const Hero = () => {
               Kenya&apos;s Premier
             </div>
             <div className="">
-              Vape Destination
+              Drinks & Vape Destination
             </div>
           </Heading>
-
-          <p className="text-base sm:text-lg md:text-xl text-white max-w-xl leading-relaxed font-light">
-            Discover premium vapes, authentic e-liquids and exclusive offers
-          </p>
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-8 md:pt-12 text-xs sm:text-sm">
             <div className="flex items-center gap-2 bg-gray-100 backdrop-blur-sm px-3 py-2 rounded-full border border-gray-200">

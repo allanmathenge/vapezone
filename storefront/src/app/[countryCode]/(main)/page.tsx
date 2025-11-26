@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Buy Vapes & Drinks Online In Nairobi",
-    description: "Kenya's premier vape shop for devices, e-liquids & accessories",
+    description: "Kenya's premier Vape & Drinks Shop in Nairobi",
     images: ["https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg"],
   },
   robots: {

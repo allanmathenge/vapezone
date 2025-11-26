@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
   title: {
     default: "Buy Vapes & Drinks Online In Kenya With Fast Delivery",
-    template: "%s | Vapezone Kenya"
+    template: "%s "
   },
-  description: "Vapezone Kenya is your number One online vape shop. Explore premium vapes, e-liquids, pods & accessories at the best prices. Fast delivery in Nairobi & across Kenya.",
-  keywords: "vapes Kenya, e-liquids Nairobi, vape shop Kenya, disposable vapes, vaping accessories, e-cigarettes Kenya, vape pods, vape mods, vapes Nairobi, Vapezone, vape price Kenya, vapes",
+  description: "Vapezone Kenya is your number One online vape shop. Explore premium vapes, drinks, wines, rum & cognac at the best prices. Fast delivery in Nairobi & across Kenya.",
+  keywords: "Buy vapes Kenya, Online Liquor Nairobi, online wines & Spirits Kenya, disposable vapes, Beer brands, buy alcohol online Kenya, vape pods, vape mods, drinks Nairobi, Drinks price online, vape price Kenya, wines",
   robots: "index, follow",
   authors: [{ name: "Vapezone Kenya" }],
   openGraph: {
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     locale: 'en_KE',
     url: 'https://www.vapezone.co.ke/',
     siteName: 'Vapezone Kenya',
-    title: 'Vapezone Kenya | Buy Premium Vapes & Accessories In Kenya, Fast Delivery',
-    description: 'Vapezone Kenya is your number One online vape shop. Explore premium vapes, e-liquids, pods & accessories at the best prices.',
+    title: 'Buy Premium Vapes & Drinks In Kenya with Fast Delivery',
+    description: 'Vapezone Kenya is your number One online vape shop. Explore premium vapes, drinks like wines, rum cognac of all origins around the would at the best prices.',
     images: [
       {
         url: 'https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg',
@@ -28,6 +28,10 @@ export const metadata: Metadata = {
         alt: 'Vapezone Kenya - Premium Vape Shop In Kenya',
       },
     ],
+  },
+  other: {
+    "age-verification": "18+",
+    "restricted-products": "alcohol,tobacco"
   },
   twitter: {
     card: 'summary_large_image',
@@ -48,7 +52,7 @@ const orgSchema: WithContext<Organization> = {
   name: "Vapezone Kenya",
   url: "https://www.vapezone.co.ke/",
   logo: "https://www.vapezone.co.ke/logo.png",
-  description: "Premium vape products and accessories in Kenya. Best quality vapes & e-liquids at the best price & fast delivery.",
+  description: "Premium vape products and Drinks Online in Kenya. Best quality vapes & drinks like wine, rum, cognac & spirits at the best price sourced all around the world.",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+254-798769535",
@@ -88,16 +92,16 @@ const orgSchema: WithContext<Organization> = {
       "@type": "Offer",
       itemOffered: {
         "@type": "Service",
-        name: "Vape Device Sales",
-        description: "Premium vape devices and kits"
+        name: "Vape, Wines & Spirits Sales",
+        description: "Premium vape devices, variety of Drinks at exclusive offers"
       }
     },
     {
       "@type": "Offer",
       itemOffered: {
         "@type": "Service", 
-        name: "E-liquid Sales",
-        description: "Various flavors of premium e-liquids"
+        name: "Electronic Cigs and Drinks Sales",
+        description: "Various flavors & brands of Vapes, variety of drinks like wines, spirits, whisky and rum"
       }
     }
   ]

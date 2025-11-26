@@ -127,7 +127,7 @@ export default async function Nav() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-x-6 h-full basis-0 justify-end">
+            <div className="flex items-center gap-x-4 h-full basis-0 justify-end">
 
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                 <div className="hidden md:flex relative">
