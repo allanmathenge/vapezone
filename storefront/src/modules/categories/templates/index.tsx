@@ -63,7 +63,7 @@ export default function CategoryTemplate({
       "name": category.name,
       "description": category.description
         ? category.description.replace(/<[^>]*>/g, '').substring(0, 160)
-        : `${category.name} - Vape Products at Vapezone Kenya`,
+        : `${category.name} - Vape & Drinking Products at Vapezone Kenya`,
       "url": typeof window !== 'undefined'
         ? window.location.href
         : `https://www.vapezone.co.ke/ke/categories/${category.handle}`,
@@ -136,8 +136,6 @@ export default function CategoryTemplate({
               </h1>
             </div>
           </header>
-
-          {/* Subcategories Grid */}
           {category.category_children && category.category_children.length > 0 && (
             <section className="bg-white rounded-lg shadow-sm border border-gray-200">
               <div className="px-6 py-4 border-b border-gray-100">
@@ -149,11 +147,11 @@ export default function CategoryTemplate({
                     <li key={c.id}>
                       <div className="flex items-center p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 group">
                         <InteractiveLink href={`/categories/${c.handle}`}>
-                          <div className="flex items-center">
+                          <span className="flex items-center">
                             <span className="text-gray-900 group-hover:text-blue-700 font-medium transition-colors duration-200">
                               {c.name}
                             </span>
-                          </div>
+                          </span>
                         </InteractiveLink>
                       </div>
                     </li>
