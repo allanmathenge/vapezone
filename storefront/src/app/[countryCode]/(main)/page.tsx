@@ -6,15 +6,15 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Buy Vapes & Drinks Online In Nairobi",
-  description: "Kenya's Premier Vape & Drinks Shop In Nairobi. Buy premium vaping devices, Whisky, wines, pods, coils & accessories. Fast delivery & affordable prices. Shop top vape brands with reliable service for vaping enthusiasts.",
-  keywords: "vapes nairobi, buy drinks, buy wine online, vaping accessories, online vape shop Nairobi, disposable vapes, vape devices kenya",
+  title: "Buy Wine, Spirits and Vapes Online In Nairobi",
+  description: "Kenya's Premier Wines, Sprits & Vape Shop In Nairobi. Shop top brands at affordable prices & Fast delivery.",
+  keywords: "Buy drinks Nairobi, buy wine online, Order whiskey, beer, rum, wines & spirits Nairobi, online vape shop Nairobi, disposable vapes, vape devices kenya, vapes Nairobi",
   alternates: {
     canonical: "https://www.vapezone.co.ke/",
   },
   openGraph: {
-    title: "Buy Vapes & Drinks in Nairobi",
-    description: "Your ultimate vaping destination in Kenya - Premium devices, rich e-liquids & expert service",
+    title: "Buy Wines, Spirits & Vaping Products Online Nairobi",
+    description: "Your ultimate Wines & Spirits Destination in Kenya - Buy Spirits & Vaping Products Online",
     url: "https://www.vapezone.co.ke/",
     siteName: "Vapezone Kenya",
     images: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: "https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg",
         width: 1200,
         height: 630,
-        alt: "Vapezone Kenya - Buy Vaping Products and drinks Online In Kenya",
+        alt: "Vapezone Kenya - Buy wines, spirits & Vaping Products Online In Kenya",
       },
     ],
     locale: "en_KE",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Buy Vapes & Drinks Online In Nairobi",
-    description: "Kenya's premier Vape & Drinks Shop in Nairobi",
+    title: "Buy Wine, Spirits, Drinks & Vaping Products Online In Nairobi",
+    description: "Kenya's premier Wines, Spirits, Drinks & Vaping Products Shop in Nairobi",
     images: ["https://res.cloudinary.com/dfndhiz82/image/upload/v1749511548/vape_on_ground_xxdn3g.jpg"],
   },
   robots: {
@@ -53,7 +53,7 @@ function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'VapeStore',
     name: 'Vapezone Kenya',
-    description: 'Premium Online vape shop in Nairobi, Kenya',
+    description: 'Premium Wines, Spirits & Vaping Products Shop in Nairobi, Kenya',
     url: 'https://www.vapezone.co.ke/',
     telephone: '+254-0798-769535',
     address: {
@@ -89,7 +89,7 @@ export default async function Home({
     <>
       <StructuredData />
       <Hero />
-      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50 to-white">
+      <div className="bg-slate-50">
         <div itemScope itemType="https://schema.org/Store">
           <meta itemProp="name" content="Vapezone Kenya" />
           <meta itemProp="description" content="Online Vape Shop In Nairobi, Kenya" />

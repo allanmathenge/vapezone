@@ -57,6 +57,6 @@ export const getCollectionsWithProducts = cache(
       }
     })
 
-    return collections.reverse() as unknown as HttpTypes.StoreCollection[]
+    return collections as unknown as HttpTypes.StoreCollection[]
   }
 )

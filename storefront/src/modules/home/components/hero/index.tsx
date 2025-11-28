@@ -1,67 +1,40 @@
 import { Heading } from "@medusajs/ui"
 import Image from "next/image"
-import InteractiveLink from "@modules/common/components/interactive-link"
 
 const Hero = () => {
   return (
     <section className="h-screen max-h-[90vh] w-full relative bg-white overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://res.cloudinary.com/dfndhiz82/image/upload/f_auto,q_auto,w_1920/v1749511548/vape_on_ground_xxdn3g.jpg"
+          src="https://res.cloudinary.com/dfndhiz82/image/upload/v1764331014/image_r0yrmp.webp"
           priority={true}
-          className="object-cover"
-          quality={90}
-          alt="Premium vape products in Kenya - Best disposable vapes and e-liquids"
+          className="object-cover md:object-[position_70%_center]"
+          quality={85}
+          alt="Wine, Spirits & Premium vaping products in Kenya"
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-          style={{
-            objectPosition: "center 30%",
-          }}
+          sizes="(max-width: 768px) 100vw, 80vw"
         />
       </div>
-      
-      <div className="relative z-10 h-full flex flex-col justify-center items-start text-left px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24">
-        <div className="max-w-2xl space-y-12 md:space-y-10">
-          <Heading 
+
+      <div className="relative z-10 h-full flex flex-col justify-center items-end text-right px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32">
+        <div className="max-w-2xl space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
+          <Heading
             level="h1"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-gray-200 leading-tight tracking-tight"
+            className="text-4xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-slate-900 leading-tight tracking-tight drop-shadow-lg"
           >
-            <div className="mb-2">
+            <div className="mb-1 sm:mb-2">
               Kenya&apos;s Premier
             </div>
-            <div className="">
-              Drinks & Vape Destination
+            <div className="text-slate-900">
+              Wines & Spirits Destination
             </div>
           </Heading>
 
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-8 md:pt-12 text-xs sm:text-sm">
-            <div className="flex items-center gap-2 bg-gray-100 backdrop-blur-sm px-3 py-2 rounded-full border border-gray-200">
-              <div className="w-2 h-2 animate-pulse bg-green-500 rounded-full"></div>
-              <span className="text-gray-900">Fast Delivery</span>
-            </div>
-            <div className="flex items-center gap-2 bg-gray-100 backdrop-blur-sm px-3 py-2 rounded-full border border-gray-200">
-              <div className="w-2 h-2 animate-pulse bg-green-500 rounded-full"></div>
-              <span className="text-gray-900">100% Authentic</span>
-            </div>
+          <div className="hidden md:block max-w-lg">
+            <p className="text-slate-900 text-lg lg:text-xl font-light drop-shadow-md">
+              Discover premium selection of wines, spirits, and exclusive vaping products
+            </p>
           </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="animate-bounce">
-          <svg 
-            className="w-5 h-5 sm:w-6 sm:h-6 text-gray-200" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-            />
-          </svg>
         </div>
       </div>
     </section>
