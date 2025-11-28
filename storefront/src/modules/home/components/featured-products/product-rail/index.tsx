@@ -17,7 +17,7 @@ export default function ProductRail({
   }
 
   return (
-    <div className="content-container small:py-3">
+    <div className="content-container py-3">
       <div className="flex justify-between my-4">
         <Text className="txt-xlarge font-bold">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>

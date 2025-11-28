@@ -14,15 +14,14 @@ export default async function Footer() {
       <div className="content-container flex flex-col w-full">
         {/* Main Footer Content */}
         <div className="w-full py-12">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-24">
+          <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 xl:gap-24">
             
-            {/* Brand & Contact Section */}
-            <div className="lg:flex-1 max-w-md">
+            <div className="lg:flex-1 w-full">
               <div className="flex flex-col mb-6">
-                <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-xl bg-clip-text text-slate-800">
                   Vapezone Kenya
                 </h3>
-                <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2"></div>
+                <div className="w-20 h-[1px] bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2"></div>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300">
@@ -74,7 +73,7 @@ export default async function Footer() {
                 <div className="flex flex-col">
                   <div className="flex flex-col mb-4">
                     <h3 className="text-lg font-semibold text-slate-800 mb-2">Collections</h3>
-                    <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+                    <div className="w-12 h-[1px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
                   </div>
                   <ul className="space-y-3">
                     {collections.map((c) => (
@@ -96,7 +95,7 @@ export default async function Footer() {
                 <div className="flex flex-col">
                   <div className="flex flex-col mb-4">
                     <h3 className="text-lg font-semibold text-slate-800 mb-2">Categories</h3>
-                    <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+                    <div className="w-12 h-[1px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
                   </div>
                   <ul className="space-y-3">
                     {product_categories
@@ -120,7 +119,7 @@ export default async function Footer() {
               <div className="flex flex-col">
                 <div className="flex flex-col mb-4">
                   <h3 className="text-lg font-semibold text-slate-800 mb-2">Information</h3>
-                  <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+                  <div className="w-12 h-[1px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
                 </div>
                 <ul className="space-y-3">
                   <li>

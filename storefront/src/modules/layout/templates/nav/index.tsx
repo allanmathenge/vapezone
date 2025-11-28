@@ -42,7 +42,7 @@ export default async function Nav() {
                 className="flex items-center"
               >
                 <Image
-                  src="https://res.cloudinary.com/dfndhiz82/image/upload/v1762839455/image_e17lpr.png"
+                  src="https://res.cloudinary.com/dfndhiz82/image/upload/v1764350451/image_e17lpr_p1yb0o.webp"
                   alt="Logo"
                   width={100}
                   height={20}
