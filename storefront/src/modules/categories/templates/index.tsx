@@ -28,6 +28,8 @@ export default function CategoryTemplate({
   const category = categories[categories.length - 1]
   const parents = categories.slice(0, categories.length - 1)
 
+  const pageTitle = category?.metadata?.pageTitle || category.name
+
   if (!category || !countryCode) notFound()
   const generateStructuredData = () => {
     const breadcrumbSchema = {
@@ -63,7 +65,7 @@ export default function CategoryTemplate({
       "name": category.name,
       "description": category.description
         ? category.description.replace(/<[^>]*>/g, '').substring(0, 160)
-        : `${category.name} - Vape & Drinking Products at Vapezone Kenya`,
+        : `${category?.metadata?.description}`,
       "url": typeof window !== 'undefined'
         ? window.location.href
         : `https://www.vapezone.co.ke/ke/categories/${category.handle}`,
@@ -132,14 +134,14 @@ export default function CategoryTemplate({
                 className="text-2xl sm:text-3xl font-bold text-white text-center"
                 data-testid="category-page-title"
               >
-                {category.name}
+                {`${pageTitle}`}
               </h1>
             </div>
           </header>
           {category.category_children && category.category_children.length > 0 && (
             <section className="bg-white rounded-lg shadow-sm border border-gray-200">
               <div className="px-6 py-4 border-b border-gray-100">
-                <h2 className="text-lg font-semibold text-gray-900">Subcategories</h2>
+                <h2 className="text-lg font-semibold text-gray-900">{`Types Of ${category.name}`}</h2>
               </div>
               <div className="p-6">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

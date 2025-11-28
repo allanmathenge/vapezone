@@ -49,12 +49,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const category = product_categories[product_categories.length - 1]
     const title = product_categories
-      .map((category: StoreProductCategory) => category.name)
+      .map((category: StoreProductCategory) => category?.metadata?.title ?? category.name)
       .join(" | ")
 
     const description =
-      category.description ??
-      `Discover the best selection of ${title} vapes in Nairobi at Vapezone Kenya. Shop top brands, rich flavors and enjoy fast, reliable delivery across Kenya.`
+      category.description ?? category?.metadata?.description
 
     const url = `https://www.vapezone.co.ke/ke/categories/${params.category.join("/")}`
 
@@ -65,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         canonical: url,
       },
       openGraph: {
-        title: `Buy ${title} In Kenya`,
+        title: `${title}`,
         description,
         url,
         siteName: 'Vapezone Kenya',
@@ -118,7 +117,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         "name": "Home",
         "item": `${baseUrl}/`
       },
-      // Add parent categories dynamically
+      
       ...product_categories.slice(0, -1).map((cat, index) => ({
         "@type": "ListItem",
         "position": index + 2,
@@ -139,8 +138,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": `Best ${category.name} Vapes in Kenya`,
-    "description": category.description || `Shop premium ${category.name} vape products at Vapezone Kenya. Fast delivery across Nairobi and all of Kenya.`,
+    "name": `${category?.metadata?.title} || ${category.name}`,
+    "description": category.description || category?.metadata?.description,
     "url": currentCategoryUrl,
     "numberOfItems": products.length,
     "mainEntityOfPage": currentCategoryUrl,
@@ -161,7 +160,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         "item": {
           "@type": "Product",
           "name": product.title,
-          "description": product.subtitle || `${product.title} - Premium vape product available in Kenya`,
+          "description": product.subtitle || `${product.title}`,
           "url": productUrl,
           "image": productImage,
           "sku": product.variants?.[0]?.sku || product.id,
@@ -204,12 +203,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     })
   }
 
-  // CollectionPage schema for the category itself (more focused)
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `${category.name} Vape Products`,
-    "description": category.description || `Complete collection of ${category.name} vape devices and accessories at Vapezone Kenya`,
+    "name": `${category.name}`,
+    "description": category.description || category?.metadata?.description,
     "url": currentCategoryUrl,
     "isPartOf": {
       "@type": "WebSite",
