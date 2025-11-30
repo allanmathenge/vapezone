@@ -15,7 +15,7 @@ const Hero = () => {
           sizes="(max-width: 768px) 100vw, 80vw"
         />
       </div>
-      <div className="absolute md:hidden block inset-0 z-0">
+      {/* <div className="absolute md:hidden block inset-0 z-0">
         <Image
           src="https://res.cloudinary.com/dfndhiz82/image/upload/v1764355924/bg_glamz9.webp"
           priority={true}
@@ -25,23 +25,23 @@ const Hero = () => {
           fill
           sizes="(max-width: 768px) 100vw, 80vw"
         />
-      </div>
+      </div> */}
 
       <div className="relative z-10 h-full flex flex-col justify-center items-end text-right px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32">
         <div className="max-w-2xl space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
           <Heading
             level="h1"
-            className="text-4xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-white md:text-slate-900 leading-tight tracking-tight drop-shadow-lg"
+            className="text-4xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-slate-900 md:text-slate-900 leading-tight tracking-tight drop-shadow-lg"
           >
             <div className="mb-1 sm:mb-2">
               Kenya&apos;s Premier
             </div>
-            <div className="text-white md:text-slate-900">
+            <div className="text-slate-900 md:text-slate-900">
               Wines & Spirits Destination
             </div>
           </Heading>
 
-          <div className="hidden md:block max-w-lg">
+          <div className="max-w-lg">
             <p className="text-slate-900 text-lg lg:text-xl font-light drop-shadow-md">
               Discover premium selection of wines, spirits, and exclusive vaping products
             </p>

@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       title: `${product.title} | Vapezone Kenya`,
-      description: product.subtitle || `Get ${product.title} delivered across Kenya. Premium quality vape products, Fast delivery.`,
+      description: product.subtitle || `Get ${product.title} delivered across Kenya. Premium quality & Fast delivery.`,
       images: productImages.length > 0 ? productImages : ['/default-product.webp'],
       
     },
@@ -142,7 +142,7 @@ export default async function ProductPage({ params }: Props) {
     "@type": "Product",
     
     "name": pricedProduct.title,
-    "description": pricedProduct.subtitle || `Buy ${pricedProduct.title} - Premium vape products with fast delivery across Kenya. 30-50 minutes delivery in Nairobi, 2-3 days nationwide.`,
+    "description": pricedProduct.subtitle || `Buy ${pricedProduct.title} - Premium shop online in Nairobi with fast delivery across Kenya.`,
     "image": productImages.length > 0 ? productImages : ["https://www.vapezone.co.ke/default-product.webp"],
     
     "offers": {
@@ -199,10 +199,10 @@ export default async function ProductPage({ params }: Props) {
     "mpn": pricedProduct.id,
     "brand": {
       "@type": "Brand",
-      "name": pricedProduct.collection?.title || "Premium Vape"
+      "name": pricedProduct.collection?.title
     },
     
-    "category": pricedProduct.collection?.title || "Vape Products"
+    "category": pricedProduct.collection?.title
   }
 
   return (
