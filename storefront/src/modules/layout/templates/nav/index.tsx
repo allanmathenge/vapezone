@@ -22,21 +22,9 @@ export default async function Nav() {
 
             {/* Left section - Logo and mobile menu */}
             <div className="flex items-center sm:flex-none">
-              <div className="mr-1 sm:mr-4">
+              <div className="mr-4">
                 <SideMenu regions={regions} />
               </div>
-              <LocalizedClientLink
-                href="/"
-                className="flex items-center"
-              >
-                <Image
-                  src="https://res.cloudinary.com/dfndhiz82/image/upload/v1750862949/icon_eaafkm.png"
-                  alt="Logo"
-                  width={20}
-                  height={20}
-                  className="rounded-full"
-                />
-              </LocalizedClientLink>
               <LocalizedClientLink
                 href="/"
                 className="flex items-center"
@@ -78,46 +66,11 @@ export default async function Nav() {
                                 tabIndex="0"
                               >
                                 {c.name}
-                                {children.length > 0 && (
-                                  <svg
-                                    className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                  </svg>
-                                )}
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
                               </LocalizedClientLink>
 
                               {children.length > 0 && (
                                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-32 h-3 bg-transparent" />
-                              )}
-
-                              {children.length > 0 && (
-                                <div
-                                  className="fixed top-full left-0 w-screen bg-white backdrop-blur-3xl border-b border-gray-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0"
-                                  style={{ top: 'calc(100%)' }}
-                                >
-                                  <div className="container mx-auto px-6 py-8">
-                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                                      {children.map((child) => (
-                                        <div key={child.id} className="group/item">
-                                          <LocalizedClientLink
-                                            href={`/categories/${child.handle}`}
-                                            className="block py-3 px-4 text-gray-700 hover:text-gray-900 hover:bg-blue-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:bg-blue-50 border-transparent hover:border-blue-500 group-hover/item:shadow-sm active:bg-blue-100" /* Added active state */
-                                            data-testid="category-link"
-                                            tabIndex="0"
-                                            
-                                          >
-                                            <span className="font-medium">{child.name}</span>
-                                          </LocalizedClientLink>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
                               )}
                             </div>
                           )
