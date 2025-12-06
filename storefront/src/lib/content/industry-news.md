@@ -61,4 +61,4 @@ Vaping is subject to the same public usage restrictions as smoking under the Tob
 
 Have questions about a specific product or want to ensure you're shopping compliantly? [Explore our collection](https://www.vapezone.co.ke/ke/store) of fully-licensed and tax-compliant vaping products, available only to verified adults aged 18 and over.
 
-Also Explore premium selection of drinks from Kenya's most reliable [Online Store](https://drinkszone.co.ke/)
+Also Explore premium selection of drinks from Kenya's most reliable [Online Store](https://drinkszone.co.ke/vape)

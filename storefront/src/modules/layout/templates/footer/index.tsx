@@ -162,6 +162,14 @@ export default async function Footer() {
                       Shipping & Returns
                     </LocalizedClientLink>
                   </li>
+                  <li>
+                    <LocalizedClientLink
+                      href="https://drinkszone.co.ke/vape"
+                      className="text-sm text-slate-600 hover:text-blue-600 transition-all duration-200 hover:translate-x-1 hover:font-medium block py-1"
+                    >
+                      More Vape Varieties
+                    </LocalizedClientLink>
+                  </li>
                 </ul>
               </div>
             </div>
