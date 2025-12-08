@@ -3,7 +3,7 @@ title: "Is Vaping Legal in Kenya? Latest Laws & Regulations (2025)"
 subtitle: "The government has historically taken a hard stance on tobacco, and there is significant public confusion about where vaping stands. This article will cut through the noise and provide a clear, up-to-date breakdown of the laws, regulations, and practical realities for vaping in Kenya."
 category: "Industry News"
 date: "2025-07-15"
-tags: ["regulations", "Legal", "trending"]
+tags: ["regulations", "Legal"]
 author: "VK"
 image: "https://res.cloudinary.com/dfndhiz82/image/upload/v1758224481/legal_c9q7yn.webp"
 ---
